@@ -1,25 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import Splash_Component from './Splash_Component';
 import {connect} from 'react-redux';
-import {navigate} from '../../navigation/NavigationUtils';
+import Welcome_Component from './Welcome_Component';
 
-class Splash extends Component {
+class Welcome extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      navigate('WelcomeScreen');
-    }, 1500);
-  }
-
   render() {
     return (
       <>
-        <Splash_Component />
+        <Welcome_Component />
       </>
     );
   }
@@ -30,7 +23,6 @@ const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
-    isDarkTheme: state.global.isDarkTheme,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Splash);
+export default connect(mapStateToProps, mapActionCreators)(Welcome);

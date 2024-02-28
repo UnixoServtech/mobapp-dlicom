@@ -81,6 +81,15 @@ const spacing = {
   xl11: wp('9.2'), // 36
 };
 
+const button = {
+  large: wp('12'), //48
+  small: 32, // 32
+  largeIcon: wp('6.3'), // 24
+  smallIcon: wp('4.1'), //16
+  spacing: wp('4.1'), //16
+  radius: wp('3.2'), //12
+};
+
 const sizes = {
   icons,
   spacing,
@@ -88,9 +97,11 @@ const sizes = {
   image,
   borders,
   radius,
+  button,
   borderRadius: 10,
   borderWidth: 2,
   modalRadius: wp('2.7'),
+  btnRadiusLarge: 12,
   ...{
     xs3: 50,
     xl4: 60,

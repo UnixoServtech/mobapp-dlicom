@@ -1,0 +1,150 @@
+import React, {Component} from 'react';
+import NetInfo from '@react-native-community/netinfo';
+import {NavigationContainer} from '@react-navigation/native';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
+import {
+  AppState,
+  Keyboard,
+  View,
+  PermissionsAndroid,
+  Platform,
+  Linking,
+  StatusBar,
+} from 'react-native';
+import {navigationRef} from './NavigationUtils';
+import {SplashScreen, WelcomeScreen} from '../screens';
+import {connect} from 'react-redux';
+import colors from '../theme/colors';
+const Stack = createStackNavigator();
+
+class RootNavigator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      appState: AppState.currentState,
+      isNetConnected: true,
+    };
+    this.currentScreen = null;
+    this.routeNameRef = React.createRef();
+    this.appStateRef = null;
+  }
+
+  async componentDidMount() {
+    this.unsubscribe = NetInfo?.addEventListener(state => {
+      this.internetChecker(state?.isConnected);
+    });
+  }
+
+  componentWillUnmount() {
+    this.unregisterAppStateEvent();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {isNetAvailable} = this.props;
+    if (prevProps.isNetAvailable !== isNetAvailable) {
+      this.connectivityChange(isNetAvailable);
+    }
+  }
+
+  internetChecker = isConnected => {
+    this.connectivityChange(isConnected);
+  };
+
+  connectivityChange = isConnected => {
+    if (!isConnected) Keyboard.dismiss();
+    if (isConnected) {
+    }
+    // setIsNetAvailableForApi(isConnected);
+    this.setState({isNetConnected: isConnected});
+  };
+
+  recheckConnectivity = () => {
+    NetInfo.fetch().then(state => {
+      this.internetChecker(state?.isConnected);
+    });
+  };
+
+  registerAppStateEvent() {
+    this.appStateRef = AppState.addEventListener(
+      'change',
+      this._handleAppStateChange,
+    );
+  }
+
+  unregisterAppStateEvent() {
+    this.unsubscribe?.remove?.();
+  }
+
+  _handleAppStateChange = nextAppState => {
+    if (
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      console.log('nextAppState---------1', nextAppState);
+    } else {
+      console.log('nextAppState---------', nextAppState);
+    }
+    this.setState({appState: nextAppState});
+  };
+
+  onNavigationStateChange = e => {
+    const currentRouteName = navigationRef.current.getCurrentRoute().name;
+    this.currentScreen = currentRouteName ? {...currentRouteName} : null;
+    console.log(`@@@current_screen:${currentRouteName}`);
+    this.routeNameRef.current = currentRouteName;
+  };
+
+  render() {
+    console.log('--->', this.props.isDarkTheme);
+    return (
+      <View style={{flex: 1}}>
+        <StatusBar
+          barStyle={this.props.isDarkTheme ? 'light-content' : 'dark-content'}
+          backgroundColor={
+            this.props.isDarkTheme
+              ? colors.dark.colors.primaryBg
+              : colors.light.colors.primaryBg
+          }
+        />
+        <NavigationContainer
+          ref={navigationRef}
+          theme={this.props?.isDarkTheme ? colors?.dark : colors?.light}
+          onReady={() => {
+            this.routeNameRef.current =
+              navigationRef.current.getCurrentRoute().name;
+          }}
+          onStateChange={this.onNavigationStateChange}>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            }}>
+            <Stack.Screen
+              name={'SplashScreen'}
+              component={SplashScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={'WelcomeScreen'}
+              component={WelcomeScreen}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    );
+  }
+}
+
+const mapActionCreators = {};
+const mapStateToProps = state => {
+  return {
+    isInternetConnected: state.global.isInternetConnected,
+    isLoading: state.global.loading,
+    isDarkTheme: state.global.isDarkTheme,
+  };
+};
+export default connect(mapStateToProps, mapActionCreators)(RootNavigator);

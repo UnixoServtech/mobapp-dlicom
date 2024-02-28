@@ -1,17 +1,21 @@
-import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useMemo} from 'react';
 import {LogBox} from 'react-native';
-import {SplashScreen} from './src/screens';
 import API, {DevelopmentMode} from './src/networking';
-
+import RootNavigator from './src/navigation/RootNavigator';
+import {Provider} from 'react-redux';
+import {configureStore} from './src/redux/';
+import {apiConfig} from './env';
+import {NativeBaseProvider} from 'native-base';
+API.getInstance().build(DevelopmentMode.PRODUCTION, apiConfig);
+const store = configureStore();
 LogBox.ignoreAllLogs(true);
 
-const App = () => {
+export default function App() {
   return (
-    <View>
-      <SplashScreen />
-    </View>
+    <NativeBaseProvider>
+      <Provider store={store}>
+        <RootNavigator />
+      </Provider>
+    </NativeBaseProvider>
   );
-};
-
-export default App;
+}
