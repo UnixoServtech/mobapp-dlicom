@@ -33,13 +33,19 @@ export default createStyles = colors =>
       fontWeight: theme.typography.fontWeights.semibold,
     },
     helperText: {
-      fontFamily: theme.typography.fonts.interRegular,
+      fontFamily: theme.typography.fonts.interLight,
       color: colors.text,
       fontSize: theme.typography.fontSizes.sm,
-      fontWeight: theme.typography.fontWeights.normal,
+      fontWeight: theme.typography.fontWeights.light,
+    },
+    helperMedium: {
+      fontFamily: theme.typography.fonts.interMedium,
+      color: colors.text,
+      fontSize: theme.typography.fontSizes.sm,
+      fontWeight: theme.typography.fontWeights.medium,
     },
     deviceHeader: {
-      fontFamily: theme.typography.fonts.in,
+      fontFamily: theme.typography.fonts.interMedium,
       color: colors.text,
       fontSize: theme.typography.fontSizes.xl,
       fontWeight: theme.typography.fontWeights.medium,
@@ -67,3 +73,14 @@ export default createStyles = colors =>
       color: colors.white,
     },
   });
+
+//largeHeader:24
+//bodyTitle:16
+//bodyText(regular):16
+//helperTextBold:14
+//helperText(light):14
+//helperMedium:14
+//deviceHeader(medium):20
+//tinyLabelBold:9
+//tinyLabel(light):9
+//button:16

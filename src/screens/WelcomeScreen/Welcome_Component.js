@@ -8,7 +8,7 @@ import CustomIcon from '../../components/CustomIcon';
 import Strings from '../../localization/Strings';
 import {Spacing, Text, Button} from '../../components';
 
-const Welcome_Component = ({params}) => {
+const Welcome_Component = ({button1Press, button2Press}) => {
   const {colors} = useTheme();
 
   return (
@@ -26,46 +26,29 @@ const Welcome_Component = ({params}) => {
         <Text type={'helper-text'} color={colors.caption}>
           {Strings.welcomeNote}
         </Text>
-        <Spacing size={theme.normalize(80)} />
+        <Spacing size={theme.normalize(90)} />
         <Image
           source={images.ic_wallet_image}
           resizeMode="contain"
-          style={{width: theme.normalize(280), height: theme.normalize(280)}}
+          style={{
+            width: theme.normalize(280),
+            height: theme.normalize(280),
+            top: 15,
+          }}
         />
       </View>
       <View
         style={{
-          flex: 2,
-          borderColor: 'blue',
-          // borderWidth: 1,
+          flex: 1,
           justifyContent: 'center',
         }}>
-        <Button
-          label={Strings.createNewWallet}
-          onPress={() => alert('test')}
-          showIconRight
-          showIconLeft={true}
-        />
+        <Button label={Strings.createNewWallet} onPress={button1Press} />
         <Spacing />
         <Button
           label={Strings.importWallet}
-          _pressed={{
-            backgroundColor: '#000',
-          }}
           variant="ghost"
-          onPress={() => alert('test2')}
+          onPress={button2Press}
           themedColor={colors.primaryMainColor}
-        />
-        <Spacing />
-        <Button
-          label={Strings.importWallet}
-          variant="link"
-          onPress={() => alert('test2')}
-          style={{}}
-          borderWidth={1}
-          showIconLeft={true}
-          isCompact={true}
-          size={'small'}
         />
       </View>
     </View>
@@ -73,11 +56,3 @@ const Welcome_Component = ({params}) => {
 };
 
 export default Welcome_Component;
-
-{
-  /* <CustomIcon
-name="Mic-off"
-color={colors.text}
-size={theme.sizes.icons.md}
-/> */
-}

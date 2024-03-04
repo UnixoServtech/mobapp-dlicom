@@ -163,3 +163,13 @@ const Text = ({
 };
 
 export default Text;
+//largeHeader:24
+//bodyTitle:16
+//bodyText(regular):16
+//helperTextBold:14
+//helperText(light):14
+//helperMedium:14
+//deviceHeader(medium):20
+//tinyLabelBold:9
+//tinyLabel(light):9
+//button:14

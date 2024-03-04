@@ -7,13 +7,12 @@ import {useTheme} from '@react-navigation/native';
 
 const Splash_Component = ({params}) => {
   const {colors} = useTheme();
-  console.log({colors});
   return (
     <View
       style={[
         styles.container,
         {
-          backgroundColor: colors.primaryBg,
+          backgroundColor: colors.splashBgColor,
         },
       ]}>
       <Image

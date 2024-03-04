@@ -2,13 +2,14 @@ import {DarkTheme, DefaultTheme} from '@react-navigation/native';
 
 const commonColor = {
   white: '#ffffff',
-  black: '#090909',
+  black: '#080808',
   splashBgColor: '#090909',
   mainColorDark: '#003239',
   mainColorSelected: '#202F33',
   primaryMainColor: '#23CBCA',
   gray: '#3A3A3A',
   gray1: '#606060',
+  grayLight: '#AAABAB',
 };
 
 export const colors = {
@@ -35,6 +36,26 @@ export const colors = {
         disableBg: commonColor.gray,
         textDisable: commonColor.gray1,
       },
+      headerBg: commonColor.white,
+      headerBorder: '#313131',
+      radio: {
+        borderColor: '#CDCFD0',
+        disableBorderColor: '#E3E5E5',
+        background: commonColor.primaryMainColor,
+        disableBackground: '#E3E5E5',
+        disableInnerBg: '#F2F4F5',
+      },
+      listItem: {
+        date: '##9C9C9C',
+        link: commonColor.gray1,
+        bodyText: '#979C9E',
+        tittleText: commonColor.black,
+      },
+      toast: {
+        background: commonColor.black,
+        text1: commonColor.white,
+        text2: '#979C9E',
+      },
     },
   },
   dark: {
@@ -42,7 +63,7 @@ export const colors = {
     colors: {
       ...DefaultTheme.colors,
       ...commonColor,
-      primaryBg: '#0D0E0F',
+      primaryBg: '#080808',
       text: commonColor.white,
       primaryMainColor: commonColor.primaryMainColor,
       headerActionText: '#9990FF',
@@ -59,6 +80,28 @@ export const colors = {
         secondaryBg: '#00B0AF',
         disableBg: commonColor.gray,
         textDisable: commonColor.gray1,
+      },
+      headerBg: commonColor.black,
+      headerBorder: '#313131',
+      radio: {
+        borderColor: '#6C7072',
+        disableBorderColor: '#303437',
+        background: commonColor.primaryMainColor,
+        disableBackground: '#202325',
+        disableInnerBg: '#303437',
+      },
+      listItem: {
+        date: '#9C9C9C',
+        link: commonColor.gray1,
+        bodyText: '#979C9E',
+        tittleText: commonColor.white,
+        amount: commonColor.primaryMainColor,
+        border: '#393939',
+      },
+      toast: {
+        background: commonColor.primaryMainColor,
+        text1: commonColor.white,
+        text2: '#E6E6E6',
       },
     },
   },

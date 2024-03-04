@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import Welcome_Component from './Welcome_Component';
-import {navigate} from '../../navigation/NavigationUtils';
+import Dummy_Component from './Dummy_Component';
 
-class Welcome extends Component {
+class Dummy extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,19 +13,14 @@ class Welcome extends Component {
 
   componentDidMount() {}
 
-  handleCreateNewWallet = () => {
-    // navigate('SecurityScreen');
-    navigate('ConfirmSeedPhrase');
-  };
+  handleCreateNewWallet = () => {};
 
-  handleImportWallet = () => {
-    navigate('WalletScreen');
-  };
+  handleImportWallet = () => {};
 
   render() {
     return (
       <>
-        <Welcome_Component
+        <Dummy_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
         />
@@ -42,4 +36,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Welcome);
+export default connect(mapStateToProps, mapActionCreators)(Dummy);

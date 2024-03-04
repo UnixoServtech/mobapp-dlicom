@@ -32,6 +32,7 @@ const Button = ({
   leftIcon,
   leftIconName = 'Message-1',
   size = 'large',
+  _iconSize,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -93,13 +94,14 @@ const Button = ({
 
   const iconColor = themedColor ?? colors.white;
   const disableIconColor = disableLabelColor ?? colors.button.textDisable;
-  const iconSize =
-    size === 'large'
-      ? theme.sizes.button.largeIcon
-      : theme.sizes.button.smallIcon;
-
+  const iconSize = _iconSize
+    ? _iconSize
+    : size === 'large'
+    ? theme.sizes.button.largeIcon
+    : theme.sizes.button.smallIcon;
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={[containerStyle, style]}
       disabled={isDisabled}
       {...rest}>

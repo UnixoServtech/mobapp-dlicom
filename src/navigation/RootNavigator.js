@@ -15,7 +15,14 @@ import {
   StatusBar,
 } from 'react-native';
 import {navigationRef} from './NavigationUtils';
-import {SplashScreen, WelcomeScreen} from '../screens';
+import {
+  SecurityScreen,
+  SplashScreen,
+  WelcomeScreen,
+  WalletScreen,
+  ManualBackupStep,
+  ConfirmSeedPhrase,
+} from '../screens';
 import {connect} from 'react-redux';
 import colors from '../theme/colors';
 const Stack = createStackNavigator();
@@ -83,9 +90,9 @@ class RootNavigator extends Component {
       this.state.appState.match(/inactive|background/) &&
       nextAppState === 'active'
     ) {
-      console.log('nextAppState---------1', nextAppState);
+      // console.log('nextAppState---------1', nextAppState);
     } else {
-      console.log('nextAppState---------', nextAppState);
+      // console.log('nextAppState---------', nextAppState);
     }
     this.setState({appState: nextAppState});
   };
@@ -98,7 +105,6 @@ class RootNavigator extends Component {
   };
 
   render() {
-    console.log('--->', this.props.isDarkTheme);
     return (
       <View style={{flex: 1}}>
         <StatusBar
@@ -130,6 +136,26 @@ class RootNavigator extends Component {
             <Stack.Screen
               name={'WelcomeScreen'}
               component={WelcomeScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={'SecurityScreen'}
+              component={SecurityScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={'WalletScreen'}
+              component={WalletScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={'ManualBackupStep'}
+              component={ManualBackupStep}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={'ConfirmSeedPhrase'}
+              component={ConfirmSeedPhrase}
               options={{headerShown: false}}
             />
           </Stack.Navigator>
