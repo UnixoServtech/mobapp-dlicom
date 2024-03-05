@@ -22,10 +22,17 @@ import {
   WalletScreen,
   ManualBackupStep,
   ConfirmSeedPhrase,
+  GroupsScreen,
 } from '../screens';
 import {connect} from 'react-redux';
 import colors from '../theme/colors';
 const Stack = createStackNavigator();
+let commonScreens = {
+  GroupsScreen: {
+    screen: GroupsScreen,
+    navigationOptions: {headerBackTitle: null},
+  },
+};
 
 class RootNavigator extends Component {
   constructor(props) {
@@ -104,6 +111,31 @@ class RootNavigator extends Component {
     this.routeNameRef.current = currentRouteName;
   };
 
+  getStackFromJSON = object => {
+    return (
+      <>
+        {Object.keys(object).map(key => {
+          return (
+            key !== 'initialRouteName' && (
+              <>
+                <Stack.Screen
+                  key={key}
+                  name={key}
+                  component={object[key]?.screen}
+                  options={{
+                    gestureEnabled:
+                      object[key]?.navigationOptions?.gesturesEnabled !== false,
+                    headerShown: false,
+                  }}
+                />
+              </>
+            )
+          );
+        })}
+      </>
+    );
+  };
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -158,6 +190,7 @@ class RootNavigator extends Component {
               component={ConfirmSeedPhrase}
               options={{headerShown: false}}
             />
+            {this.getStackFromJSON(commonScreens)}
           </Stack.Navigator>
         </NavigationContainer>
       </View>

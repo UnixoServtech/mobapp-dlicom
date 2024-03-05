@@ -132,7 +132,6 @@ const Text = ({
             defaultTextStyle,
             computedStyles,
             additionalComputedStyles,
-            amikoBold && theme.typography.fontStyles.amikoBold,
             amikoRegular && theme.typography.fontStyles.amikoRegular,
             amikoSemiBold && theme.typography.fontStyles.amikoSemiBold,
             archivoBold && theme.typography.fontStyles.archivoBold,
@@ -153,6 +152,7 @@ const Text = ({
             netflixSansMedium && theme.typography.fontStyles.netflixSansMedium,
             netflixSansRegular &&
               theme.typography.fontStyles.netflixSansRegular,
+            amikoBold && theme.typography.fontStyles.amikoBold,
             style,
           ]}>
           {children}
