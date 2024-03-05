@@ -38,6 +38,7 @@ const Header = ({
   iconColor,
   rightElement,
   rightContent,
+  isCenterRight = true,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -159,7 +160,7 @@ const Header = ({
   return (
     <View style={headerContainer}>
       <View style={[styles.innerRowContainer, innerRowContainerStyle]}>
-        <View style={leftContainerStyle}>
+        <View style={[leftContainerStyle]}>
           {!isLeftDisabled && <LeftContent />}
         </View>
         {!isCenterDisabled && (
@@ -169,6 +170,7 @@ const Header = ({
         )}
         <View style={[styles.rightContainer, rightContainerStyle]}>
           {!isRightDisabled && <RightContent />}
+          {isCenterRight && <View style={{width: theme.sizes.icons.xl2}} />}
         </View>
       </View>
     </View>
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
   },
   centerContainer: {
     alignItems: 'center',
-    flex: 1,
+    flex: 3,
   },
   leftContent: {
     flexDirection: 'row',
