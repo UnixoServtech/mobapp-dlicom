@@ -1,12 +1,16 @@
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import React from 'react';
-import {FlatList, Image, TouchableOpacity, View} from 'react-native';
-import {Button, Spacing, Text, Header, ListItem} from '../../components';
-import Strings from '../../localization/Strings';
+import { FlatList, Image, View } from 'react-native';
+import images from '../../assets/images';
+import {
+  Button,
+  Header,
+  ListItem,
+  Pressable,
+  Spacing
+} from '../../components';
 import theme from '../../theme';
 import createStyles from './Groups.style';
-import CustomIcon from '../../components/CustomIcon';
-import images from '../../assets/images';
 
 const Groups_Component = ({
   onPressLeftContent,
@@ -32,7 +36,7 @@ const Groups_Component = ({
         }}
         keyExtractor={(item, index) => index}
         renderItem={({item, index}) => (
-          <TouchableOpacity activeOpacity={0.5} onPress={() => {}}>
+          <Pressable onPress={() => {}}>
             <ListItem
               style={{
                 backgroundColor: '#191A1D',
@@ -64,7 +68,7 @@ const Groups_Component = ({
               </ListItem.Content>
             </ListItem>
             <Spacing />
-          </TouchableOpacity>
+          </Pressable>
         )}
       />
       {/* <View style={{flex: 1}}>

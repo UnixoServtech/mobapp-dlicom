@@ -1,7 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
-import {Button, Header, Spacing, Text} from '../../components';
+import {FlatList, View} from 'react-native';
+import {Button, Header, Spacing, Text, Pressable} from '../../components';
 import Strings from '../../localization/Strings';
 import theme from '../../theme';
 import createStyles from './ConfirmSeedPhrase.style';
@@ -46,9 +46,8 @@ const ConfirmSeedPhrase_Component = ({
           keyExtractor={(item, index) => index}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity
+              <Pressable
                 onPress={() => onSeedPhraseSelect(item, index)}
-                activeOpacity={0.4}
                 style={[
                   styles.itemStyle,
                   item?.selected && {backgroundColor: colors?.primaryMainColor},
@@ -59,7 +58,7 @@ const ConfirmSeedPhrase_Component = ({
                   lineHeight={24}>
                   {item}
                 </Text>
-              </TouchableOpacity>
+              </Pressable>
             );
           }}
         />

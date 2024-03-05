@@ -13,6 +13,7 @@ import {
   Platform,
   Linking,
   StatusBar,
+  SafeAreaView,
 } from 'react-native';
 import {navigationRef} from './NavigationUtils';
 import {
@@ -138,7 +139,13 @@ class RootNavigator extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: this.props.isDarkTheme
+            ? colors.dark.colors.primaryBg
+            : colors.light.colors.primaryBg,
+        }}>
         <StatusBar
           barStyle={this.props.isDarkTheme ? 'light-content' : 'dark-content'}
           backgroundColor={
@@ -147,53 +154,55 @@ class RootNavigator extends Component {
               : colors.light.colors.primaryBg
           }
         />
-        <NavigationContainer
-          ref={navigationRef}
-          theme={this.props?.isDarkTheme ? colors?.dark : colors?.light}
-          onReady={() => {
-            this.routeNameRef.current =
-              navigationRef.current.getCurrentRoute().name;
-          }}
-          onStateChange={this.onNavigationStateChange}>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            }}>
-            <Stack.Screen
-              name={'SplashScreen'}
-              component={SplashScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name={'WelcomeScreen'}
-              component={WelcomeScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name={'SecurityScreen'}
-              component={SecurityScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name={'WalletScreen'}
-              component={WalletScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name={'ManualBackupStep'}
-              component={ManualBackupStep}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name={'ConfirmSeedPhrase'}
-              component={ConfirmSeedPhrase}
-              options={{headerShown: false}}
-            />
-            {this.getStackFromJSON(commonScreens)}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+        <View style={{flex: 1}}>
+          <NavigationContainer
+            ref={navigationRef}
+            theme={this.props?.isDarkTheme ? colors?.dark : colors?.light}
+            onReady={() => {
+              this.routeNameRef.current =
+                navigationRef.current.getCurrentRoute().name;
+            }}
+            onStateChange={this.onNavigationStateChange}>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+              }}>
+              <Stack.Screen
+                name={'SplashScreen'}
+                component={SplashScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'WelcomeScreen'}
+                component={WelcomeScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'SecurityScreen'}
+                component={SecurityScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'WalletScreen'}
+                component={WalletScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'ManualBackupStep'}
+                component={ManualBackupStep}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'ConfirmSeedPhrase'}
+                component={ConfirmSeedPhrase}
+                options={{headerShown: false}}
+              />
+              {this.getStackFromJSON(commonScreens)}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </SafeAreaView>
     );
   }
 }

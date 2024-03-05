@@ -1,12 +1,10 @@
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import React from 'react';
-import {FlatList, Image, View, TouchableOpacity} from 'react-native';
-import {Radio, Spacing, Text, Header, Button, ListItem} from '../../components';
-import Strings from '../../localization/Strings';
+import { FlatList, Image, View } from 'react-native';
+import images from '../../assets/images';
+import { Button, Header, ListItem, Pressable, Radio, Spacing, Text } from '../../components';
 import theme from '../../theme';
 import createStyles from './Wallet.style';
-import images from '../../assets/images';
-import CustomIcon from '../../components/CustomIcon';
 
 const Wallet_Component = ({
   headerLeftText,
@@ -43,8 +41,7 @@ const Wallet_Component = ({
         data={walletList}
         keyExtractor={(item, index) => index}
         renderItem={({item, index}) => (
-          <TouchableOpacity
-            activeOpacity={0.5}
+          <Pressable
             onPress={() => onChangeRadio(item, index)}>
             <ListItem>
               <ListItem.Content>
@@ -68,7 +65,7 @@ const Wallet_Component = ({
                 </ListItem.Right>
               </ListItem.Content>
             </ListItem>
-          </TouchableOpacity>
+          </Pressable>
         )}
       />
       <View style={{margin: theme.sizes.spacing.ph}}>

@@ -4,8 +4,7 @@ import theme from '../theme';
 import {useTheme} from '@react-navigation/native';
 import {hex2rgba} from './helper';
 import {StyleSheet, TouchableHighlight, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Spacing, Text} from '.';
+import {Spacing, Text,Pressable} from '.';
 import CustomIcon from './CustomIcon';
 
 const Header = ({
@@ -85,8 +84,7 @@ const Header = ({
     ) : (
       <View style={styles.leftContent}>
         {!isLeftIconHidden && (
-          <TouchableOpacity
-            activeOpacity={0.5}
+          <Pressable
             onPress={onPressLeftContent}
             style={[styles.leftContent, leftIconStyle]}>
             {leftIcon ? (
@@ -106,7 +104,7 @@ const Header = ({
                 {leftText}
               </Text>
             )}
-          </TouchableOpacity>
+          </Pressable>
         )}
       </View>
     );
@@ -134,8 +132,7 @@ const Header = ({
       onPressRightContent = () => {},
     } = rightContentProp;
     return (
-      <TouchableOpacity
-        activeOpacity={0.5}
+      <Pressable
         onPress={() => onPressRightContent && onPressRightContent(icon ?? text)}
         style={[
           styles.rightElementStyle,
@@ -153,7 +150,7 @@ const Header = ({
             {text}
           </Text>
         )}
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 

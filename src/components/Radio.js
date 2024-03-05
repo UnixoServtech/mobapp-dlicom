@@ -1,12 +1,8 @@
-import React from 'react';
-import {Button as IButton} from 'native-base';
-import theme from '../theme';
 import {useTheme} from '@react-navigation/native';
-import {hex2rgba} from './helper';
-import {StyleSheet, TouchableHighlight, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Spacing, Text} from '.';
-import CustomIcon from './CustomIcon';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Pressable} from '.';
+import theme from '../theme';
 
 const Radio = ({
   radioButtonContainer,
@@ -86,12 +82,9 @@ const Radio = ({
 
   return (
     <View style={radioButtonContainer}>
-      <TouchableOpacity
-        onPress={onChange}
-        style={containerStyle}
-        disabled={disabled}>
+      <Pressable onPress={onChange} style={containerStyle} disabled={disabled}>
         {selected ? <View style={selectedRadioStyle} /> : null}
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

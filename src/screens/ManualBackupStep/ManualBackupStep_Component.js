@@ -1,13 +1,11 @@
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import React from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
-import {Button, Spacing, Text, Header} from '../../components';
-import Strings from '../../localization/Strings';
+import { Image, View } from 'react-native';
+import images from '../../assets/images';
+import { Button, Header, Pressable, Spacing, Text } from '../../components';
+import CustomIcon from '../../components/CustomIcon';
 import theme from '../../theme';
 import createStyles from './ManualBackupStep.style';
-import CustomIcon from '../../components/CustomIcon';
-import {BlurView} from '@react-native-community/blur';
-import images from '../../assets/images';
 
 const ManualBackupStep_Component = ({
   headerLeftText,
@@ -72,13 +70,13 @@ const ManualBackupStep_Component = ({
               alignContent: 'center',
               flex: 0.15,
             }}>
-            <TouchableOpacity onPress={revealSeedPhrase}>
+            <Pressable onPress={revealSeedPhrase}>
               <CustomIcon
                 name={seedPhraseHidden ? 'Eye' : 'Eye_off1'}
                 color={colors.text}
                 size={theme.sizes.icons.xl2}
               />
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
         <Spacing size="md" />

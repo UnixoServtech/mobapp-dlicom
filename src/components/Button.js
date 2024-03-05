@@ -4,9 +4,10 @@ import theme from '../theme';
 import {useTheme} from '@react-navigation/native';
 import {hex2rgba} from './helper';
 import {TouchableHighlight, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Spacing, Text} from '.';
+import {TouchableOpacity} from 'react-native';
+import {Pressable, Spacing, Text} from '.';
 import CustomIcon from './CustomIcon';
+
 
 const Button = ({
   label,
@@ -100,7 +101,7 @@ const Button = ({
     ? theme.sizes.button.largeIcon
     : theme.sizes.button.smallIcon;
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       style={[containerStyle, style]}
       disabled={isDisabled}
@@ -142,7 +143,7 @@ const Button = ({
           <Spacing direction={'x'} size={iconSize} />
         ) : null}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
