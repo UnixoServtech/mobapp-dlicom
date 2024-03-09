@@ -11,3 +11,4 @@ export {default as CommunityScreen} from './CommunityScreen/Community';
 export {default as WalletScreen} from './WalletScreen/Wallet';
 export {default as SettingScreen} from './SettingScreen/Settings';
 export {default as ChatViewScreen} from './Chat/ChatViewScreen/ChatView';
+export {default as ImportWallet} from './ImportWallet/ImportWallet';

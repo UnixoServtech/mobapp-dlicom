@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
 import Wallet_Component from './Wallet_Component';
 
-class Dummy extends Component {
+class Wallet extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -37,4 +37,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Dummy);
+export default connect(mapStateToProps, mapActionCreators)(Wallet);
