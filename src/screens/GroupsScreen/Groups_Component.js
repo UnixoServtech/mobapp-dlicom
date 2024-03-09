@@ -1,14 +1,8 @@
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import { FlatList, Image, View } from 'react-native';
+import {FlatList, Image, View} from 'react-native';
 import images from '../../assets/images';
-import {
-  Button,
-  Header,
-  ListItem,
-  Pressable,
-  Spacing
-} from '../../components';
+import {Button, Header, ListItem, Pressable, Spacing} from '../../components';
 import theme from '../../theme';
 import createStyles from './Groups.style';
 

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
+import {navigate} from '../../navigation/NavigationUtils';
 import Wallet_Component from './Wallet_Component';
-import { navigate } from '../../navigation/NavigationUtils';
 
 class Dummy extends Component {
   constructor(props) {

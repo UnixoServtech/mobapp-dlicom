@@ -1,16 +1,16 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
+import {Dimensions} from 'react-native';
 import Toast, {
-  ToastProps,
   BaseToast,
-  SuccessToast,
+  BaseToastProps,
   ErrorToast,
   InfoToast,
-  BaseToastProps,
+  SuccessToast,
   ToastPosition,
+  ToastProps,
 } from 'react-native-toast-message';
-import {Platform, Dimensions} from 'react-native';
 import theme from '../theme';
-import {useTheme} from '@react-navigation/native';
 const {colors} = useTheme();
 
 const width = Dimensions.get('window').width;
@@ -49,13 +49,13 @@ const toastConfig = {
 };
 
 export {
-  Toast,
-  toastConfig,
   BaseToast,
-  SuccessToast,
+  BaseToastProps,
   ErrorToast,
   InfoToast,
-  ToastProps,
-  BaseToastProps,
+  SuccessToast,
+  Toast,
   ToastPosition,
+  ToastProps,
+  toastConfig,
 };

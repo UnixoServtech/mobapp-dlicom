@@ -1,8 +1,16 @@
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import { FlatList, Image, View } from 'react-native';
+import {FlatList, Image, View} from 'react-native';
 import images from '../../assets/images';
-import { Button, Header, ListItem, Pressable, Radio, Spacing, Text } from '../../components';
+import {
+  Button,
+  Header,
+  ListItem,
+  Pressable,
+  Radio,
+  Spacing,
+  Text,
+} from '../../components';
 import theme from '../../theme';
 import createStyles from './Select_Wallet.style';
 
@@ -41,8 +49,7 @@ const Select_Wallet_Component = ({
         data={walletList}
         keyExtractor={(item, index) => index}
         renderItem={({item, index}) => (
-          <Pressable
-            onPress={() => onChangeRadio(item, index)}>
+          <Pressable onPress={() => onChangeRadio(item, index)}>
             <ListItem>
               <ListItem.Content>
                 <ListItem.Icon>
@@ -96,7 +103,6 @@ export default Select_Wallet_Component;
 </ListItem.Content>
 </ListItem> */
 }
-
 
 // <View
 // style={{

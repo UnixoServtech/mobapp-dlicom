@@ -1,12 +1,10 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Image, View} from 'react-native';
-import theme from '../../theme';
 import images from '../../assets/images';
-import styles from './Welcome.style';
-import {useTheme} from '@react-navigation/native';
-import CustomIcon from '../../components/CustomIcon';
+import {Button, Spacing, Text} from '../../components';
 import Strings from '../../localization/Strings';
-import {Spacing, Text, Button} from '../../components';
+import theme from '../../theme';
 
 const Welcome_Component = ({button1Press, button2Press}) => {
   const {colors} = useTheme();

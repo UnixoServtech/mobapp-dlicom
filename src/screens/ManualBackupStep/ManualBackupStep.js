@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
-import ManualBackupStep_Component from './ManualBackupStep_Component';
-import Strings from '../../localization/Strings';
-import {Toast} from '../../components/Toast';
 import Clipboard from '@react-native-clipboard/clipboard';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Toast} from '../../components/Toast';
+import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
+import ManualBackupStep_Component from './ManualBackupStep_Component';
 
 class ManualBackupStep extends Component {
   constructor(props) {

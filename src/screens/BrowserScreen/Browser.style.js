@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {StyleSheet} from 'react-native';
 import theme from '../../theme';
 

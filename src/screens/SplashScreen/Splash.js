@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import Splash_Component from './Splash_Component';
 import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
+import Splash_Component from './Splash_Component';
 
 class Splash extends Component {
   constructor(props) {

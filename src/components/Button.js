@@ -1,13 +1,9 @@
-import React from 'react';
-import {Button as IButton} from 'native-base';
-import theme from '../theme';
 import {useTheme} from '@react-navigation/native';
-import {hex2rgba} from './helper';
-import {TouchableHighlight, View} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import {Pressable, Spacing, Text} from '.';
+import theme from '../theme';
 import CustomIcon from './CustomIcon';
-
 
 const Button = ({
   label,

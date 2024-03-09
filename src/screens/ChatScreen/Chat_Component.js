@@ -1,8 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Button, Header, Pressable, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
+import {Pressable, Text} from '../../components';
 import theme from '../../theme';
 import createStyles from './Chat.style';
 
@@ -12,7 +11,7 @@ const Chat_Component = ({button1Press, onPressLeftContent}) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={{padding:40}}>
+      <View style={{padding: 40}}>
         <Pressable onPress={button1Press}>
           <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
             Chat_Component

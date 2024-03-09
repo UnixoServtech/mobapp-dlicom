@@ -1,8 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Button, Pressable, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
+import {Pressable, Text} from '../../components';
 import theme from '../../theme';
 import createStyles from './Wallet.style';
 
