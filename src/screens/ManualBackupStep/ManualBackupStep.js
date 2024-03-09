@@ -61,7 +61,7 @@ class ManualBackupStep extends Component {
           noteText={Strings.back_up_your_sed_phrase_note}
           copyButton={Strings.copy_seed_phrase}
           btn1Label={Strings.backup_on_cloud}
-          btn2Label={Strings.backup_manually}
+          btn2Label={Strings.next}
           seedPhraseHidden={this.state.seedPhraseHidden}
           revealSeedPhrase={this.revealSeedPhrase}
           copyPress={this.copySeedPhrase}

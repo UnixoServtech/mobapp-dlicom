@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import ConfirmSeedPhrase_Component from './ConfirmSeedPhrase_Component';
-import {goBack} from '../../navigation/NavigationUtils';
+import {goBack, navigate} from '../../navigation/NavigationUtils';
 let wordDir =
   'report ocean inject absurd spot cube ripple border asset glare legal like';
 class ConfirmSeedPhrase extends Component {
@@ -74,6 +74,7 @@ class ConfirmSeedPhrase extends Component {
   primaryButtonPress = () => {
     const {selectedPhrase} = this.state
     console.log({selectedPhrase})
+    navigate('HomeScreen')
   };
 
   render() {

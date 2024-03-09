@@ -28,10 +28,13 @@ import {
   SettingScreen,
   CommunityScreen,
   BrowserScreen,
+  ChatViewScreen,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
 import {useTheme} from '@react-navigation/native';
+import theme from '../theme';
+import CustomIcon from '../components/CustomIcon';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -229,23 +232,106 @@ class RootNavigator extends Component {
     const {colors} = useTheme();
     return (
       <Tab.Navigator
+        initialRouteName="WalletTab"
         screenOptions={props => {
           return {
-            tabBarInactiveTintColor: '#008abc',
             headerShown: false,
-            tabBarActiveTintColor: '#0c3471',
-            tabBarLabelPosition: 'below-icon',
-            tabBarIconStyle: {paddingBottom: 5},
+            tabBarShowLabel: false,
+            tabBarItemStyle: {
+              height: theme.normalize(65),
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
             tabBarStyle: {
               backgroundColor: colors.black,
+              position: 'absolute',
+              bottom: 5,
+              left: theme.sizes.spacing.ph,
+              right: theme.sizes.spacing.ph,
+              borderRadius: theme.normalize(70),
+              height: theme.normalize(65),
+              borderWidth: 1,
+              borderTopWidth: 1,
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderTopColor: 'rgba(255, 255, 255, 0.1)',
             },
           };
         }}>
-        <Tab.Screen name="ChatTabHome" component={this.ChatFlow} />
-        <Tab.Screen name="CommunityTab" component={this.CommunityFlow} />
-        <Tab.Screen name="WalletTab" component={this.WalletTabFlow} />
-        <Tab.Screen name="BrowserTab" component={this.BrowserFlow} />
-        <Tab.Screen name="SettingsTab" component={this.SettingsFlow} />
+        <Tab.Screen
+          name="ChatTabHome"
+          component={this.ChatFlow}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <CustomIcon
+                  name={focused ? 'Message-21' : 'Message-2'}
+                  color={'#23CBCA'}
+                  size={theme.sizes.icons.xl4}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="CommunityTab"
+          component={this.CommunityFlow}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <CustomIcon
+                  name={focused ? 'user_21' : 'user_1'}
+                  color={'#23CBCA'}
+                  size={theme.sizes.icons.xl4}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="WalletTab"
+          component={this.WalletTabFlow}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <CustomIcon
+                  name={'Scan'}
+                  color={'#23CBCA'}
+                  size={theme.sizes.icons.xl15}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="BrowserTab"
+          component={this.BrowserFlow}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <CustomIcon
+                  name={focused ? 'Globe-2' : 'Globe-1'}
+                  color={'#23CBCA'}
+                  size={theme.sizes.icons.xl4}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="SettingsTab"
+          component={this.SettingsFlow}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <CustomIcon
+                  name={focused ? 'Setting1' : 'Setting'}
+                  color={'#23CBCA'}
+                  size={theme.sizes.icons.xl4}
+                />
+              );
+            },
+          }}
+        />
       </Tab.Navigator>
     );
   };
@@ -284,6 +370,7 @@ class RootNavigator extends Component {
               //   headerShown: false,
               //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               // }}
+              initialRouteName="SplashScreen"
               screenOptions={screenOptionsObject}>
               <Stack.Screen
                 name={'SplashScreen'}
@@ -318,6 +405,11 @@ class RootNavigator extends Component {
               <Stack.Screen
                 name={'HomeScreen'}
                 component={this.DefaultNavigation}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={'ChatViewScreen'}
+                component={ChatViewScreen}
                 options={{headerShown: false}}
               />
               {this.getStackFromJSON(commonScreens)}

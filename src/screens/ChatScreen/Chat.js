@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 import Chat_Component from './Chat_Component';
+import { goBack, navigate } from '../../navigation/NavigationUtils';
 
 class Chat extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class Chat extends Component {
 
   componentDidMount() {}
 
-  handleCreateNewWallet = () => {};
+  handleCreateNewWallet = () => {
+    navigate('ChatViewScreen')
+  };
 
   handleImportWallet = () => {};
 
