@@ -19,7 +19,7 @@ class Welcome extends Component {
   };
 
   handleImportWallet = () => {
-    navigate('WalletScreen');
+    navigate('SelectWalletScreen');
   };
 
   render() {

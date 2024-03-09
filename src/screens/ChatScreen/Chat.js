@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import Wallet_Component from './Wallet_Component';
-import { navigate } from '../../navigation/NavigationUtils';
+import Chat_Component from './Chat_Component';
+import { goBack, navigate } from '../../navigation/NavigationUtils';
 
-class Dummy extends Component {
+class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,17 +14,18 @@ class Dummy extends Component {
 
   componentDidMount() {}
 
-  handleCreateNewWallet = () => {};
+  handleCreateNewWallet = () => {
+    navigate('ChatViewScreen')
+  };
 
   handleImportWallet = () => {};
 
   render() {
     return (
       <>
-        <Wallet_Component
+        <Chat_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
-          onPress={() => navigate('GroupsScreen')}
         />
       </>
     );
@@ -38,4 +39,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Dummy);
+export default connect(mapStateToProps, mapActionCreators)(Chat);

@@ -1,8 +1,8 @@
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import { Image, View } from 'react-native';
+import {Image, View} from 'react-native';
 import images from '../../assets/images';
-import { Button, Header, Pressable, Spacing, Text } from '../../components';
+import {Button, Header, Pressable, Spacing, Text} from '../../components';
 import CustomIcon from '../../components/CustomIcon';
 import theme from '../../theme';
 import createStyles from './ManualBackupStep.style';
@@ -19,6 +19,8 @@ const ManualBackupStep_Component = ({
   copyButton,
   copyPress,
   seedPhrase,
+  secondaryButtonPress,
+  primaryButtonPress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -104,9 +106,15 @@ const ManualBackupStep_Component = ({
             amikoBold: true,
             color: colors.text,
           }}
+          onPress={primaryButtonPress}
         />
         <Spacing size="md" />
-        <Button label={btn2Label} variant="link" themedColor={colors.text} />
+        <Button
+          label={btn2Label}
+          variant="link"
+          themedColor={colors.text}
+          onPress={secondaryButtonPress}
+        />
       </View>
     </View>
   );
