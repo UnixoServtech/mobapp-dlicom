@@ -5,3 +5,7 @@ export {default as WalletScreen} from './WalletScreen/Wallet';
 export {default as ManualBackupStep} from './ManualBackupStep/ManualBackupStep';
 export {default as ConfirmSeedPhrase} from './ConfirmSeedPhrase/ConfirmSeedPhrase';
 export {default as GroupsScreen} from './GroupsScreen/Groups';
+export {default as ChatScreen} from './ChatScreen';
+export {default as Screen2} from './Screen2';
+export {default as Screen3} from './Screen3';
+export {default as SettingScreen} from './SettingScreen';

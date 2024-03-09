@@ -5,7 +5,7 @@ import ManualBackupStep_Component from './ManualBackupStep_Component';
 import Strings from '../../localization/Strings';
 import {Toast} from '../../components/Toast';
 import Clipboard from '@react-native-clipboard/clipboard';
-import {goBack} from '../../navigation/NavigationUtils';
+import {goBack, navigate} from '../../navigation/NavigationUtils';
 
 class ManualBackupStep extends Component {
   constructor(props) {
@@ -14,11 +14,14 @@ class ManualBackupStep extends Component {
       seedPhraseHidden: true,
       seedPhrase:
         'usual seek approve sudden round check elbow embark sure siren vanish trend',
+      setWordsDict: '',
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.revealSeedPhrase = this.revealSeedPhrase.bind(this);
     this.copySeedPhrase = this.copySeedPhrase.bind(this);
     this.onPressLeftContent = this.onPressLeftContent.bind(this);
+    this.secondaryButtonPress = this.secondaryButtonPress.bind(this);
+    this.primaryButtonPress = this.primaryButtonPress.bind(this);
   }
 
   componentDidMount() {}
@@ -43,6 +46,12 @@ class ManualBackupStep extends Component {
     goBack();
   };
 
+  primaryButtonPress = () => {};
+
+  secondaryButtonPress = () => {
+    navigate('ConfirmSeedPhrase');
+  };
+
   render() {
     return (
       <>
@@ -58,6 +67,8 @@ class ManualBackupStep extends Component {
           copyPress={this.copySeedPhrase}
           seedPhrase={this.state.seedPhrase}
           onPressLeftContent={this.onPressLeftContent}
+          primaryButtonPress={this.primaryButtonPress}
+          secondaryButtonPress={this.secondaryButtonPress}
         />
       </>
     );

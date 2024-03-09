@@ -11,6 +11,8 @@ const ConfirmSeedPhrase_Component = ({
   seedPhraseList,
   onSeedPhraseSelect,
   words,
+  seedPhraseReady,
+  primaryButtonPress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -47,6 +49,7 @@ const ConfirmSeedPhrase_Component = ({
           renderItem={({item, index}) => {
             return (
               <Pressable
+                disabled={seedPhraseReady && !item?.selected}
                 onPress={() => onSeedPhraseSelect(item, index)}
                 style={[
                   styles.itemStyle,
@@ -56,7 +59,7 @@ const ConfirmSeedPhrase_Component = ({
                   type={'helper-text'}
                   archivoRegular={true}
                   lineHeight={24}>
-                  {item}
+                  {item?.word}
                 </Text>
               </Pressable>
             );
@@ -74,7 +77,12 @@ const ConfirmSeedPhrase_Component = ({
           left: 0,
           right: 0,
         }}>
-        <Button showIconRight={true} label={Strings.next} isDisabled={true} />
+        <Button
+          showIconRight={true}
+          label={Strings.next}
+          isDisabled={!seedPhraseReady}
+          onPress={primaryButtonPress}
+        />
       </View>
     </View>
   );
