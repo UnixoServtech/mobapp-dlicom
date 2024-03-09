@@ -57,6 +57,7 @@ const ImportWallet_Component = ({
             onChangeText={onChangeText}
             value={value}
             returnKeyType={'next'}
+            autoCorrect={false}
           />
           <Spacing size="xl" />
           <Button {...primaryButtonProps} />
