@@ -20,11 +20,14 @@ import {
   ConfirmSeedPhrase,
   GroupsScreen,
   ManualBackupStep,
-  Screen2,
   SecurityScreen,
+  SelectWalletScreen,
   SplashScreen,
   WalletScreen,
   WelcomeScreen,
+  SettingScreen,
+  CommunityScreen,
+  BrowserScreen,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -130,12 +133,13 @@ class RootNavigator extends Component {
   getStackFromJSON = object => {
     return (
       <>
-        {Object.keys(object).map(key => {
+        {Object.keys(object).map((key, index) => {
+          console.log({index});
           return (
             key !== 'initialRouteName' && (
               <>
                 <Stack.Screen
-                  key={key}
+                  key={`${index}`}
                   name={key}
                   component={object[key]?.screen}
                   options={{
@@ -170,6 +174,57 @@ class RootNavigator extends Component {
     );
   };
 
+  ChatFlow = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={'ChatView'}
+        screenOptions={screenOptionsObject}>
+        <Stack.Screen name={'ChatView'} component={ChatScreen} />
+        {this.getStackFromJSON(commonScreens)}
+      </Stack.Navigator>
+    );
+  };
+  CommunityFlow = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={'CommunityView'}
+        screenOptions={screenOptionsObject}>
+        <Stack.Screen name={'CommunityView'} component={CommunityScreen} />
+        {this.getStackFromJSON(commonScreens)}
+      </Stack.Navigator>
+    );
+  };
+  WalletTabFlow = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={'WalletView'}
+        screenOptions={screenOptionsObject}>
+        <Stack.Screen name={'WalletView'} component={WalletScreen} />
+        {this.getStackFromJSON(commonScreens)}
+      </Stack.Navigator>
+    );
+  };
+  BrowserFlow = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={'BrowserView'}
+        screenOptions={screenOptionsObject}>
+        <Stack.Screen name={'BrowserView'} component={BrowserScreen} />
+        {this.getStackFromJSON(commonScreens)}
+      </Stack.Navigator>
+    );
+  };
+  SettingsFlow = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={'SettingsView'}
+        screenOptions={screenOptionsObject}>
+        <Stack.Screen name={'SettingsView'} component={SettingScreen} />
+        {this.getStackFromJSON(commonScreens)}
+      </Stack.Navigator>
+    );
+  };
+
   DefaultNavigation = () => {
     const {colors} = useTheme();
     return (
@@ -186,8 +241,11 @@ class RootNavigator extends Component {
             },
           };
         }}>
-        <Tab.Screen name="Home" component={this.RootHomeStackPool} />
-        <Tab.Screen name="Screen2" component={this.RootStackPool} />
+        <Tab.Screen name="ChatTabHome" component={this.ChatFlow} />
+        <Tab.Screen name="CommunityTab" component={this.CommunityFlow} />
+        <Tab.Screen name="WalletTab" component={this.WalletTabFlow} />
+        <Tab.Screen name="BrowserTab" component={this.BrowserFlow} />
+        <Tab.Screen name="SettingsTab" component={this.SettingsFlow} />
       </Tab.Navigator>
     );
   };
@@ -221,6 +279,7 @@ class RootNavigator extends Component {
             }}
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
+              key={123}
               // screenOptions={{
               //   headerShown: false,
               //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -228,7 +287,7 @@ class RootNavigator extends Component {
               screenOptions={screenOptionsObject}>
               <Stack.Screen
                 name={'SplashScreen'}
-                component={this.DefaultNavigation}
+                component={SplashScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen
@@ -242,8 +301,8 @@ class RootNavigator extends Component {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'WalletScreen'}
-                component={WalletScreen}
+                name={'SelectWalletScreen'}
+                component={SelectWalletScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen
@@ -257,7 +316,7 @@ class RootNavigator extends Component {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'DefaultNavigation'}
+                name={'HomeScreen'}
                 component={this.DefaultNavigation}
                 options={{headerShown: false}}
               />

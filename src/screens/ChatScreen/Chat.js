@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import Wallet_Component from './Wallet_Component';
+import Chat_Component from './Chat_Component';
 
-class Dummy extends Component {
+class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -20,7 +20,7 @@ class Dummy extends Component {
   render() {
     return (
       <>
-        <Wallet_Component
+        <Chat_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
         />
@@ -36,4 +36,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Dummy);
+export default connect(mapStateToProps, mapActionCreators)(Chat);

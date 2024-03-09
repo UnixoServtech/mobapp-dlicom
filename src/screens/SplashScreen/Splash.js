@@ -12,7 +12,7 @@ class Splash extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      navigate('WelcomeScreen');
+      navigate('HomeScreen');
     }, 1500);
   }
 
