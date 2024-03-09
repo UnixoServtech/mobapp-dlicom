@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
+import {goBack} from '../../../navigation/NavigationUtils';
 import ChatView_Component from './ChatView_Component';
-import { goBack } from '../../../navigation/NavigationUtils';
 
 class ChatView extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class ChatView extends Component {
   componentDidMount() {}
 
   onPressLeftContent = () => {
-    goBack()
+    goBack();
   };
 
   render() {

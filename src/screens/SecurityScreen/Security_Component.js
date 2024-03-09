@@ -1,7 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Button, Spacing, Text} from '../../components';
+import {Button, Text} from '../../components';
 import Strings from '../../localization/Strings';
 import theme from '../../theme';
 import createStyles from './Security.style';

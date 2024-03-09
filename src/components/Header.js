@@ -1,10 +1,9 @@
-import React from 'react';
-import {Button as IButton} from 'native-base';
-import theme from '../theme';
+/* eslint-disable react/no-unstable-nested-components */
 import {useTheme} from '@react-navigation/native';
-import {hex2rgba} from './helper';
-import {StyleSheet, TouchableHighlight, View} from 'react-native';
-import {Spacing, Text,Pressable} from '.';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Pressable, Text} from '.';
+import theme from '../theme';
 import CustomIcon from './CustomIcon';
 
 const Header = ({

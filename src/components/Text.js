@@ -1,15 +1,14 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Text as IText} from 'react-native';
+import {theme} from '../theme';
 import {
   computeFontFamily,
+  computeFontLineHeight,
   computeFontSize,
   computeFontWeight,
-  computeColor,
-  computeFontLineHeight,
 } from './helper';
-import {theme} from '../theme';
 import createStyles from './styles/Text.style';
-import {useTheme} from '@react-navigation/native';
 
 const getTextComputedStyles = (type, colors) => {
   let styles = createStyles(colors);

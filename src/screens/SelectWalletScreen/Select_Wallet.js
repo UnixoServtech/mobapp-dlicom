@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import Select_Wallet_Component from './Select_Wallet_Component';
 import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
+import Select_Wallet_Component from './Select_Wallet_Component';
 const tempArray = Array(5)
   .fill(0)
   .map((_, i) => {
@@ -40,7 +39,7 @@ class Wallet extends Component {
   onChangeRadio = (item, index) => {
     let {walletList} = this.state;
     walletList.forEach(element => {
-      element['selected'] = element === item;
+      element.selected = element === item;
     });
     this.setState({walletList, selectedWallet: item});
   };
@@ -54,7 +53,7 @@ class Wallet extends Component {
           onPressLeftContent={this.onPressLeftContent}
           walletNote={Strings.walletNote}
           walletTittle={Strings.chooseYourUserName}
-          walletList={this.state.walletList}
+          walletList={walletList}
           btnLabel={Strings.next}
           btnPress={this.nextPress}
           onChangeRadio={this.onChangeRadio}

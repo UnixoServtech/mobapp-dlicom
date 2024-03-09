@@ -1,8 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Button, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
+import {Text} from '../../components';
 import theme from '../../theme';
 import createStyles from './Settings.style';
 
@@ -13,7 +12,7 @@ const Settings_Component = ({button1Press, button2Press}) => {
   return (
     <View style={styles.mainContainer}>
       <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-      Settings_Component
+        Settings_Component
       </Text>
     </View>
   );

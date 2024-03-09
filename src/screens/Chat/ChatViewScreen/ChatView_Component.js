@@ -12,7 +12,7 @@ const ChatView_Component = ({onPressLeftContent}) => {
   return (
     <View style={styles.mainContainer}>
       <Header onPressLeftContent={onPressLeftContent} />
-      <View style={{padding:50}}>
+      <View style={{padding: 50}}>
         <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
           ChatView_Component
         </Text>

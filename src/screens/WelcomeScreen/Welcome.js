@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import Welcome_Component from './Welcome_Component';
 import {navigate} from '../../navigation/NavigationUtils';
+import Welcome_Component from './Welcome_Component';
 
 class Welcome extends Component {
   constructor(props) {

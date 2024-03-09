@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
 const Pressable = ({children, disabled, onPress, ...props}) => {
