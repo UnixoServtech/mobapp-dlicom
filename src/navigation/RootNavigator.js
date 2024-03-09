@@ -53,8 +53,13 @@ const screenOptionsObject =
         animationTypeForReplace: 'push',
         animation: 'fade_from_bottom',
         headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }
-    : {headerShown: false, drawerType: 'front'};
+    : {
+        headerShown: false,
+        drawerType: 'front',
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      };
 
 class RootNavigator extends Component {
   constructor(props) {
@@ -336,8 +341,6 @@ class RootNavigator extends Component {
     );
   };
 
-  drawerStackNavigation = () => {};
-
   render() {
     return (
       <SafeAreaView
@@ -366,10 +369,6 @@ class RootNavigator extends Component {
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
               key={123}
-              // screenOptions={{
-              //   headerShown: false,
-              //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              // }}
               initialRouteName="SplashScreen"
               screenOptions={screenOptionsObject}>
               <Stack.Screen
