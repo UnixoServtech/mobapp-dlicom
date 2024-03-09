@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
 import Welcome_Component from './Welcome_Component';
+import Routes from '../../navigation/Routes';
 
 class Welcome extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Welcome extends Component {
   };
 
   handleImportWallet = () => {
-    navigate('SelectWalletScreen');
+    navigate(Routes.ONBOARDING.IMPORT_WALLET);
   };
 
   render() {

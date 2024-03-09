@@ -17,4 +17,8 @@ export default {
   copy_seed_phrase: 'Copy seed phrase',
   backup_on_cloud: 'Backup on cloud',
   backup_manually: 'Backup manually',
+  enter_your_keys: 'Enter your keys',
+  paste_your_keys_here: 'Paste your keys here ',
+  confirm: 'Confirm',
+  cancel: 'Cancel',
 };

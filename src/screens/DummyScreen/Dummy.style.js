@@ -8,14 +8,4 @@ export default createStyles = colors =>
       flex: 1,
       backgroundColor: colors.primaryBg,
     },
-    headerStyle: {
-      height: theme.normalize(64),
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    avatar: {
-      height: theme.sizes.image.xl5,
-      width: theme.sizes.image.xl5,
-      borderRadius: theme.sizes.image.xl5 / 2,
-    },
   });

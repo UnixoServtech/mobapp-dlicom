@@ -29,12 +29,14 @@ import {
   CommunityScreen,
   BrowserScreen,
   ChatViewScreen,
+  ImportWallet,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
 import {useTheme} from '@react-navigation/native';
 import theme from '../theme';
 import CustomIcon from '../components/CustomIcon';
+import Routes from './Routes';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -60,7 +62,6 @@ const screenOptionsObject =
         drawerType: 'front',
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       };
-
 class RootNavigator extends Component {
   constructor(props) {
     super(props);
@@ -387,7 +388,7 @@ class RootNavigator extends Component {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'SelectWalletScreen'}
+                name={Routes.ONBOARDING.SELECT_WALLET}
                 component={SelectWalletScreen}
                 options={{headerShown: false}}
               />
@@ -409,6 +410,11 @@ class RootNavigator extends Component {
               <Stack.Screen
                 name={'ChatViewScreen'}
                 component={ChatViewScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={Routes.ONBOARDING.IMPORT_WALLET}
+                component={ImportWallet}
                 options={{headerShown: false}}
               />
               {this.getStackFromJSON(commonScreens)}

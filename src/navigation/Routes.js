@@ -1,5 +1,9 @@
 const Routes = {
-  WALLET_VIEW: 'WalletView'
+  ONBOARDING: {
+    IMPORT_WALLET: 'ImportWallet',
+    SELECT_WALLET: 'SelectWallet',
+  },
+  WALLET_VIEW: 'WalletView',
 };
 
 export default Routes;
