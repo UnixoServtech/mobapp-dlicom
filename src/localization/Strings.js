@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const appName = 'Dlicom';
 
 export default {
@@ -21,4 +22,8 @@ export default {
   paste_your_keys_here: 'Paste your keys here ',
   confirm: 'Confirm',
   cancel: 'Cancel',
+  seed_phrase: 'Seed Phrase',
+  confirm_seed_phrase: 'Confirm Seed Phrase',
+  confirm_seed_phrase_note:
+    '  Verify yor saved your secret recovery phrase by select 3 correct word',
 };

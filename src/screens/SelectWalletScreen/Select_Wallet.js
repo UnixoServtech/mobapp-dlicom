@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Select_Wallet_Component from './Select_Wallet_Component';
+import Routes from '../../navigation/Routes';
 const tempArray = Array(5)
   .fill(0)
   .map((_, i) => {
@@ -33,7 +34,7 @@ class Wallet extends Component {
 
   nextPress = () => {
     // alert(JSON.stringify(this.state.selectedWallet));
-    navigate('ManualBackupStep');
+    navigate(Routes.MANUAL_BACKUP_STEP);
   };
 
   onChangeRadio = (item, index) => {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
 import Splash_Component from './Splash_Component';
+import Routes from '../../navigation/Routes';
 
 class Splash extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Splash extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      navigate('WelcomeScreen');
+      navigate(Routes.ONBOARDING.ONBOARDING);
     }, 1500);
   }
 

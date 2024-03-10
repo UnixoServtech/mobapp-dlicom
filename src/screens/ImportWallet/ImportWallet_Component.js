@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {TextInput, View} from 'react-native';

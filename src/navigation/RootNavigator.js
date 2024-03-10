@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react-native/no-inline-styles */
 import NetInfo from '@react-native-community/netinfo';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
@@ -12,6 +14,7 @@ import {
   Platform,
   SafeAreaView,
   StatusBar,
+  StyleSheet,
   View,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -43,6 +46,7 @@ const Tab = createBottomTabNavigator();
 
 let commonScreens = {
   GroupsScreen: {
+    name: Routes.GROUP_VIEW,
     screen: GroupsScreen,
     navigationOptions: {headerBackTitle: null},
   },
@@ -62,6 +66,7 @@ const screenOptionsObject =
         drawerType: 'front',
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       };
+
 class RootNavigator extends Component {
   constructor(props) {
     super(props);
@@ -96,7 +101,9 @@ class RootNavigator extends Component {
   };
 
   connectivityChange = isConnected => {
-    if (!isConnected) Keyboard.dismiss();
+    if (!isConnected) {
+      Keyboard.dismiss();
+    }
     if (isConnected) {
     }
     // setIsNetAvailableForApi(isConnected);
@@ -143,13 +150,13 @@ class RootNavigator extends Component {
     return (
       <>
         {Object.keys(object).map((key, index) => {
-          console.log({index});
+          console.log('!31231123', object[key]?.name ?? key);
           return (
             key !== 'initialRouteName' && (
               <>
                 <Stack.Screen
                   key={`${index}`}
-                  name={key}
+                  name={object[key]?.name ?? key}
                   component={object[key]?.screen}
                   options={{
                     gestureEnabled:
@@ -165,30 +172,12 @@ class RootNavigator extends Component {
     );
   };
 
-  RootStackPool = () => {
-    return (
-      <Stack.Navigator screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'Screen2'} component={Screen2} />
-        {this.getStackFromJSON(commonScreens)}
-      </Stack.Navigator>
-    );
-  };
-
-  RootHomeStackPool = () => {
-    return (
-      <Stack.Navigator screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'Home'} component={ChatScreen} />
-        {this.getStackFromJSON(commonScreens)}
-      </Stack.Navigator>
-    );
-  };
-
   ChatFlow = () => {
     return (
       <Stack.Navigator
-        initialRouteName={'ChatView'}
+        initialRouteName={Routes.TAB_NAV.CHAT}
         screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'ChatView'} component={ChatScreen} />
+        <Stack.Screen name={Routes.TAB_NAV.CHAT} component={ChatScreen} />
         {this.getStackFromJSON(commonScreens)}
       </Stack.Navigator>
     );
@@ -196,9 +185,12 @@ class RootNavigator extends Component {
   CommunityFlow = () => {
     return (
       <Stack.Navigator
-        initialRouteName={'CommunityView'}
+        initialRouteName={Routes.TAB_NAV.COMMUNITY}
         screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'CommunityView'} component={CommunityScreen} />
+        <Stack.Screen
+          name={Routes.TAB_NAV.COMMUNITY}
+          component={CommunityScreen}
+        />
         {this.getStackFromJSON(commonScreens)}
       </Stack.Navigator>
     );
@@ -206,9 +198,9 @@ class RootNavigator extends Component {
   WalletTabFlow = () => {
     return (
       <Stack.Navigator
-        initialRouteName={'WalletView'}
+        initialRouteName={Routes.TAB_NAV.WALLET}
         screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'WalletView'} component={WalletScreen} />
+        <Stack.Screen name={Routes.TAB_NAV.WALLET} component={WalletScreen} />
         {this.getStackFromJSON(commonScreens)}
       </Stack.Navigator>
     );
@@ -216,9 +208,9 @@ class RootNavigator extends Component {
   BrowserFlow = () => {
     return (
       <Stack.Navigator
-        initialRouteName={'BrowserView'}
+        initialRouteName={Routes.TAB_NAV.BROWSER}
         screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'BrowserView'} component={BrowserScreen} />
+        <Stack.Screen name={Routes.TAB_NAV.BROWSER} component={BrowserScreen} />
         {this.getStackFromJSON(commonScreens)}
       </Stack.Navigator>
     );
@@ -226,9 +218,12 @@ class RootNavigator extends Component {
   SettingsFlow = () => {
     return (
       <Stack.Navigator
-        initialRouteName={'SettingsView'}
+        initialRouteName={Routes.TAB_NAV.SETTINGS}
         screenOptions={screenOptionsObject}>
-        <Stack.Screen name={'SettingsView'} component={SettingScreen} />
+        <Stack.Screen
+          name={Routes.TAB_NAV.SETTINGS}
+          component={SettingScreen}
+        />
         {this.getStackFromJSON(commonScreens)}
       </Stack.Navigator>
     );
@@ -264,7 +259,7 @@ class RootNavigator extends Component {
           };
         }}>
         <Tab.Screen
-          name="ChatTabHome"
+          name={Routes.HOME_NAV.CHAT_TAB}
           component={this.ChatFlow}
           options={{
             tabBarIcon: ({focused}) => {
@@ -279,7 +274,7 @@ class RootNavigator extends Component {
           }}
         />
         <Tab.Screen
-          name="CommunityTab"
+          name={Routes.HOME_NAV.COMMUNITY_TAB}
           component={this.CommunityFlow}
           options={{
             tabBarIcon: ({focused}) => {
@@ -294,7 +289,7 @@ class RootNavigator extends Component {
           }}
         />
         <Tab.Screen
-          name="WalletTab"
+          name={Routes.HOME_NAV.WALLET_TAB}
           component={this.WalletTabFlow}
           options={{
             tabBarIcon: ({focused}) => {
@@ -309,7 +304,7 @@ class RootNavigator extends Component {
           }}
         />
         <Tab.Screen
-          name="BrowserTab"
+          name={Routes.HOME_NAV.BROWSER_TAB}
           component={this.BrowserFlow}
           options={{
             tabBarIcon: ({focused}) => {
@@ -324,7 +319,7 @@ class RootNavigator extends Component {
           }}
         />
         <Tab.Screen
-          name="SettingsTab"
+          name={Routes.HOME_NAV.SETTINGS_TAB}
           component={this.SettingsFlow}
           options={{
             tabBarIcon: ({focused}) => {
@@ -359,7 +354,7 @@ class RootNavigator extends Component {
               : colors.light.colors.primaryBg
           }
         />
-        <View style={{flex: 1}}>
+        <View style={styles.wrapper}>
           <NavigationContainer
             ref={navigationRef}
             theme={this.props?.isDarkTheme ? colors?.dark : colors?.light}
@@ -370,20 +365,20 @@ class RootNavigator extends Component {
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
               key={123}
-              initialRouteName="SplashScreen"
+              initialRouteName={Routes.SPLASH_SCREEN}
               screenOptions={screenOptionsObject}>
               <Stack.Screen
-                name={'SplashScreen'}
+                name={Routes.SPLASH_SCREEN}
                 component={SplashScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'WelcomeScreen'}
+                name={Routes.ONBOARDING.ONBOARDING}
                 component={WelcomeScreen}
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'SecurityScreen'}
+                name={Routes.ONBOARDING.SECURITY}
                 component={SecurityScreen}
                 options={{headerShown: false}}
               />
@@ -393,22 +388,22 @@ class RootNavigator extends Component {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'ManualBackupStep'}
+                name={Routes.MANUAL_BACKUP_STEP}
                 component={ManualBackupStep}
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'ConfirmSeedPhrase'}
+                name={Routes.SEED_PHRASE}
                 component={ConfirmSeedPhrase}
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'HomeScreen'}
+                name={Routes.HOME_NAV.ROOT_NAV}
                 component={this.DefaultNavigation}
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={'ChatViewScreen'}
+                name={Routes.ACTIVE_CHAT_VIEW}
                 component={ChatViewScreen}
                 options={{headerShown: false}}
               />
@@ -435,3 +430,7 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(RootNavigator);
+
+const styles = StyleSheet.create({
+  wrapper: {flex: 1},
+});

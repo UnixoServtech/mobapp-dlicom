@@ -5,6 +5,7 @@ import {Toast} from '../../components/Toast';
 import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import ManualBackupStep_Component from './ManualBackupStep_Component';
+import Routes from '../../navigation/Routes';
 
 class ManualBackupStep extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class ManualBackupStep extends Component {
   primaryButtonPress = () => {};
 
   secondaryButtonPress = () => {
-    navigate('ConfirmSeedPhrase');
+    navigate(Routes.SEED_PHRASE);
   };
 
   render() {

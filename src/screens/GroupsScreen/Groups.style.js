@@ -17,4 +17,11 @@ export default createStyles = colors =>
       width: theme.sizes.image.xl5,
       borderRadius: theme.sizes.image.xl5 / 2,
     },
+    itemWrapper: {
+      backgroundColor: '#191A1D',
+      borderRadius: theme.normalize(14),
+      paddingVertical: theme.normalize(15),
+      paddingHorizontal: theme.normalize(25),
+    },
+    buttonWrapper: {margin: theme.sizes.spacing.ph, marginTop: 0},
   });

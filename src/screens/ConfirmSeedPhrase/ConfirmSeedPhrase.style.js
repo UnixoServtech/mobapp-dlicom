@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {StyleSheet} from 'react-native';
 import theme from '../../theme';
 
@@ -41,8 +42,16 @@ export default createStyles = colors =>
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: theme.sizes.spacing.ph,
-      width: '85%',
+      width: '90%',
       alignSelf: 'center',
       marginVertical: 28,
+    },
+    buttonWrapper: {
+      margin: theme.sizes.spacing.ph,
+      position: 'absolute',
+      // top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
     },
   });

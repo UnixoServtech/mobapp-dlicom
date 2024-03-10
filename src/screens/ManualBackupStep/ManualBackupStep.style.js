@@ -36,4 +36,5 @@ export default createStyles = colors =>
       borderTopLeftRadius: theme.sizes.spacing.sm,
       borderBottomLeftRadius: theme.sizes.spacing.sm,
     },
+    seedPhraseWrapper1: {flex: 0.85, padding: 12},
   });

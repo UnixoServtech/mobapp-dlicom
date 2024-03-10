@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Image, View} from 'react-native';
@@ -6,6 +7,7 @@ import {Button, Header, Pressable, Spacing, Text} from '../../components';
 import CustomIcon from '../../components/CustomIcon';
 import theme from '../../theme';
 import createStyles from './ManualBackupStep.style';
+import Strings from '../../localization/Strings';
 
 const ManualBackupStep_Component = ({
   headerLeftText,
@@ -44,12 +46,12 @@ const ManualBackupStep_Component = ({
           {noteText}
         </Text>
         <View style={styles.seedPhraseWrapper}>
-          <View style={{flex: 0.85, padding: 12}}>
+          <View style={styles.seedPhraseWrapper1}>
             <Text
               archivoRegular={true}
               size={theme.typography.fontSizes.xs}
               color={'#606060'}>
-              Seed Phrase
+              {Strings.seed_phrase}
             </Text>
             <Spacing size="5" />
             <Text type={'helper-text'} amikoBold={true} lineHeight={24}>

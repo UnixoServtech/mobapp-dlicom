@@ -31,13 +31,7 @@ const Groups_Component = ({
         keyExtractor={(item, index) => index}
         renderItem={({item, index}) => (
           <Pressable onPress={() => {}}>
-            <ListItem
-              style={{
-                backgroundColor: '#191A1D',
-                borderRadius: theme.normalize(14),
-                paddingVertical: theme.normalize(15),
-                paddingHorizontal: theme.normalize(25),
-              }}>
+            <ListItem style={styles.itemWrapper}>
               <ListItem.Content>
                 <ListItem.Body>
                   <ListItem.Title type={'helper-text'} amikoBold={true}>
@@ -129,7 +123,7 @@ const Groups_Component = ({
           </ListItem.Content>
         </ListItem>
       </View> */}
-      <View style={{margin: theme.sizes.spacing.ph, marginTop: 0}}>
+      <View style={styles.buttonWrapper}>
         <Button
           isDisabled={isDisabled}
           label={btnLabel}

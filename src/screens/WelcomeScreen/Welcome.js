@@ -15,7 +15,7 @@ class Welcome extends Component {
   componentDidMount() {}
 
   handleCreateNewWallet = () => {
-    navigate('SecurityScreen');
+    navigate(Routes.ONBOARDING.SECURITY);
   };
 
   handleImportWallet = () => {

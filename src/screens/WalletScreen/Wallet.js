@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
 import Wallet_Component from './Wallet_Component';
+import Routes from '../../navigation/Routes';
 
 class Wallet extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Wallet extends Component {
         <Wallet_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
-          onPress={() => navigate('GroupsScreen')}
+          onPress={() => navigate(Routes.GROUP_VIEW)}
         />
       </>
     );

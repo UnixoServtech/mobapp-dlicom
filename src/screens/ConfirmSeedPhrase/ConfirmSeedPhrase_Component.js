@@ -20,14 +20,14 @@ const ConfirmSeedPhrase_Component = ({
   const renderInfo = () => {
     return (
       <View style={styles.infoWrapper}>
-        <Text type={'device-header'}>Confirm Seed Phrase</Text>
+        <Text type={'device-header'}>{Strings.confirm_seed_phrase}</Text>
         <Spacing />
         <Text
           type={'helper-text'}
           textAlign={'center'}
           lineHeight={theme.typography.lineHeights.md}
           color={colors.caption}>
-          Verify yor saved your secret recovery phrase by select 3 correct word
+          {Strings.confirm_seed_phrase_note}
         </Text>
       </View>
     );
@@ -67,16 +67,7 @@ const ConfirmSeedPhrase_Component = ({
         />
       </View>
 
-      <View
-        style={{
-          margin: theme.sizes.spacing.ph,
-          // justifyContent: 'center',
-          position: 'absolute',
-          // top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}>
+      <View style={styles.buttonWrapper}>
         <Button
           showIconRight={true}
           label={Strings.next}
