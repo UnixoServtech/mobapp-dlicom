@@ -13,11 +13,10 @@ const SearchBar = ({
   value,
   onChangeText,
   restInputProp,
-  showLeftContent,
+  showRightContent,
   placeHolderText,
 }) => {
   const {colors} = useTheme();
-  console.log(colors?.searchView);
   let styles = createStyles(colors);
 
   return (
@@ -40,7 +39,7 @@ const SearchBar = ({
           onChangeText={onChangeText}
           {...restInputProp}
         />
-        {showLeftContent ? (
+        {showRightContent ? (
           <Pressable onPress={onPressRightContent}>
             {leftContent ? (
               leftContent

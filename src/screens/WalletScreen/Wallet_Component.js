@@ -1,11 +1,11 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Pressable, Text} from '../../components';
+import {Pressable, Spacing, Text} from '../../components';
 import theme from '../../theme';
 import createStyles from './Wallet.style';
 
-const Wallet_Component = ({onPress}) => {
+const Wallet_Component = ({onPress, onPress1}) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
@@ -15,6 +15,12 @@ const Wallet_Component = ({onPress}) => {
         <Pressable onPress={onPress}>
           <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
             Wallet Test Button
+          </Text>
+        </Pressable>
+        <Spacing />
+        <Pressable onPress={onPress1}>
+          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
+            Chose Coin
           </Text>
         </Pressable>
       </View>

@@ -239,7 +239,7 @@ class RootNavigator extends Component {
     const {colors} = useTheme();
     return (
       <Tab.Navigator
-        initialRouteName="WalletTab"
+        initialRouteName={Routes.HOME_NAV.WALLET_TAB}
         screenOptions={props => {
           return {
             headerShown: false,
