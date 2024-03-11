@@ -10,6 +10,7 @@ const commonColor = {
   gray: '#3A3A3A',
   gray1: '#606060',
   grayLight: '#AAABAB',
+  light: '#E6E6E6',
 };
 
 export const colors = {
@@ -23,7 +24,7 @@ export const colors = {
       primaryMainColor: commonColor.primaryMainColor,
       headerActionText: commonColor.primaryMainColor,
       segment: {
-        bg: '#E6E6E6',
+        bg: commonColor.light,
         activeBg: commonColor.primaryMainColor,
         text: '#979C9E',
         activeText: commonColor.white,
@@ -55,6 +56,11 @@ export const colors = {
         background: commonColor.black,
         text1: commonColor.white,
         text2: '#979C9E',
+      },
+      searchView: {
+        backgroundColor: commonColor.light,
+        placeHolderColor: commonColor.gray1,
+        color: commonColor.black,
       },
     },
   },
@@ -101,7 +107,12 @@ export const colors = {
       toast: {
         background: commonColor.primaryMainColor,
         text1: commonColor.white,
-        text2: '#E6E6E6',
+        text2: commonColor.light,
+      },
+      searchView: {
+        backgroundColor: '#1E1E1E',
+        placeHolderColor: '#979C9E',
+        color: commonColor.white,
       },
     },
   },
