@@ -7,6 +7,7 @@ import {
   Pressable,
   ListItem,
   Spacing,
+  QRCodeModal,
 } from '../../components';
 import createStyles from './SelectCoin.style';
 import Strings from '../../localization/Strings';
@@ -20,6 +21,9 @@ const SelectCoin_Component = ({
   onPressRightContent,
   coinList,
   onItemClick = () => {},
+  showQrCodeModal,
+  hideQrCodeModal,
+  contentPress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -70,6 +74,16 @@ const SelectCoin_Component = ({
             <Spacing />
           </Pressable>
         )}
+      />
+      <QRCodeModal
+        isVisible={showQrCodeModal}
+        headerText={'Receive USD-T'}
+        qrValue={'https://www.npmjs.com/package/react-native-modal'}
+        contentValue={'0xc2132D05D31c914a87C6611'}
+        btnLabel={'Share address'}
+        onBackdropPress={hideQrCodeModal}
+        onModalHide={hideQrCodeModal}
+        contentPress={contentPress}
       />
     </View>
   );

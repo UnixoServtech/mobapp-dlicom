@@ -30,6 +30,7 @@ const Button = ({
   leftIconName = 'Message-1',
   size = 'large',
   _iconSize,
+  removeSpace,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -119,7 +120,7 @@ const Button = ({
               size={iconSize}
             />
           )
-        ) : showIconRight ? (
+        ) : showIconRight && !removeSpace ? (
           <Spacing direction={'x'} size={iconSize} />
         ) : null}
         <Text type={'button'} style={labelStyle} {...textProp}>
