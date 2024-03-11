@@ -33,6 +33,7 @@ import {
   BrowserScreen,
   ChatViewScreen,
   ImportWallet,
+  SelectCoinScreen,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -48,6 +49,11 @@ let commonScreens = {
   GroupsScreen: {
     name: Routes.GROUP_VIEW,
     screen: GroupsScreen,
+    navigationOptions: {headerBackTitle: null},
+  },
+  SelectCoinScreen: {
+    name: Routes.SELECT_COIN,
+    screen: SelectCoinScreen,
     navigationOptions: {headerBackTitle: null},
   },
 };
