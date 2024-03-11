@@ -88,6 +88,7 @@ const Text = ({
   netflixSansBold,
   netflixSansMedium,
   netflixSansRegular,
+  interSemiBold,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -152,6 +153,7 @@ const Text = ({
             netflixSansRegular &&
               theme.typography.fontStyles.netflixSansRegular,
             amikoBold && theme.typography.fontStyles.amikoBold,
+            interSemiBold && theme.typography.fontStyles.interSemiBold,
             style,
           ]}>
           {children}

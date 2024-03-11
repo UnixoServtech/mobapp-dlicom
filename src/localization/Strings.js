@@ -25,5 +25,7 @@ export default {
   seed_phrase: 'Seed Phrase',
   confirm_seed_phrase: 'Confirm Seed Phrase',
   confirm_seed_phrase_note:
-    '  Verify yor saved your secret recovery phrase by select 3 correct word',
+    'Verify yor saved your secret recovery phrase by select 3 correct word',
+  chose_coin: 'Chose Coin',
+  coins: 'Coins',
 };

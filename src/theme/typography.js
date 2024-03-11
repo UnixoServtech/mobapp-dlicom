@@ -150,6 +150,10 @@ const fontStyles = {
     fontFamily: fonts.netflixSansRegular,
     fontWeight: fontWeights.normal,
   },
+  interSemiBold: {
+    fontFamily: fonts.interSemiBold,
+    fontWeight: fontWeights.semibold,
+  },
 };
 
 const typography = {

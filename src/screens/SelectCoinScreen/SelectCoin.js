@@ -1,27 +1,54 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SelectCoin_Component from './SelectCoin_Component';
+import {goBack} from '../../navigation/NavigationUtils';
 
 class SelectCoin extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
-    this.handleImportWallet = this.handleImportWallet.bind(this);
+    this.state = {
+      searchWord: '',
+      coinList: Array(9)
+        .fill(0)
+        .map((_, i) => i),
+    };
+    this.onPressLeftContent = this.onPressLeftContent.bind(this);
+    this.onChangeSearchWord = this.onChangeSearchWord.bind(this);
+    this.onPressRightContent = this.onPressRightContent.bind(this);
+    this.onItemClick = this.onItemClick.bind(this);
   }
 
   componentDidMount() {}
 
-  handleCreateNewWallet = () => {};
+  onPressLeftContent = () => {
+    goBack();
+  };
 
-  handleImportWallet = () => {};
+  onChangeSearchWord = word => {
+    this.setState({
+      searchWord: word,
+    });
+  };
+
+  onPressRightContent = () => {
+    this.setState({
+      searchWord: '',
+    });
+  };
+
+  onItemClick = (item, index) => {};
 
   render() {
+    const {searchWord, coinList} = this.state;
     return (
       <>
         <SelectCoin_Component
-          button1Press={this.handleCreateNewWallet}
-          button2Press={this.handleImportWallet}
+          onPressLeftContent={this.onPressLeftContent}
+          searchWord={searchWord}
+          onChangeSearchWord={this.onChangeSearchWord}
+          onPressRightContent={this.onPressRightContent}
+          coinList={coinList}
+          onItemClick={this.onItemClick}
         />
       </>
     );

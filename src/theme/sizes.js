@@ -79,6 +79,7 @@ const spacing = {
   tableRow: 54,
   tableHeader: 56,
   xl11: wp('9.2'), // 36
+  tabHeight: 90,
 };
 
 const button = {

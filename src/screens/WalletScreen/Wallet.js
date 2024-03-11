@@ -25,6 +25,7 @@ class Wallet extends Component {
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
           onPress={() => navigate(Routes.GROUP_VIEW)}
+          onPress1={() => navigate(Routes.SELECT_COIN)}
         />
       </>
     );
