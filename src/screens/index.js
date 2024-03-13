@@ -13,3 +13,4 @@ export {default as SettingScreen} from './SettingScreen/Settings';
 export {default as ChatViewScreen} from './Chat/ChatViewScreen/ChatView';
 export {default as ImportWallet} from './ImportWallet/ImportWallet';
 export {default as SelectCoinScreen} from './SelectCoinScreen/SelectCoin';
+export {default as TokensView} from './TokensScreen/Tokens';

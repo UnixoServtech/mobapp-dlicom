@@ -156,7 +156,6 @@ class RootNavigator extends Component {
     return (
       <>
         {Object.keys(object).map((key, index) => {
-          console.log('!31231123', object[key]?.name ?? key);
           return (
             key !== 'initialRouteName' && (
               <>
@@ -371,7 +370,7 @@ class RootNavigator extends Component {
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
               key={123}
-              initialRouteName={Routes.SPLASH_SCREEN}
+              initialRouteName={Routes.HOME_NAV.ROOT_NAV}
               screenOptions={screenOptionsObject}>
               <Stack.Screen
                 name={Routes.SPLASH_SCREEN}
