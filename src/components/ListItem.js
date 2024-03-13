@@ -52,6 +52,14 @@ const createStyles = colors =>
       borderRadius: theme.sizes.image.xl4 / 2,
     },
     borderStyle: {borderBottomWidth: 1, borderColor: colors.listItem.border},
+    badgeWrapper: {
+      height: 18,
+      width: 18,
+      borderRadius: 10,
+      backgroundColor: colors?.primaryMainColor,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   });
 
 const ListItem = ({style, ...props}) => {
@@ -161,6 +169,16 @@ const ListItemBorder = ({style, ...props}) => {
   return <View style={[styles.borderStyle, style]} {...props} />;
 };
 
+const ListItemBadge = ({style, ...props}) => {
+  const {colors} = useTheme();
+  const styles = createStyles(colors);
+  return (
+    <View style={styles.badgeWrapper}>
+      <Text size={12} {...props} />
+    </View>
+  );
+};
+
 ListItem.Date = ListItemDate;
 ListItem.Content = ListItemContent;
 ListItem.Icon = ListItemIcon;
@@ -172,6 +190,7 @@ ListItem.Right = ListItemRight;
 ListItem.Amount = ListItemAmount;
 ListItem.FiatAmount = ListItemFiatAmount;
 ListItem.Border = ListItemBorder;
+ListItem.Badge = ListItemBadge;
 
 export default ListItem;
 

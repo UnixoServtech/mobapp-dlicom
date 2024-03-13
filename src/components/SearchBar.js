@@ -15,13 +15,14 @@ const SearchBar = ({
   restInputProp,
   showRightContent,
   placeHolderText,
+  style,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
   return (
     <>
-      <View style={styles.wrapper}>
+      <View style={[styles.wrapper, style]}>
         {rightContent ? (
           rightContent
         ) : (

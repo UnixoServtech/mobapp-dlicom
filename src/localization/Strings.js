@@ -28,4 +28,6 @@ export default {
     'Verify yor saved your secret recovery phrase by select 3 correct word',
   chose_coin: 'Chose Coin',
   coins: 'Coins',
+  chat: 'Chats',
+  status: 'Status',
 };

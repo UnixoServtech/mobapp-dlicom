@@ -6,4 +6,6 @@ export default {
   Rectangle_9: require('./Rectangle_9.png'),
   ic_add: require('./ic_add.png'),
   ic_selected: require('./ic_selected.png'),
+  noti: require('./noti.png'),
+  setting: require('./setting.png'),
 };

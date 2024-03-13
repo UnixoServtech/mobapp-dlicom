@@ -154,6 +154,10 @@ const fontStyles = {
     fontFamily: fonts.interSemiBold,
     fontWeight: fontWeights.semibold,
   },
+  interMedium: {
+    fontFamily: fonts.interMedium,
+    fontWeight: fontWeights.medium,
+  },
 };
 
 const typography = {
