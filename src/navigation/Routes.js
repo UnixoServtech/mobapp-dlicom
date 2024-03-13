@@ -27,6 +27,7 @@ const Routes = {
   ACTIVE_CHAT_VIEW: 'ActiveChatView',
   GROUP_VIEW: 'GroupView',
   SELECT_COIN: 'SelectCoinView',
+  NOTIFICATION: 'NotificationView',
 };
 
 export default Routes;

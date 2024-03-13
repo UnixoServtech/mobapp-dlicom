@@ -74,7 +74,7 @@ export const colors = {
       primaryMainColor: commonColor.primaryMainColor,
       headerActionText: '#9990FF',
       segment: {
-        bg: commonColor.gray,
+        bg: '#161819',
         activeBg: commonColor.primaryMainColor,
         text: '#979C9E',
         activeText: commonColor.white,
