@@ -10,7 +10,7 @@ export default createStyles = colors =>
       fontSize: 14,
     },
     wrapper: {
-      height: theme.normalize(40),
+      height: theme.normalize(45),
       backgroundColor: colors?.searchView?.backgroundColor,
       borderRadius: theme.normalize(8),
       paddingHorizontal: theme.normalize(8),
@@ -21,8 +21,11 @@ export default createStyles = colors =>
       fontSize: theme.typography.fontSizes.md,
       color: 'white',
       lineHeight: theme.typography.lineHeights.sm,
-      paddingHorizontal: theme.normalize(8),
       flex: 1,
+      includeFontPadding: false,
+      padding: 0,
+      margin: 0,
+      paddingHorizontal: theme.normalize(8),
       ...theme.typography.fontStyles.interRegular,
     },
   });
