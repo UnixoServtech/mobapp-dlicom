@@ -8,4 +8,8 @@ export default {
   ic_selected: require('./ic_selected.png'),
   noti: require('./noti.png'),
   setting: require('./setting.png'),
+  ic_close: require('./ic_close.png'),
+  ic_delete: require('./ic_delete.png'),
+  ic_markAll: require('./ic_markall.png'),
+  ic_share: require('./ic_share.png'),
 };

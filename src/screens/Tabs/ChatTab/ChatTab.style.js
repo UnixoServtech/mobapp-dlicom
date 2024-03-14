@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import {StyleSheet} from 'react-native';
 import theme from '../../../theme';
+import Device from '../../../utils/device';
 
 export default createStyles = colors =>
   StyleSheet.create({
@@ -32,5 +33,25 @@ export default createStyles = colors =>
       height: theme.sizes.image.xl4,
       width: theme.sizes.image.xl4,
       borderRadius: theme.sizes.xl4 / 2,
+    },
+    modalWrapper: {
+      marginTop: 24,
+      maxHeight: Device.getDeviceHeight() - 200,
+      flex: 1,
+    },
+    header: {
+      flexDirection: 'row',
+      marginBottom: 24,
+      paddingHorizontal: 24,
+    },
+    iconButtonWrapper: {
+      flexDirection: 'row',
+      height: theme.normalize(56),
+      alignItems: 'center',
+      paddingHorizontal: theme.normalize(12),
+    },
+    btnIcon: {
+      height: theme.sizes.icons.xl,
+      width: theme.sizes.icons.xl,
     },
   });

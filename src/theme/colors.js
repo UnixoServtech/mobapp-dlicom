@@ -11,6 +11,8 @@ const commonColor = {
   gray1: '#606060',
   grayLight: '#AAABAB',
   light: '#E6E6E6',
+  red: '#FF5252',
+  green: '#979C9E',
 };
 
 export const colors = {
@@ -26,7 +28,7 @@ export const colors = {
       segment: {
         bg: commonColor.light,
         activeBg: commonColor.primaryMainColor,
-        text: '#979C9E',
+        text: commonColor.green,
         activeText: commonColor.white,
       },
       caption: '#72777A',
@@ -47,20 +49,26 @@ export const colors = {
         disableInnerBg: '#F2F4F5',
       },
       listItem: {
-        date: '##9C9C9C',
+        date: '#9C9C9C',
         link: commonColor.gray1,
-        bodyText: '#979C9E',
+        bodyText: commonColor.green,
         tittleText: commonColor.black,
       },
       toast: {
         background: commonColor.black,
         text1: commonColor.white,
-        text2: '#979C9E',
+        text2: commonColor.green,
       },
       searchView: {
         backgroundColor: commonColor.light,
         placeHolderColor: commonColor.gray1,
         color: commonColor.black,
+      },
+      actionSheet: {
+        textColor: commonColor.black,
+        buttonColor: commonColor.green,
+        borderColor: '#F2F4F5',
+        backgroundColor: commonColor.white,
       },
     },
   },
@@ -76,10 +84,10 @@ export const colors = {
       segment: {
         bg: '#161819',
         activeBg: commonColor.primaryMainColor,
-        text: '#979C9E',
+        text: commonColor.green,
         activeText: commonColor.white,
       },
-      caption: '#979C9E',
+      caption: commonColor.green,
       btnBg: commonColor.primaryMainColor,
       button: {
         primaryBg: commonColor.primaryMainColor,
@@ -99,7 +107,7 @@ export const colors = {
       listItem: {
         date: '#9C9C9C',
         link: commonColor.gray1,
-        bodyText: '#979C9E',
+        bodyText: commonColor.green,
         tittleText: commonColor.white,
         amount: commonColor.primaryMainColor,
         border: '#393939',
@@ -111,8 +119,14 @@ export const colors = {
       },
       searchView: {
         backgroundColor: '#1E1E1E',
-        placeHolderColor: '#979C9E',
+        placeHolderColor: commonColor.green,
         color: commonColor.white,
+      },
+      actionSheet: {
+        textColor: commonColor.primaryMainColor,
+        buttonColor: '#6C7072',
+        borderColor: '#303437',
+        backgroundColor: '#141414',
       },
     },
   },
