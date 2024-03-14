@@ -30,4 +30,8 @@ export default {
   coins: 'Coins',
   chat: 'Chats',
   status: 'Status',
+  share_chat: 'Share chat',
+  mark_all_read: 'Mark all read',
+  clear_history: 'Clear history',
+  delete_chat: 'Delete chat',
 };

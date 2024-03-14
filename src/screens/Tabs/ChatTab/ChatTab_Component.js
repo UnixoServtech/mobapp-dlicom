@@ -2,18 +2,30 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, Image, ScrollView, View} from 'react-native';
+import images from '../../../assets/images';
 import {
+  Button,
   ListItem,
   Pressable,
   SearchBar,
   Spacing,
   Text,
 } from '../../../components';
+import BottomModal from '../../../components/BottomModal';
 import theme from '../../../theme';
 import createStyles from './ChatTab.style';
-import ActionModal from '../../../components/ActionModal';
 
-const ChatTab_Component = ({storyList, searchProp, dataList}) => {
+const ChatTab_Component = ({
+  storyList,
+  searchProp,
+  dataList,
+  onCancel,
+  onConfirm,
+  modalVisible = true,
+  onRequestClose,
+  actionSheetProp,
+  onItemPress = () => {},
+}) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
@@ -48,7 +60,7 @@ const ChatTab_Component = ({storyList, searchProp, dataList}) => {
   };
 
   const _renderItem = ({item, index}) => (
-    <Pressable>
+    <Pressable onPress={() => onItemPress(item, index)}>
       <ListItem>
         <ListItem.Content>
           <ListItem.Icon>
@@ -78,28 +90,94 @@ const ChatTab_Component = ({storyList, searchProp, dataList}) => {
     </Pressable>
   );
 
+  const _renderTexIconButton = (icon, label, onPress, themeColor) => {
+    return (
+      <Pressable style={styles.iconButtonWrapper} onPress={onPress}>
+        <Image source={icon} resizeMode="contain" style={styles.btnIcon} />
+        <Spacing direction="x" />
+        <Text
+          interRegular={true}
+          color={themeColor ?? colors?.actionSheet?.textColor}>
+          {label}
+        </Text>
+      </Pressable>
+    );
+  };
+
   return (
-    <View style={styles.mainContainer}>
-      <FlatList
-        data={dataList}
-        ListHeaderComponent={
-          <View>
-            <Spacing size="lg" />
-            {renderStoryView()}
-            <Spacing size="lg" />
-            <SearchBar
-              style={{marginHorizontal: theme.sizes.spacing.ph}}
-              {...searchProp}
-            />
-            <Spacing size="lg" />
+    <>
+      <View style={styles.mainContainer}>
+        <FlatList
+          data={dataList}
+          ListHeaderComponent={
+            <View>
+              <Spacing size="lg" />
+              {renderStoryView()}
+              <Spacing size="lg" />
+              <SearchBar
+                style={{marginHorizontal: theme.sizes.spacing.ph}}
+                {...searchProp}
+              />
+              <Spacing size="lg" />
+            </View>
+          }
+          keyExtractor={(item, index) => index}
+          renderItem={(item, index) => _renderItem(item, index)}
+          ListFooterComponent={<Spacing size={theme.sizes.spacing.tabHeight} />}
+        />
+      </View>
+      <BottomModal
+        modalVisible={actionSheetProp?.showActionSheet}
+        onRequestClose={actionSheetProp?.onRequestClose}
+        noPadding={true}
+        swipeDirection={'down'}
+        displayConfirmButton={false}>
+        <View>
+          <View
+            style={{
+              paddingHorizontal: theme.sizes.spacing.xs10,
+              paddingBottom: 0,
+            }}>
+            <Spacing size={theme.normalize(8)} />
+            {_renderTexIconButton(
+              images.ic_share,
+              actionSheetProp?.shareBtnProp?.label,
+              actionSheetProp?.shareBtnProp?.onPress,
+            )}
+            <Spacing size={3} />
+            {_renderTexIconButton(
+              images.ic_markAll,
+              actionSheetProp?.markAllReadBtnProp?.label,
+              actionSheetProp?.markAllReadBtnProp?.onPress,
+            )}
+            <Spacing size={3} />
+            {_renderTexIconButton(
+              images.ic_close,
+              actionSheetProp?.clearHistoryBtnProp?.label,
+              actionSheetProp?.clearHistoryBtnProp?.onPress,
+            )}
+            <Spacing size={3} />
+            {_renderTexIconButton(
+              images.ic_delete,
+              actionSheetProp?.deleteChatBtnProp?.label,
+              actionSheetProp?.deleteChatBtnProp?.onPress,
+              colors.red,
+            )}
           </View>
-        }
-        keyExtractor={(item, index) => index}
-        renderItem={(item, index) => _renderItem(item, index)}
-        ListFooterComponent={<Spacing size={theme.sizes.spacing.tabHeight} />}
-      />
-      <ActionModal modalVisible={true}></ActionModal>
-    </View>
+          <View
+            style={{
+              borderTopWidth: 1,
+              borderTopColor: colors?.actionSheet?.borderColor,
+              marginVertical: theme.normalize(12),
+            }}>
+            <Button
+              themedColor={colors?.actionSheet?.buttonColor}
+              {...actionSheetProp?.cancelBtnProp}
+            />
+          </View>
+        </View>
+      </BottomModal>
+    </>
   );
 };
 

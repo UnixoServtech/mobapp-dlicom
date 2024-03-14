@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import {useTheme} from '@react-navigation/native';
-
+import ActionContent from './ActionContent';
 const styles = StyleSheet.create({
   modal: {
     margin: 0,
@@ -50,9 +50,7 @@ export default function ActionModal({
       backdropColor={backdropColor}
       backdropOpacity={isTransparent ? 0 : 0.85}
       avoidKeyboard>
-      {/* <ActionContent
-        cancelTestID={cancelTestID}
-        confirmTestID={confirmTestID}
+      <ActionContent
         cancelText={cancelText}
         confirmText={confirmText}
         confirmDisabled={confirmDisabled}
@@ -69,7 +67,7 @@ export default function ActionModal({
         childrenContainerStyle={childrenContainerStyle}
         verticalButtons={verticalButtons}>
         {children}
-      </ActionContent> */}
+      </ActionContent>
     </Modal>
   );
 }
