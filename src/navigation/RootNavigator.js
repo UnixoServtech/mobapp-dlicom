@@ -262,6 +262,7 @@ class RootNavigator extends Component {
               borderColor: 'rgba(255, 255, 255, 0.1)',
               borderTopColor: 'rgba(255, 255, 255, 0.1)',
             },
+            tabBarHideOnKeyboard: true,
           };
         }}>
         <Tab.Screen

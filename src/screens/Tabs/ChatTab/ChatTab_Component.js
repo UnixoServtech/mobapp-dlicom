@@ -11,6 +11,7 @@ import {
 } from '../../../components';
 import theme from '../../../theme';
 import createStyles from './ChatTab.style';
+import ActionModal from '../../../components/ActionModal';
 
 const ChatTab_Component = ({storyList, searchProp, dataList}) => {
   const {colors} = useTheme();
@@ -97,6 +98,7 @@ const ChatTab_Component = ({storyList, searchProp, dataList}) => {
         renderItem={(item, index) => _renderItem(item, index)}
         ListFooterComponent={<Spacing size={theme.sizes.spacing.tabHeight} />}
       />
+      <ActionModal modalVisible={true}></ActionModal>
     </View>
   );
 };

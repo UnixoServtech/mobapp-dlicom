@@ -38,6 +38,8 @@ const SearchBar = ({
           placeholderTextColor={colors?.searchView?.placeHolderColor}
           value={value}
           onChangeText={onChangeText}
+          numberOfLines={1}
+          multiline={false}
           {...restInputProp}
         />
         {showRightContent ? (
