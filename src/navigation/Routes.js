@@ -28,6 +28,13 @@ const Routes = {
   GROUP_VIEW: 'GroupView',
   SELECT_COIN: 'SelectCoinView',
   NOTIFICATION: 'NotificationView',
+  SETTINGS: {
+    PRIVACY_SECURITY: 'PrivacySecurityView',
+    PROFILE: 'ProfileView',
+    PRIVACY: 'PrivacyView',
+    NOTIFICATIONS: 'NotificationsView',
+    NOTIFICATION_PREFERENCES: 'NotificationPreferences',
+  },
 };
 
 export default Routes;

@@ -15,7 +15,7 @@ const Header = ({
   leftContainerStyle,
   centerContainerStyle,
   rightContainerStyle,
-  noBorder = false,
+  hideBorder = false,
   label,
   backgroundColor,
   themedColor,
@@ -52,7 +52,7 @@ const Header = ({
       borderColor: borderColor ?? colors.headerBorder,
       backgroundColor: backgroundColor ?? colors.headerBg,
     },
-    noBorder && {borderBottomWidth: 0},
+    hideBorder && {borderBottomWidth: 0},
     containerStyle,
   ];
 
