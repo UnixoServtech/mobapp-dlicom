@@ -40,7 +40,7 @@ export const colors = {
         textDisable: commonColor.gray1,
       },
       headerBg: commonColor.white,
-      headerBorder: '#313131',
+      headerBorder: commonColor?.grayLight,
       radio: {
         borderColor: '#CDCFD0',
         disableBorderColor: '#E3E5E5',
@@ -52,7 +52,7 @@ export const colors = {
         date: '#9C9C9C',
         link: commonColor.gray1,
         bodyText: commonColor.green,
-        tittleText: commonColor.black,
+        tittleText: commonColor.gray,
       },
       toast: {
         background: commonColor.black,
@@ -70,6 +70,16 @@ export const colors = {
         borderColor: '#F2F4F5',
         backgroundColor: commonColor.white,
       },
+      switch: {
+        backgroundColor: commonColor.primaryMainColor,
+        thumbColor: commonColor.white,
+        backgroundColorOff: '#6C7072',
+      },
+      iconColor: '#6C7072',
+      rowHeader: '#959090',
+      settingsIconColor: commonColor.black,
+      borderColor: commonColor?.grayLight,
+      draggerColor: '#CDCFD0',
     },
   },
   dark: {
@@ -128,6 +138,16 @@ export const colors = {
         borderColor: '#303437',
         backgroundColor: '#141414',
       },
+      switch: {
+        backgroundColor: commonColor.primaryMainColor,
+        thumbColor: commonColor.white,
+        backgroundColorOff: '#6C7072',
+      },
+      iconColor: '#6C7072',
+      rowHeader: '#959090',
+      settingsIconColor: commonColor.primaryMainColor,
+      borderColor: '#313131',
+      draggerColor: '#6C7072',
     },
   },
 };

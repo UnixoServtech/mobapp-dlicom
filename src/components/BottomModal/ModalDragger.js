@@ -17,7 +17,7 @@ const createStyles = colors =>
       width: 48,
       height: 5,
       borderRadius: 4,
-      backgroundColor: '#6C7072',
+      backgroundColor: colors?.draggerColor,
     },
   });
 

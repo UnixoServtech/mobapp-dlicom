@@ -26,7 +26,7 @@ export const userProfile = userData => ({
   payload: userData,
 });
 
-export const changeColorTheme = value => ({
+export const setDarkMode = value => ({
   type: types.CHANGE_COLOR_THEME,
   payload: value,
 });
