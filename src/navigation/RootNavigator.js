@@ -396,7 +396,7 @@ class RootNavigator extends Component {
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
               key={123}
-              initialRouteName={Routes.HOME_NAV.ROOT_NAV}
+              initialRouteName={Routes.SPLASH_SCREEN}
               screenOptions={screenOptionsObject}>
               <Stack.Screen
                 name={Routes.SPLASH_SCREEN}
