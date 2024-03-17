@@ -13,6 +13,8 @@ const commonColor = {
   light: '#E6E6E6',
   red: '#FF5252',
   green: '#979C9E',
+  black2: '#191A1D',
+  green1: '#4EFF8A',
 };
 
 export const colors = {
@@ -80,6 +82,19 @@ export const colors = {
       settingsIconColor: commonColor.black,
       borderColor: commonColor?.grayLight,
       draggerColor: '#CDCFD0',
+      groupBg: commonColor.light,
+      semiTransparentBg: commonColor?.light,
+      iconBtnBg: commonColor?.light,
+      token: {
+        up: commonColor?.green1,
+        down: commonColor?.red,
+      },
+      swapModal: {
+        primaryText: commonColor.gray,
+        secondaryText: commonColor?.gray1,
+        accentColor: commonColor?.gray1,
+        borderColor: commonColor?.grayLight,
+      },
     },
   },
   dark: {
@@ -148,6 +163,19 @@ export const colors = {
       settingsIconColor: commonColor.primaryMainColor,
       borderColor: '#313131',
       draggerColor: '#6C7072',
+      groupBg: commonColor.black2,
+      semiTransparentBg: 'rgba(255, 255, 255, 0.04)',
+      iconBtnBg: 'rgba(255, 255, 255, 0.04)',
+      token: {
+        up: commonColor?.green1,
+        down: commonColor?.red,
+      },
+      swapModal: {
+        primaryText: commonColor.white,
+        secondaryText: commonColor?.grayLight,
+        accentColor: commonColor?.primaryMainColor,
+        borderColor: '#313131',
+      },
     },
   },
 };

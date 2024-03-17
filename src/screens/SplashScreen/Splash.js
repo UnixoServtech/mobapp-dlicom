@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
 import Splash_Component from './Splash_Component';
 import Routes from '../../navigation/Routes';
+import AsyncStorage from '@react-native-community/async-storage';
+import {LOCAL_STORAGE} from '../../constants/storage';
+import {setDarkMode} from '../../redux/actions/global';
 
 class Splash extends Component {
   constructor(props) {
@@ -10,9 +13,12 @@ class Splash extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
+    this.props.setDarkMode(JSON.parse(isDarkTheme));
     setTimeout(() => {
-      navigate(Routes.ONBOARDING.ONBOARDING);
+      // navigate(Routes.ONBOARDING.ONBOARDING);
+      navigate(Routes.HOME_NAV.ROOT_NAV);
     }, 1500);
   }
 
@@ -25,7 +31,7 @@ class Splash extends Component {
   }
 }
 
-const mapActionCreators = {};
+const mapActionCreators = {setDarkMode};
 const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,

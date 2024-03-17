@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Tokens_Component from './Tokens_Component';
+import Swap_Component from './Swap_Component';
 
-class Tokens extends Component {
+class SwapView extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tokenList: Array(9)
-        .fill(0)
-        .map((_, i) => i),
-    };
+    this.state = {};
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
   }
@@ -21,11 +17,9 @@ class Tokens extends Component {
   handleImportWallet = () => {};
 
   render() {
-    const {tokenList} = this.state;
     return (
       <>
-        <Tokens_Component
-          tokenList={tokenList}
+        <Swap_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
         />
@@ -41,4 +35,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Tokens);
+export default connect(mapStateToProps, mapActionCreators)(SwapView);
