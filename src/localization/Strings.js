@@ -53,4 +53,9 @@ export default {
   notification_from_non_contact: 'Notification from non contact',
   show_mentions: 'Show @ mentions',
   wallet_transaction: 'Wallet transaction',
+  send: 'Send',
+  receive: 'Receive',
+  scan: 'Scan',
+  tokens: 'Tokens',
+  swap: 'Swap',
 };

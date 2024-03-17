@@ -9,3 +9,4 @@ export {default as SearchBar} from './SearchBar';
 export {default as QRCodeModal} from './QRCodeModal';
 export {default as SwitchToggle} from './Switch/index';
 export {default as TableRow} from './TableRow';
+export {default as SwapItemLayout} from './SwapItemLayout';

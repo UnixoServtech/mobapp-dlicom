@@ -6,6 +6,8 @@ import {SwitchToggle} from '../../../components';
 import {setDarkMode} from '../../../redux/actions/global';
 import {navigate} from '../../../navigation/NavigationUtils';
 import Routes from '../../../navigation/Routes';
+import AsyncStorage from '@react-native-community/async-storage';
+import {LOCAL_STORAGE} from '../../../constants/storage';
 
 class Settings extends Component {
   constructor(props) {
@@ -28,8 +30,12 @@ class Settings extends Component {
 
   handleImportWallet = () => {};
 
-  onSwitchToggle = () => {
+  onSwitchToggle = async () => {
     const {isDarkTheme} = this.props;
+    await AsyncStorage.setItem(
+      LOCAL_STORAGE.DARK_THEME,
+      JSON.stringify(!isDarkTheme),
+    );
     this.props.setDarkMode(!isDarkTheme);
   };
 

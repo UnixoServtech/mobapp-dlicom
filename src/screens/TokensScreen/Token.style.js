@@ -8,4 +8,9 @@ export default createStyles = colors =>
       flex: 1,
       backgroundColor: colors.primaryBg,
     },
+    avatar: {
+      height: theme.normalize(40),
+      width: theme.normalize(40),
+      borderRadius: theme.normalize(20),
+    },
   });
