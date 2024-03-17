@@ -13,7 +13,7 @@ import theme from '../../theme';
 import createStyles from './Swap.style';
 import CustomIcon from '../../components/CustomIcon';
 
-const Swap_Component = ({button1Press, button2Press}) => {
+const Swap_Component = ({button1Press, button2Press, onSwapBtnClick}) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
@@ -64,6 +64,7 @@ const Swap_Component = ({button1Press, button2Press}) => {
         />
         <Spacing size="xs2" />
         <Button
+          onPress={onSwapBtnClick}
           label={'Swap'}
           style={{marginHorizontal: theme.normalize(15)}}
         />

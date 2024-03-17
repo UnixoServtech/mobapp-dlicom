@@ -8,6 +8,7 @@ export default createStyles = colors =>
       flex: 1,
       backgroundColor: colors.primaryBg,
       padding: theme.sizes.spacing.ph,
+      paddingTop: 0,
     },
     wrapper: {
       borderRadius: 23,

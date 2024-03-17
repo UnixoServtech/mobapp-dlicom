@@ -17,8 +17,8 @@ class Splash extends Component {
     let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
     this.props.setDarkMode(JSON.parse(isDarkTheme));
     setTimeout(() => {
-      // navigate(Routes.ONBOARDING.ONBOARDING);
-      navigate(Routes.HOME_NAV.ROOT_NAV);
+      navigate(Routes.ONBOARDING.ONBOARDING);
+      // navigate(Routes.HOME_NAV.ROOT_NAV);
     }, 1500);
   }
 

@@ -33,6 +33,8 @@ const SwapItemLayout = ({
   selectedCurrency,
   currencyLogo,
   isSwapTo,
+  onCancelPress,
+  onTokenClick,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -62,7 +64,7 @@ const SwapItemLayout = ({
           <View style={styles.swapRightWrapper}>
             <View style={{marginRight: theme.normalize(10)}}>
               {isCloseIconVisible ? (
-                <Pressable>
+                <Pressable onPress={onCancelPress}>
                   <CustomIcon
                     name={'Close_circle'}
                     color={colors?.grayLight}
@@ -86,6 +88,7 @@ const SwapItemLayout = ({
                 style={styles.avatar}
               />
               <Pressable
+                onPress={onTokenClick}
                 style={{
                   flex: 1,
                   paddingHorizontal: 10,
