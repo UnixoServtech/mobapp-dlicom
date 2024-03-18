@@ -30,7 +30,7 @@ export default createStyles = colors =>
       flex: 1,
       width: '80%',
       paddingRight: 5,
-      color: colors?.text,
+      color: colors?.textInput?.text,
       fontSize: theme.typography.fontSizes.md,
       ...theme.typography.fontStyles.interRegular,
       //   top: Platform.OS === 'android' ? 0.8 : 0,

@@ -120,10 +120,12 @@ const Input = ({
     },
     {
       width: inputContainerWidth,
-      borderColor: isFocused ? 'white' : inputContainerBorder ?? '#303437',
+      borderColor: isFocused
+        ? colors?.textInput?.focusBorderColor
+        : inputContainerBorder ?? colors?.textInput?.borderColor,
       backgroundColor: isFocused
-        ? '#141414'
-        : inputContainerBackgroundColor ?? colors.black2,
+        ? colors?.textInput?.focusBackgroundColor
+        : inputContainerBackgroundColor ?? colors?.textInput?.backgroundColor,
     },
     inputContainerStyles,
   ];
@@ -140,7 +142,11 @@ const Input = ({
           {label?.length > 0 && (
             <Text
               type={'label'}
-              style={[styles.label, {color: labelTextColor}, labelStyles]}>
+              style={[
+                styles.label,
+                {color: labelTextColor ?? colors?.textInput?.label},
+                labelStyles,
+              ]}>
               {label}
             </Text>
           )}
@@ -149,6 +155,7 @@ const Input = ({
           {optionalLabel?.length > 0 && (
             <Text
               type={'label'}
+              color={colors?.textInput?.label}
               style={[styles.optionalLabelStyles, optionalLabelStyle]}>
               {optionalLabel}
             </Text>
@@ -165,7 +172,7 @@ const Input = ({
             leftIcon={leftIcon}
             leftIconStyle={leftIconStyle}
             leftIconName={leftIconName}
-            leftIconColor={leftIconColor}
+            leftIconColor={leftIconColor ?? colors?.textInput?.iconColor}
           />
         )}
         {isAsDropdown ? (
@@ -186,7 +193,7 @@ const Input = ({
             keyboardType={keyboardType}
             style={[styles.input, inputStyles]}
             placeholder={placeholder}
-            placeholderTextColor={colors?.gray1}
+            placeholderTextColor={colors?.textInput?.placeHolderColor}
             onChangeText={onChangeText}
             onFocus={e => {
               handleFocus(true, onFocus ? () => onFocus(e) : () => {});
@@ -197,6 +204,13 @@ const Input = ({
             {...restProps}
           />
         )}
+        {isError && (
+          <CustomIcon
+            name={'alert_circle'}
+            color={errorTextColor ?? colors?.red}
+            size={theme.sizes.icons.xl2}
+          />
+        )}
         {isRightIconVisible && (
           <RightIcon
             onRightIconPress={onRightIconPress}
@@ -204,10 +218,11 @@ const Input = ({
             isDisabled={rightIcnDisable}
             rightIconStyle={rightIconStyle}
             rightIconName={rightIconName}
-            rightIconColor={rightIconColor ?? colors?.primaryMainColor}
+            rightIconColor={rightIconColor ?? colors?.textInput?.iconColor}
           />
         )}
       </TouchableOpacity>
+
       {isError && errorMsg?.length > 0 && (
         <Text
           size={theme.typography.fontSizes.sm}

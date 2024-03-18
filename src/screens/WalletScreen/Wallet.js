@@ -28,7 +28,7 @@ class Wallet extends Component {
   handleImportWallet = () => {};
 
   onSendClick = () => {
-    console.log('onSendClick');
+    this.sendTokenModalRef?.current?.open();
   };
 
   onReceiveClick = () => {
@@ -48,9 +48,7 @@ class Wallet extends Component {
     });
   };
 
-  onPressRightContent = () => {
-    this.sendTokenModalRef?.current?.open();
-  };
+  onPressRightContent = () => {};
 
   render() {
     const {selectedTab} = this.state;

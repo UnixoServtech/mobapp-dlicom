@@ -195,7 +195,7 @@ const Wallet_Component = ({
         onAmountChange={onAmountChange}
         onScanClick={onScanIconClick}
         onContinuePress={onContinuePress}
-        continueBtnDisable={false}
+        continueBtnDisable={true}
       />
     </View>
   );
