@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {importNewEthWallet, isValidMnemonic} from '../../core/eth';
 import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
-import ImportWallet_Component from './ImportWallet_Component';
 import Routes from '../../navigation/Routes';
+import ImportWallet_Component from './ImportWallet_Component';
 
 class ImportWallet extends Component {
   constructor(props) {
@@ -52,15 +52,6 @@ class ImportWallet extends Component {
       seedPhrase: '',
     });
   };
-
-  // isHintSeedPhrase = hintText => {
-  //   const words = this.props.route.params?.words;
-  //   if (words) {
-  //     const lower = string => String(string).toLowerCase();
-  //     return lower(hintText) === lower(words.join(' '));
-  //   }
-  //   return false;
-  // };
 
   render() {
     const {seedPhrase} = this.state;

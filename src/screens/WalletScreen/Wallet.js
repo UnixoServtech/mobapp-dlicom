@@ -11,6 +11,7 @@ class Wallet extends Component {
     super(props);
     this.state = {
       selectedTab: AppConstant.tokenType,
+      wallet: {},
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
@@ -19,7 +20,9 @@ class Wallet extends Component {
     this.onScanClick = this.onScanClick.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState(prev => ({wallet: this.props.selectedWallet}));
+  }
 
   handleCreateNewWallet = () => {};
 
@@ -51,8 +54,8 @@ class Wallet extends Component {
     return (
       <>
         <Wallet_Component
-          selectedAccountName={'randomuser.io'}
-          avatarLink={'https://picsum.photos/300/300'}
+          selectedAccountName={this.state.wallet?.name}
+          avatarLink={this.state.wallet?.avatar}
           amount={'$ 5,323.00'}
           onSendClick={this.onSendClick}
           onReceiveClick={this.onReceiveClick}
@@ -85,6 +88,8 @@ const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
+    selectedWallet: state.userWallets.selectedWallet,
+    userWallets: state.userWallets,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Wallet);

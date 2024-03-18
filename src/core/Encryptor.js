@@ -74,4 +74,20 @@ export default class Encryptor {
     const data = await this._decryptWithKey(encryptedData, key);
     return JSON.parse(data);
   };
+
+  /**
+   * To generate paasword hash from the password.
+   *
+   * @param {string} password
+   * @param {object} object
+   * @param {string} salt
+   */
+  getPasswordHash = async (password, object, salt) => {
+    const key = await this._keyFromPassword(password, salt);
+    const passwordHash = await this._generatePasswordHash(
+      object?.password,
+      key,
+    );
+    return passwordHash;
+  };
 }

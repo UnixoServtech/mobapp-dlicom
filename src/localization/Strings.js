@@ -61,4 +61,5 @@ export default {
   authenticationPromptTitle: 'Please authenticate in order to use Dlicom',
   createPassword: 'Create Password',
   addNewWallet: 'Add New Wallet',
+  unlockWallet: 'Unlock Wallet',
 };

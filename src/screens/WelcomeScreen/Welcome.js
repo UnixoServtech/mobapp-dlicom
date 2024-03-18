@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {navigate} from '../../navigation/NavigationUtils';
-import Welcome_Component from './Welcome_Component';
 import Routes from '../../navigation/Routes';
+import Welcome_Component from './Welcome_Component';
 
 class Welcome extends Component {
   constructor(props) {
@@ -26,8 +26,8 @@ class Welcome extends Component {
     return (
       <>
         <Welcome_Component
-          button1Press={this.handleCreateNewWallet}
-          button2Press={this.handleImportWallet}
+          buttonCreateNewWallet={this.handleCreateNewWallet}
+          buttonImportWallet={this.handleImportWallet}
         />
       </>
     );

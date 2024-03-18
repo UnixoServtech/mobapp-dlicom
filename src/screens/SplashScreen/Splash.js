@@ -1,15 +1,11 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-  navigate,
-  navigateAndSimpleReset,
-} from '../../navigation/NavigationUtils';
-import Splash_Component from './Splash_Component';
+import {LOCAL_STORAGE} from '../../constants/storage';
+import {navigateAndSimpleReset} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
-import AsyncStorage from '@react-native-community/async-storage';
-import {LOCAL_STORAGE} from '../../constants/storage';
 import {setDarkMode} from '../../redux/actions/global';
-import {LOCAL_STORAGE} from '../../constants/storage';
+import Splash_Component from './Splash_Component';
 
 class Splash extends Component {
   constructor(props) {
@@ -21,6 +17,7 @@ class Splash extends Component {
     let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
     this.props.setDarkMode(JSON.parse(isDarkTheme));
     setTimeout(async () => {
+      // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
       if (
         (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
         (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))

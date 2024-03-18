@@ -82,7 +82,7 @@ const Select_Wallet_Component = ({
           label={btnAddNewWalletLabel}
           onPress={btnPressAddNewWallet}
           showIconRight={true}
-          rightIcon={btnAddNewWalletRightIcon}
+          rightIconName="Plus"
         />
         <Spacing size="xl" />
         <Button label={btnLabel} onPress={btnPress} showIconRight={true} />

@@ -16,9 +16,10 @@ export const LOCAL_STORAGE = {
   NOTIFICATION_TOKEN: `${prefix}NOTIFICATION_TOKEN`,
   LANGUAGE: `${prefix}LANGUAGE`,
   CONVERSATION_USERS: `${prefix}conversationUsers`,
+  DARK_THEME: `${prefix}darkTheme`,
   BIOMETRY: `${prefix}biometry`,
   PASSWORD: `${prefix}password`,
-  DARK_THEME: `${prefix}darkTheme`,
+  PASSWORD_HASH: `${prefix}passwordHash`,
 };
 
 // export const STATIC_USER_ID = '47734';

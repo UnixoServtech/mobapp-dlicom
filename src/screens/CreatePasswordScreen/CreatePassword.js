@@ -44,6 +44,8 @@ class CreatePassword extends Component {
 
   // To check Biometry Supported or not
   setBiometrySupported = async () => {
+    // To remove Existing wallets(if it is)
+    await AsyncStorage.clear();
     const BIOMETRY_TYPE = {
       TouchID: 'TouchID',
       FaceID: 'FaceID',
@@ -101,6 +103,14 @@ class CreatePassword extends Component {
           'Credentials saved successfully with biometry protection in keychain',
           data,
         );
+
+        let {passwordHash} = JSON.parse(encryptorData);
+        // Store Aes Key to generate password hash at Unlock Time.
+        await AsyncStorage.setItem(
+          LOCAL_STORAGE.PASSWORD_HASH,
+          passwordHash.toString(),
+        );
+
         // isBiometrySupported and getting data from setGenericPassword then set flag to true.
         if (this.state.biometryType && Object.keys(data).length > 0) {
           console.log('with BIOMETRY');

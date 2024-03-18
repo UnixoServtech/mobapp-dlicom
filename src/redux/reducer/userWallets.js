@@ -15,8 +15,12 @@ const global = (state = initialState, action) => {
       return {...state, loading: true};
     case types.API_LOADING_STOP:
       return {...state, loading: false};
-    case types.IMPORT_NEW_WALLET:
-      return {...state, wallets: [...state.wallets, action.payload]};
+    case types.DEFAULT_WALLET:
+      return {...state, defaultWallet: action.payload};
+    case types.SELECTED_WALLET:
+      return {...state, selectedWallet: action.payload};
+    case types.WALLETS:
+      return {...state, wallets: [...state.wallets, ...action.payload]};
     default:
       return state;
   }

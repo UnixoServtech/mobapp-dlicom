@@ -6,7 +6,7 @@ import {Button, Spacing, Text} from '../../components';
 import Strings from '../../localization/Strings';
 import theme from '../../theme';
 
-const Welcome_Component = ({button1Press, button2Press}) => {
+const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
   const {colors} = useTheme();
 
   return (
@@ -40,12 +40,15 @@ const Welcome_Component = ({button1Press, button2Press}) => {
           flex: 1,
           justifyContent: 'center',
         }}>
-        <Button label={Strings.createNewWallet} onPress={button1Press} />
+        <Button
+          label={Strings.createNewWallet}
+          onPress={buttonCreateNewWallet}
+        />
         <Spacing />
         <Button
           label={Strings.importWallet}
           variant="ghost"
-          onPress={button2Press}
+          onPress={buttonImportWallet}
           themedColor={colors.primaryMainColor}
         />
       </View>
