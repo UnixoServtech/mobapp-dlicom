@@ -18,6 +18,7 @@ export const LOCAL_STORAGE = {
   CONVERSATION_USERS: `${prefix}conversationUsers`,
   BIOMETRY: `${prefix}biometry`,
   PASSWORD: `${prefix}password`,
+  DARK_THEME: `${prefix}darkTheme`,
 };
 
 // export const STATIC_USER_ID = '47734';

@@ -18,7 +18,7 @@ export default createStyles = colors =>
       borderRadius: theme.sizes.image.xl5 / 2,
     },
     itemWrapper: {
-      backgroundColor: '#191A1D',
+      backgroundColor: colors?.groupBg,
       borderRadius: theme.normalize(14),
       paddingVertical: theme.normalize(15),
       paddingHorizontal: theme.normalize(25),

@@ -10,7 +10,7 @@ export default createStyles = colors =>
       fontSize: 14,
     },
     wrapper: {
-      height: theme.normalize(45),
+      height: theme.normalize(35),
       backgroundColor: colors?.searchView?.backgroundColor,
       borderRadius: theme.normalize(8),
       paddingHorizontal: theme.normalize(8),
@@ -19,7 +19,7 @@ export default createStyles = colors =>
     },
     inputText: {
       fontSize: theme.typography.fontSizes.md,
-      color: 'white',
+      color: colors?.text,
       lineHeight: theme.typography.lineHeights.sm,
       flex: 1,
       includeFontPadding: false,

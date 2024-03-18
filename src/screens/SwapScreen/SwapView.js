@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Settings_Component from './Settings_Component';
+import Swap_Component from './Swap_Component';
 
-class Settings extends Component {
+class SwapView extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,7 +19,7 @@ class Settings extends Component {
   render() {
     return (
       <>
-        <Settings_Component
+        <Swap_Component
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
         />
@@ -35,4 +35,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Settings);
+export default connect(mapStateToProps, mapActionCreators)(SwapView);

@@ -33,7 +33,6 @@ const Select_Wallet_Component = ({
   return (
     <View style={styles.mainContainer}>
       <Header
-        noBorder={false}
         leftText={headerLeftText}
         onPressLeftContent={onPressLeftContent}
       />

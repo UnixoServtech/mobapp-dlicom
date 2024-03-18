@@ -8,6 +8,8 @@ import Splash_Component from './Splash_Component';
 import Routes from '../../navigation/Routes';
 import AsyncStorage from '@react-native-community/async-storage';
 import {LOCAL_STORAGE} from '../../constants/storage';
+import {setDarkMode} from '../../redux/actions/global';
+import {LOCAL_STORAGE} from '../../constants/storage';
 
 class Splash extends Component {
   constructor(props) {
@@ -15,7 +17,9 @@ class Splash extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
+    this.props.setDarkMode(JSON.parse(isDarkTheme));
     setTimeout(async () => {
       if (
         (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
@@ -37,7 +41,7 @@ class Splash extends Component {
   }
 }
 
-const mapActionCreators = {};
+const mapActionCreators = {setDarkMode};
 const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,

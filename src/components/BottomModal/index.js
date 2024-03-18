@@ -6,29 +6,31 @@ import {View, theme} from 'native-base';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Device from '../../utils/device';
 import ModalDragger from './ModalDragger';
-const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-    width: '100%',
-  },
-  bottomModal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-  keyboardAwareWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  modal: {
-    minHeight: 200,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    maxHeight: Device.getDeviceHeight() - 200,
-    flexGrow: 1,
-    // justifyContent: 'flex-end',
-    padding: 15,
-  },
-});
+const createStyles = colors =>
+  StyleSheet.create({
+    bottomModal: {
+      justifyContent: 'flex-end',
+      margin: 0,
+    },
+    keyboardAwareWrapper: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      backgroundColor: 'black',
+    },
+    modal: {
+      minHeight: 200,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      maxHeight: Device.getDeviceHeight() - 200,
+      flexGrow: 1,
+      // justifyContent: 'flex-end',
+      padding: 15,
+    },
+    wrapper: {
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+    },
+  });
 
 export default function BottomModal({
   children,
@@ -40,6 +42,7 @@ export default function BottomModal({
   noPadding,
 }) {
   const {colors} = useTheme();
+  let styles = createStyles(colors);
   let backgroundColor = colors?.actionSheet?.backgroundColor;
   return (
     <Modal
@@ -56,7 +59,9 @@ export default function BottomModal({
       animationInTiming={600}
       animationOutTiming={600}
       propagateSwipe>
-      <SafeAreaView contentContainerStyle={styles.keyboardAwareWrapper}>
+      <SafeAreaView
+        contentContainerStyle={styles.keyboardAwareWrapper}
+        style={[styles.wrapper, {backgroundColor: backgroundColor}]}>
         <View
           style={[
             styles.modal,

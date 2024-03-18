@@ -35,6 +35,10 @@ import {
   ImportWallet,
   SelectCoinScreen,
   NotificationScreen,
+  PrivacySecurity,
+  PrivacyView,
+  NotificationPreferenceView,
+  NotificationView,
   CreatePassword,
 } from '../screens';
 import colors from '../theme/colors';
@@ -56,6 +60,26 @@ let commonScreens = {
   SelectCoinScreen: {
     name: Routes.SELECT_COIN,
     screen: SelectCoinScreen,
+    navigationOptions: {headerBackTitle: null},
+  },
+  PrivacySecurity: {
+    name: Routes.SETTINGS.PRIVACY_SECURITY,
+    screen: PrivacySecurity,
+    navigationOptions: {headerBackTitle: null},
+  },
+  PrivacyView: {
+    name: Routes.SETTINGS.PRIVACY,
+    screen: PrivacyView,
+    navigationOptions: {headerBackTitle: null},
+  },
+  NotificationPreferenceView: {
+    name: Routes.SETTINGS.NOTIFICATION_PREFERENCES,
+    screen: NotificationPreferenceView,
+    navigationOptions: {headerBackTitle: null},
+  },
+  NotificationView: {
+    name: Routes.SETTINGS.NOTIFICATIONS,
+    screen: NotificationView,
     navigationOptions: {headerBackTitle: null},
   },
 };

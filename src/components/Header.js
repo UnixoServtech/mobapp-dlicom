@@ -15,7 +15,7 @@ const Header = ({
   leftContainerStyle,
   centerContainerStyle,
   rightContainerStyle,
-  noBorder = false,
+  hideBorder = false,
   label,
   backgroundColor,
   themedColor,
@@ -37,6 +37,7 @@ const Header = ({
   rightElement,
   rightContent,
   isCenterRight = true,
+  isCenterLeft = false,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -52,7 +53,7 @@ const Header = ({
       borderColor: borderColor ?? colors.headerBorder,
       backgroundColor: backgroundColor ?? colors.headerBg,
     },
-    noBorder && {borderBottomWidth: 0},
+    hideBorder && {borderBottomWidth: 0},
     containerStyle,
   ];
 
@@ -158,6 +159,7 @@ const Header = ({
       <View style={[styles.innerRowContainer, innerRowContainerStyle]}>
         <View style={[leftContainerStyle]}>
           {!isLeftDisabled && <LeftContent />}
+          {isCenterLeft && <View style={{width: theme.sizes.icons.xl2}} />}
         </View>
         {!isCenterDisabled && (
           <View style={[styles.centerContainer, centerContainerStyle]}>

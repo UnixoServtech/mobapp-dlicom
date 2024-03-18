@@ -5,7 +5,11 @@ import Tokens_Component from './Tokens_Component';
 class Tokens extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      tokenList: Array(9)
+        .fill(0)
+        .map((_, i) => i),
+    };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
   }
@@ -17,9 +21,11 @@ class Tokens extends Component {
   handleImportWallet = () => {};
 
   render() {
+    const {tokenList} = this.state;
     return (
       <>
         <Tokens_Component
+          tokenList={tokenList}
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
         />
