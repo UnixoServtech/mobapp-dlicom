@@ -4,37 +4,47 @@ import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Select_Wallet_Component from './Select_Wallet_Component';
 import Routes from '../../navigation/Routes';
-const tempArray = Array(5)
-  .fill(0)
-  .map((_, i) => {
-    return {
-      name: `Davis ${i}`,
-      avatar: 'https://picsum.photos/300/300',
-      id: `0xc0ffee254729296a..${i}`,
-    };
-  });
+import {importNewWallet} from '../../redux/actions/userWallets';
 
 class Wallet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      walletList: tempArray,
+      walletList: [],
       selectedWallet: null,
     };
     this.onPressLeftContent = this.onPressLeftContent.bind(this);
     this.nextPress = this.nextPress.bind(this);
     this.onChangeRadio = this.onChangeRadio.bind(this);
+    this.onPressAddNewWallet = this.onPressAddNewWallet.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const wallet = this.props?.route?.params?.wallet;
+    if (wallet) {
+      console.log(wallet, wallet.address);
+      const initWallet = {
+        name: `Davis ${0}`,
+        avatar: 'https://picsum.photos/300/300',
+        id: wallet.address,
+        wallet: wallet,
+        selected: true,
+      };
+      this.setState(prev => ({
+        ...prev,
+        walletList: [...prev.walletList, initWallet],
+        selectedWallet: 0,
+      }));
+    }
+  }
 
   onPressLeftContent = () => {
     goBack();
   };
 
   nextPress = () => {
-    // alert(JSON.stringify(this.state.selectedWallet));
-    navigate(Routes.MANUAL_BACKUP_STEP);
+    // navigate(Routes.MANUAL_BACKUP_STEP);
+    this.props.importNewWallet(this.state.walletList[0]);
   };
 
   onChangeRadio = (item, index) => {
@@ -43,7 +53,10 @@ class Wallet extends Component {
       element.selected = element === item;
     });
     this.setState({walletList, selectedWallet: item});
+    console.log(this.state.selectedWallet);
   };
+
+  onPressAddNewWallet = () => {};
 
   render() {
     const {walletList} = this.state;
@@ -58,13 +71,17 @@ class Wallet extends Component {
           btnLabel={Strings.next}
           btnPress={this.nextPress}
           onChangeRadio={this.onChangeRadio}
+          btnAddNewWalletLabel={Strings.addNewWallet}
+          btnPressAddNewWallet={this.onPressAddNewWallet}
         />
       </>
     );
   }
 }
 
-const mapActionCreators = {};
+const mapActionCreators = {
+  importNewWallet,
+};
 const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,

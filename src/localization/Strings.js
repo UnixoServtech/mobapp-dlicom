@@ -36,4 +36,5 @@ export default {
   delete_chat: 'Delete chat',
   authenticationPromptTitle: 'Please authenticate in order to use Dlicom',
   createPassword: 'Create Password',
+  addNewWallet: 'Add New Wallet',
 };

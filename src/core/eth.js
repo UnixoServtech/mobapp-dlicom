@@ -29,3 +29,22 @@ export const createNewEthWallet = async () => {
 export const importNewEthWallet = async mnemonic => {
   return await Wallet.fromPhrase(String(mnemonic));
 };
+
+/**
+ * To create index wallet from given Phrase
+ *
+ * @param {*} mnemonic
+ * @param {*} index
+ * @returns
+ */
+export const addNewEthAccount = async (mnemonic, index) => {
+  let derivationPath = "m/44'/60'/0'/0";
+  const fromPhrases = Mnemonic.fromPhrase(mnemonic);
+  let fromMnemonic = ethers.HDNodeWallet.fromMnemonic(
+    fromPhrases,
+    derivationPath,
+  );
+  let hdNodeWallet = fromMnemonic.derivePath(index.toString());
+  let wallet = new ethers.Wallet(hdNodeWallet.privateKey);
+  return wallet;
+};

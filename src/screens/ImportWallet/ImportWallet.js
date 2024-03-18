@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {importNewEthWallet, isValidMnemonic} from '../../core/eth';
 import Strings from '../../localization/Strings';
-import {goBack} from '../../navigation/NavigationUtils';
+import {goBack, navigate} from '../../navigation/NavigationUtils';
 import ImportWallet_Component from './ImportWallet_Component';
+import Routes from '../../navigation/Routes';
 
 class ImportWallet extends Component {
   constructor(props) {
@@ -30,8 +31,6 @@ class ImportWallet extends Component {
   };
 
   primaryButtonPress = async () => {
-    // navigate(Routes.ONBOARDING.SELECT_WALLET);
-    // ethers.Wallet()
     if (
       this.state.seedPhrase &&
       isValidMnemonic(this.state.seedPhrase.trim())
@@ -40,10 +39,9 @@ class ImportWallet extends Component {
         const wallet = await importNewEthWallet(this.state.seedPhrase.trim());
         if (wallet) {
           console.log(wallet);
+          navigate(Routes.ONBOARDING.SELECT_WALLET, {wallet});
         }
       } catch (error) {}
-
-      // alert('isValid');
     } else {
       alert('Enter valid seed Mnemonic');
     }

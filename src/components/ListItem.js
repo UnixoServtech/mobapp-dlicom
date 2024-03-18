@@ -127,6 +127,8 @@ const ListItemNote = ({style, ...props}) => {
     <Text
       type={'helper-text'}
       color={colors.listItem.bodyText}
+      numberOfLines={1}
+      ellipsizeMode={'middle'}
       style={[styles.note, style]}
       {...props}
     />

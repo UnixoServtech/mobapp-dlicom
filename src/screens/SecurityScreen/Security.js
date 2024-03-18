@@ -27,6 +27,7 @@ class Security extends Component {
     if (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) {
       await this.getCredentialsWithBiometry();
     }
+    console.log(this.props?.wallets);
   }
 
   // TODO: Remove once the flow is updated.
@@ -95,6 +96,7 @@ const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
+    wallets: state.userWallets.wallets,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Security);
