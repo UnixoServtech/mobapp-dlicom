@@ -2,7 +2,15 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Image, ScrollView, View} from 'react-native';
-import {Header, Pressable, Spacing, Text} from '../../components';
+import {
+  Header,
+  Pressable,
+  Spacing,
+  Text,
+  Input,
+  BottomSheetHeader,
+  Button,
+} from '../../components';
 import theme from '../../theme';
 import createStyles from './Wallet.style';
 import images from '../../assets/images';
@@ -12,6 +20,10 @@ import TabBar from '../../components/TabBar';
 import Tokens from '../TokensScreen/Tokens';
 import SwapView from '../SwapScreen/SwapView';
 import {AppConstant} from '../../constants/constants';
+import BottomModal from '../../components/BottomModal';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import BottomSheet from '../../components/BottomSheet';
+import SendTokenModal from '../../components/SendTokenModal';
 
 const Wallet_Component = ({
   onPressRightContent,
@@ -25,6 +37,10 @@ const Wallet_Component = ({
   selectedTab,
   onPress,
   onPress1,
+  sendTokenModalRef,
+  onAmountChange,
+  onScanIconClick,
+  onContinuePress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -170,21 +186,48 @@ const Wallet_Component = ({
           <SwapView />
         </ScrollView>
       )}
-      {/* <View style={{margin: 50}}>
-        <Pressable onPress={onPress}>
-          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-            Wallet Test Button
-          </Text>
-        </Pressable>
-        <Spacing />
-        <Pressable onPress={onPress1}>
-          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-            Chose Coin
-          </Text>
-        </Pressable>
-      </View> */}
+      <SendTokenModal
+        modalRef={sendTokenModalRef}
+        modalHeader={'Send TOKEN'}
+        walletAddressPlaceHolder={'Wallet Address'}
+        amountPlaceHolder={'0.0'}
+        amountLabel={'Amount'}
+        onAmountChange={onAmountChange}
+        onScanClick={onScanIconClick}
+        onContinuePress={onContinuePress}
+        continueBtnDisable={false}
+      />
     </View>
   );
 };
 
 export default Wallet_Component;
+{
+  /* <Input
+label="label"
+optionalLabel="optionalLabel"
+value="Ethereum"
+isRightIconVisible
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+isRightIconVisible
+isLeftIconVisible
+rightIconName={'Scan'}
+leftIconName={'Scan'}
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+disableFocusHandling={true}
+// isAsDropdown={true}
+/> */
+}

@@ -10,3 +10,5 @@ export {default as QRCodeModal} from './QRCodeModal';
 export {default as SwitchToggle} from './Switch/index';
 export {default as TableRow} from './TableRow';
 export {default as SwapItemLayout} from './SwapItemLayout';
+export {default as Input} from './Input';
+export {default as BottomSheetHeader} from './BottomModal/BottomSheetHeader';

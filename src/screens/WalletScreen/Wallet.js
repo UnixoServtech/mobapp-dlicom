@@ -17,6 +17,8 @@ class Wallet extends Component {
     this.onSendClick = this.onSendClick.bind(this);
     this.onReceiveClick = this.onReceiveClick.bind(this);
     this.onScanClick = this.onScanClick.bind(this);
+    this.onPressRightContent = this.onPressRightContent.bind(this);
+    this.sendTokenModalRef = React.createRef();
   }
 
   componentDidMount() {}
@@ -44,6 +46,10 @@ class Wallet extends Component {
     this.setState({
       selectedTab: type,
     });
+  };
+
+  onPressRightContent = () => {
+    this.sendTokenModalRef?.current?.open();
   };
 
   render() {
@@ -74,6 +80,8 @@ class Wallet extends Component {
           selectedTab={selectedTab}
           onPress={() => navigate(Routes.GROUP_VIEW)}
           onPress1={() => navigate(Routes.SELECT_COIN)}
+          sendTokenModalRef={this.sendTokenModalRef}
+          onPressRightContent={this.onPressRightContent}
         />
       </>
     );
