@@ -15,3 +15,4 @@ export {default as ImportWallet} from './ImportWallet/ImportWallet';
 export {default as SelectCoinScreen} from './SelectCoinScreen/SelectCoin';
 export {default as TokensView} from './TokensScreen/Tokens';
 export {default as NotificationScreen} from './NotificationScreen/Notification';
+export {default as CreatePassword} from './CreatePasswordScreen/CreatePassword';

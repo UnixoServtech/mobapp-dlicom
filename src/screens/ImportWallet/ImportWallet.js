@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ImportWallet_Component from './ImportWallet_Component';
+import {importNewEthWallet, isValidMnemonic} from '../../core/eth';
 import Strings from '../../localization/Strings';
-import {goBack, navigate} from '../../navigation/NavigationUtils';
-import Routes from '../../navigation/Routes';
+import {goBack} from '../../navigation/NavigationUtils';
+import ImportWallet_Component from './ImportWallet_Component';
 
 class ImportWallet extends Component {
   constructor(props) {
@@ -29,8 +29,24 @@ class ImportWallet extends Component {
     });
   };
 
-  primaryButtonPress = () => {
-    navigate(Routes.ONBOARDING.SELECT_WALLET);
+  primaryButtonPress = async () => {
+    // navigate(Routes.ONBOARDING.SELECT_WALLET);
+    // ethers.Wallet()
+    if (
+      this.state.seedPhrase &&
+      isValidMnemonic(this.state.seedPhrase.trim())
+    ) {
+      try {
+        const wallet = await importNewEthWallet(this.state.seedPhrase.trim());
+        if (wallet) {
+          console.log(wallet);
+        }
+      } catch (error) {}
+
+      // alert('isValid');
+    } else {
+      alert('Enter valid seed Mnemonic');
+    }
   };
 
   secondaryButtonPress = () => {
@@ -63,7 +79,7 @@ class ImportWallet extends Component {
           value={seedPhrase}
           primaryButtonProps={{
             label: Strings.confirm,
-            isDisabled: seedPhrase?.trim()?.length == 0,
+            isDisabled: seedPhrase?.trim()?.length === 0,
             onPress: this.primaryButtonPress,
           }}
           secondaryButtonProps={{

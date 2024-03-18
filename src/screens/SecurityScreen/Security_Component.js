@@ -21,10 +21,11 @@ const Security_Component = ({button1Press, button2Press}) => {
       </View>
       <View style={{padding: theme.sizes.spacing.pv}}>
         <Button
-          label={Strings.forgotPwd}
+          label={'Reset Password'}
           variant="ghost"
-          themedColor={colors.gray1}
+          themedColor={colors.text}
           isCompact={true}
+          onPress={button1Press}
         />
       </View>
     </View>

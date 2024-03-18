@@ -15,11 +15,11 @@ class Welcome extends Component {
   componentDidMount() {}
 
   handleCreateNewWallet = () => {
-    navigate(Routes.ONBOARDING.SECURITY);
+    navigate(Routes.ONBOARDING.CREATE_PASSWORD, {createType: 'New'});
   };
 
   handleImportWallet = () => {
-    navigate(Routes.ONBOARDING.IMPORT_WALLET);
+    navigate(Routes.ONBOARDING.CREATE_PASSWORD, {createType: 'Import'});
   };
 
   render() {

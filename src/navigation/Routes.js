@@ -5,6 +5,7 @@ const Routes = {
     SELECT_WALLET: 'SelectWallet',
     ONBOARDING: 'Onboarding',
     SECURITY: 'SecurityCheck',
+    CREATE_PASSWORD: 'CreatePassword',
   },
   WALLET_VIEW: 'WalletView',
   MANUAL_BACKUP_STEP: 'ManualBackupStep',

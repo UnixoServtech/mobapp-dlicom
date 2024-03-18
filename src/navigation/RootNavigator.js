@@ -35,6 +35,7 @@ import {
   ImportWallet,
   SelectCoinScreen,
   NotificationScreen,
+  CreatePassword,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -372,7 +373,7 @@ class RootNavigator extends Component {
             onStateChange={this.onNavigationStateChange}>
             <Stack.Navigator
               key={123}
-              initialRouteName={Routes.HOME_NAV.ROOT_NAV}
+              initialRouteName={Routes.SPLASH_SCREEN}
               screenOptions={screenOptionsObject}>
               <Stack.Screen
                 name={Routes.SPLASH_SCREEN}
@@ -422,6 +423,11 @@ class RootNavigator extends Component {
               <Stack.Screen
                 name={Routes.NOTIFICATION}
                 component={NotificationScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={Routes.ONBOARDING.CREATE_PASSWORD}
+                component={CreatePassword}
                 options={{headerShown: false}}
               />
               {this.getStackFromJSON(commonScreens)}

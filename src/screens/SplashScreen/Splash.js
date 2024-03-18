@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {navigate} from '../../navigation/NavigationUtils';
+import {
+  navigate,
+  navigateAndSimpleReset,
+} from '../../navigation/NavigationUtils';
 import Splash_Component from './Splash_Component';
 import Routes from '../../navigation/Routes';
+import AsyncStorage from '@react-native-community/async-storage';
+import {LOCAL_STORAGE} from '../../constants/storage';
 
 class Splash extends Component {
   constructor(props) {
@@ -11,8 +16,15 @@ class Splash extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      navigate(Routes.ONBOARDING.ONBOARDING);
+    setTimeout(async () => {
+      if (
+        (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
+        (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))
+      ) {
+        navigateAndSimpleReset(Routes.ONBOARDING.SECURITY);
+      } else {
+        navigateAndSimpleReset(Routes.ONBOARDING.ONBOARDING);
+      }
     }, 1500);
   }
 
