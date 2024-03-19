@@ -62,4 +62,5 @@ export default {
   createPassword: 'Create Password',
   addNewWallet: 'Add New Wallet',
   unlockWallet: 'Unlock Wallet',
+  verifyPassword: 'Verify Password',
 };

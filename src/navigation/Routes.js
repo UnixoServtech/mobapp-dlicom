@@ -5,9 +5,10 @@ const Routes = {
     SELECT_WALLET: 'SelectWallet',
     ONBOARDING: 'Onboarding',
     SECURITY: 'SecurityCheck',
-    CREATE_PASSWORD: 'CreatePassword',
   },
   WALLET_VIEW: 'WalletView',
+  CREATE_PASSWORD: 'CreatePassword',
+  VERIFY_PASSWORD: 'VerifyPassword',
   MANUAL_BACKUP_STEP: 'ManualBackupStep',
   SEED_PHRASE: 'ConfirmSeedPhrase',
   HOME_NAV: {

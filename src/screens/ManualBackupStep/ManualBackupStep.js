@@ -12,9 +12,9 @@ class ManualBackupStep extends Component {
     super(props);
     this.state = {
       seedPhraseHidden: true,
-      seedPhrase:
-        'usual seek approve sudden round check elbow embark sure siren vanish trend',
+      seedPhrase: '',
       setWordsDict: '',
+      wallet: {},
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.revealSeedPhrase = this.revealSeedPhrase.bind(this);
@@ -24,7 +24,17 @@ class ManualBackupStep extends Component {
     this.primaryButtonPress = this.primaryButtonPress.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props?.route?.params?.wallet) {
+      const wallet = JSON.parse(this.props?.route?.params?.wallet);
+      console.log(wallet); // TODO: Remove in prod. build
+      this.setState(prev => ({
+        ...prev,
+        seedPhrase: wallet?.mnemonic?.phrase,
+        wallet: wallet,
+      }));
+    }
+  }
 
   handleCreateNewWallet = () => {};
 
@@ -49,7 +59,9 @@ class ManualBackupStep extends Component {
   primaryButtonPress = () => {};
 
   secondaryButtonPress = () => {
-    navigate(Routes.SEED_PHRASE);
+    navigate(Routes.SEED_PHRASE, {
+      wallet: JSON.stringify(this.state.wallet),
+    });
   };
 
   render() {

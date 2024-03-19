@@ -39,7 +39,9 @@ class ImportWallet extends Component {
         const wallet = await importNewEthWallet(this.state.seedPhrase.trim());
         if (wallet) {
           console.log(wallet);
-          navigate(Routes.ONBOARDING.SELECT_WALLET, {wallet});
+          navigate(Routes.ONBOARDING.SELECT_WALLET, {
+            wallet: JSON.stringify(wallet),
+          });
         }
       } catch (error) {}
     } else {

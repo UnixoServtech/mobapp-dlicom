@@ -40,6 +40,7 @@ import {
   NotificationPreferenceView,
   NotificationView,
   CreatePassword,
+  VerifyPassword,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -450,8 +451,13 @@ class RootNavigator extends Component {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name={Routes.ONBOARDING.CREATE_PASSWORD}
+                name={Routes.CREATE_PASSWORD}
                 component={CreatePassword}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={Routes.VERIFY_PASSWORD}
+                component={VerifyPassword}
                 options={{headerShown: false}}
               />
               {this.getStackFromJSON(commonScreens)}

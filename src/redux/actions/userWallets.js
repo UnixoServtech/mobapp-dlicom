@@ -9,7 +9,7 @@ export const defaultWallet = data => ({
   payload: data,
 });
 
-export const selectedWallet = data => ({
+export const selectNewWallet = data => ({
   type: types.SELECTED_WALLET,
   payload: data,
 });

@@ -15,7 +15,7 @@ class Splash extends Component {
 
   async componentDidMount() {
     let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
-    this.props.setDarkMode(JSON.parse(isDarkTheme));
+    this.props.setDarkMode(JSON.parse(true));
     setTimeout(async () => {
       // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
       if (

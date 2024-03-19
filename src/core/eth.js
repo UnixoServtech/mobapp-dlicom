@@ -16,7 +16,7 @@ export const isValidMnemonic = mnemonic => Mnemonic.isValidMnemonic(mnemonic);
  */
 export const createNewEthWallet = async () => {
   const view = new Uint8Array(12);
-  let randomEntropyBytes = await Crypto.getRandomValues(view);
+  const randomEntropyBytes = await Crypto.getRandomValues(view);
   return await ethers.HDNodeWallet.createRandom(randomEntropyBytes);
 };
 
@@ -38,13 +38,13 @@ export const importNewEthWallet = async mnemonic => {
  * @returns
  */
 export const addNewEthAccount = async (mnemonic, index) => {
-  let derivationPath = "m/44'/60'/0'/0";
+  const derivationPath = "m/44'/60'/0'/0";
   const fromPhrases = Mnemonic.fromPhrase(mnemonic);
-  let fromMnemonic = ethers.HDNodeWallet.fromMnemonic(
+  const fromMnemonic = ethers.HDNodeWallet.fromMnemonic(
     fromPhrases,
     derivationPath,
   );
-  let hdNodeWallet = fromMnemonic.derivePath(index.toString());
-  let wallet = new ethers.Wallet(hdNodeWallet.privateKey);
+  const hdNodeWallet = fromMnemonic.derivePath(index.toString());
+  const wallet = new ethers.Wallet(hdNodeWallet.privateKey);
   return wallet;
 };

@@ -181,6 +181,21 @@ const ListItemBadge = ({style, ...props}) => {
   );
 };
 
+const ListItemAddress = ({style, ...props}) => {
+  const {colors} = useTheme();
+  const styles = createStyles(colors);
+  return (
+    <Text
+      type={'helper-text'}
+      color={colors.listItem.bodyText}
+      numberOfLines={1}
+      ellipsizeMode={'middle'}
+      style={[styles.note, style]}
+      {...props}
+    />
+  );
+};
+
 ListItem.Date = ListItemDate;
 ListItem.Content = ListItemContent;
 ListItem.Icon = ListItemIcon;
@@ -193,6 +208,7 @@ ListItem.Amount = ListItemAmount;
 ListItem.FiatAmount = ListItemFiatAmount;
 ListItem.Border = ListItemBorder;
 ListItem.Badge = ListItemBadge;
+ListItem.Address = ListItemAddress;
 
 export default ListItem;
 

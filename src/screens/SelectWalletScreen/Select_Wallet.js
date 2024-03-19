@@ -9,7 +9,7 @@ import Routes from '../../navigation/Routes';
 import {
   addWallets,
   defaultWallet,
-  selectedWallet,
+  selectNewWallet,
 } from '../../redux/actions/userWallets';
 import Select_Wallet_Component from './Select_Wallet_Component';
 
@@ -28,7 +28,8 @@ class Wallet extends Component {
   }
 
   componentDidMount() {
-    const wallet = this.props?.route?.params?.wallet;
+    const wallet = JSON.parse(this.props?.route?.params?.wallet);
+    console.log('wallet', wallet);
     if (wallet) {
       const initWallet = {
         name: `Davis ${0}`,
@@ -52,7 +53,9 @@ class Wallet extends Component {
   nextPress = () => {
     this.props.addWallets(this.state.walletList);
     this.props.defaultWallet(this.state.walletList[0]);
-    this.props.selectedWallet(this.state.walletList[this.state.selectedWallet]);
+    this.props.selectNewWallet(
+      this.state.walletList[this.state.selectedWallet],
+    );
     // Navigate user to HomeView
     navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
   };
@@ -71,6 +74,7 @@ class Wallet extends Component {
       this.state.walletList[0]?.wallet.mnemonic?.phrase,
       this.state.index,
     );
+    console.log(newWallet);
     if (newWallet) {
       const derivedWallet = {
         name: `Davis ${this.state.index}`,
@@ -113,7 +117,7 @@ class Wallet extends Component {
 const mapActionCreators = {
   addWallets,
   defaultWallet,
-  selectedWallet,
+  selectNewWallet,
 };
 const mapStateToProps = state => {
   return {

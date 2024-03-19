@@ -76,7 +76,7 @@ export default class Encryptor {
   };
 
   /**
-   * To generate paasword hash from the password.
+   * To generate password hash from the password.
    *
    * @param {string} password
    * @param {object} object

@@ -91,7 +91,8 @@ class CreatePassword extends Component {
       const encryptorData = await encryptor.encrypt(CODE, {password}, SALT); // Encrypted Password
       if (encryptorData) {
         const data = await Keychain.setGenericPassword(USER, encryptorData, {
-          accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,
+          accessControl:
+            Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
           accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
           authenticationPrompt: {
             title: Strings.authenticationPromptTitle,
@@ -121,6 +122,8 @@ class CreatePassword extends Component {
           await AsyncStorage.setItem(LOCAL_STORAGE.PASSWORD, 'true');
         }
         if (this.props?.route?.params?.createType === 'New') {
+          // navigate(Routes.MANUAL_BACKUP_STEP);
+          navigate(Routes.VERIFY_PASSWORD);
         } else {
           navigate(Routes.ONBOARDING.IMPORT_WALLET);
         }
@@ -161,9 +164,9 @@ class CreatePassword extends Component {
         <CreatePassword_Component
           leftHeaderText="Back"
           onPressLeftContent={this.onPressLeftContent}
-          tittleText="Create password"
-          tittleNote="This password will unclock your Dlicom wallet."
-          placeHolder="Enter New Passowrd"
+          tittleText="Create Password"
+          tittleNote="This password will unlock your Dlicom wallet."
+          placeHolder="Enter New Password"
           onChangeNewPassword={this.onChangeNewPassword}
           valueNewPassword={this.state.newPassword}
           newPasswordButtonProps={{
