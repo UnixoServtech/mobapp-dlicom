@@ -13,4 +13,7 @@ export default {
   ic_markAll: require('./ic_markall.png'),
   ic_share: require('./ic_share.png'),
   ic_wallet_bg: require('./ic_wallet_bg.png'),
+  onboarding_1: require('./onboarding_1.png'),
+  onboarding_2: require('./onboarding_2.png'),
+  onboarding_3: require('./onboarding_3.png'),
 };
