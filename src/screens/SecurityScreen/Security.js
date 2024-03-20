@@ -11,6 +11,8 @@ import Routes from '../../navigation/Routes';
 import {configureStore} from '../../redux/';
 import Device from '../../utils/device';
 import Security_Component from './Security_Component';
+import {Toast} from '../../components/Toast';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const persistor = configureStore().persistor; // TODO: Remove once the flow is updated.
 
@@ -48,7 +50,9 @@ class Security extends Component {
       authenticateType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
     });
     if (isReset) {
-      persistor.purge(); // To Clear Redux Persist Data
+      EncryptedStorage.removeItem('persist:root');
+      // To Clear Redux Persist Data
+      // persistor.purge();
       AsyncStorage.removeItem(LOCAL_STORAGE.BIOMETRY);
       AsyncStorage.removeItem(LOCAL_STORAGE.PASSWORD);
       navigateAndSimpleReset(Routes.ONBOARDING.ONBOARDING);
@@ -105,6 +109,11 @@ class Security extends Component {
         (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD_HASH))
       ) {
         navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
+      } else {
+        Toast.show({
+          type: 'success',
+          text1: 'Enter valid Password.',
+        });
       }
     }
   };
@@ -122,6 +131,8 @@ class Security extends Component {
             isDisabled: this.state.password?.trim()?.length === 0,
             onPress: this.buttonPressUnlockPassword,
           }}
+          tittleText={'Unlock your wallet'}
+          tittleNote={'Enter Password to Unlock your wallet.'}
         />
       </>
     );

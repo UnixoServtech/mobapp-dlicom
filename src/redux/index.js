@@ -3,11 +3,11 @@ import thunk from 'redux-thunk';
 import reducer from './reducer';
 import {createLogger} from 'redux-logger';
 import {persistStore, persistReducer} from 'redux-persist';
-import AsyncStorage from '@react-native-community/async-storage'; // AsyncStorage for React Native
+import EncryptedStorage from 'react-native-encrypted-storage'; // AsyncStorage for React Native
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage, // AsyncStorage for React Native
+  storage: EncryptedStorage, // EncryptedStorage for React Native
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

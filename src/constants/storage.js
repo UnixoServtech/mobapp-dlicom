@@ -20,6 +20,8 @@ export const LOCAL_STORAGE = {
   BIOMETRY: `${prefix}biometry`,
   PASSWORD: `${prefix}password`,
   PASSWORD_HASH: `${prefix}passwordHash`,
+  WALLET_CREATED: `${prefix}walletCreated`,
+  ENCRYPTED_MNEMONIC: `${prefix}encryptedMnemonic`,
 };
 
 // export const STATIC_USER_ID = '47734';

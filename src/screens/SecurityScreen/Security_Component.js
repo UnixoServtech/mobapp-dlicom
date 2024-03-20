@@ -3,7 +3,6 @@ import React from 'react';
 import {TextInput, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
 import theme from '../../theme';
 import createStyles from './Security.style';
 
@@ -13,6 +12,8 @@ const Security_Component = ({
   onChangePassword,
   valuePassword,
   unlockButtonProps,
+  tittleNote,
+  tittleText,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -20,16 +21,23 @@ const Security_Component = ({
   return (
     <View style={styles.mainContainer}>
       <View style={{flex: 1}}>
-        <View style={styles.headerStyle}>
-          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-            {Strings.securityScreen}
-          </Text>
-        </View>
         <KeyboardAwareScrollView
           style={{flex: 1}}
           contentContainerStyle={styles.wrapper}
           enableOnAndroid={true}
           resetScrollToCoords={{x: 0, y: 0}}>
+          <Text
+            type={'large-header'}
+            interBold={true}
+            lineHeight={theme.typography.lineHeights.xl5}>
+            {tittleText}
+          </Text>
+          <Spacing size={'xs'} />
+          <Text
+            color={colors.caption}
+            lineHeight={theme.typography.lineHeights.xl}>
+            {tittleNote}
+          </Text>
           <Spacing size={'xl'} />
           <TextInput
             autoCapitalize={'none'}
@@ -43,19 +51,20 @@ const Security_Component = ({
             value={valuePassword}
             returnKeyType={'next'}
             autoCorrect={false}
+            secureTextEntry={true}
           />
           <Spacing size="xl" />
           <Button {...unlockButtonProps} />
         </KeyboardAwareScrollView>
       </View>
       <View style={{padding: theme.sizes.spacing.pv}}>
-        <Button
+        {/* <Button
           label={'Reset Password'}
           variant="ghost"
           themedColor={colors.text}
           isCompact={true}
           onPress={btnRestePasswordPress}
-        />
+        /> */}
       </View>
     </View>
   );

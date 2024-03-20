@@ -57,6 +57,7 @@ const CreatePassword_Component = ({
             value={valueNewPassword}
             returnKeyType={'next'}
             autoCorrect={false}
+            secureTextEntry={true}
           />
           <Spacing size="xl" />
           <Button {...newPasswordButtonProps} />

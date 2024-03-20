@@ -88,24 +88,31 @@ class CreatePassword extends Component {
   // To set Password for the first time
   async setGenericPassword(password) {
     try {
-      const encryptorData = await encryptor.encrypt(CODE, {password}, SALT); // Encrypted Password
-      if (encryptorData) {
-        const data = await Keychain.setGenericPassword(USER, encryptorData, {
-          accessControl:
-            Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
-          accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
-          authenticationPrompt: {
-            title: Strings.authenticationPromptTitle,
+      // Encrypted Password
+      const encryptorPassword = await encryptor.encrypt(CODE, {password}, SALT);
+
+      if (encryptorPassword) {
+        const data = await Keychain.setGenericPassword(
+          USER,
+          encryptorPassword,
+          {
+            accessControl:
+              Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
+            accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
+            authenticationPrompt: {
+              title: Strings.authenticationPromptTitle,
+            },
+            service: Device.isAndroid() ? SERVICE_ANDROID : SERVICE_IOS,
+            authenticateType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
           },
-          service: Device.isAndroid() ? SERVICE_ANDROID : SERVICE_IOS,
-          authenticateType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
-        });
+        );
         console.log(
           'Credentials saved successfully with biometry protection in keychain',
           data,
         );
 
-        let {passwordHash} = JSON.parse(encryptorData);
+        let {passwordHash} = JSON.parse(encryptorPassword);
+
         // Store Aes Key to generate password hash at Unlock Time.
         await AsyncStorage.setItem(
           LOCAL_STORAGE.PASSWORD_HASH,
@@ -125,7 +132,9 @@ class CreatePassword extends Component {
           // navigate(Routes.MANUAL_BACKUP_STEP);
           navigate(Routes.VERIFY_PASSWORD);
         } else {
-          navigate(Routes.ONBOARDING.IMPORT_WALLET);
+          navigate(Routes.ONBOARDING.IMPORT_WALLET, {
+            password: this.state.newPassword,
+          });
         }
       }
     } catch (error) {

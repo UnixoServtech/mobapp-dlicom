@@ -19,8 +19,9 @@ class Splash extends Component {
     setTimeout(async () => {
       // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
       if (
-        (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
-        (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))
+        ((await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
+          (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))) &&
+        (await AsyncStorage.getItem(LOCAL_STORAGE.WALLET_CREATED))
       ) {
         navigateAndSimpleReset(Routes.ONBOARDING.SECURITY);
       } else {

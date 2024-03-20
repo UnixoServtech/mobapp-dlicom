@@ -12,6 +12,8 @@ import {
   selectNewWallet,
 } from '../../redux/actions/userWallets';
 import Select_Wallet_Component from './Select_Wallet_Component';
+import AsyncStorage from '@react-native-community/async-storage';
+import {LOCAL_STORAGE} from '../../constants/storage';
 
 class Wallet extends Component {
   constructor(props) {
@@ -50,12 +52,15 @@ class Wallet extends Component {
     goBack();
   };
 
-  nextPress = () => {
+  nextPress = async () => {
     this.props.addWallets(this.state.walletList);
     this.props.defaultWallet(this.state.walletList[0]);
     this.props.selectNewWallet(
       this.state.walletList[this.state.selectedWallet],
     );
+
+    await AsyncStorage.setItem(LOCAL_STORAGE.WALLET_CREATED, 'true');
+
     // Navigate user to HomeView
     navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
   };

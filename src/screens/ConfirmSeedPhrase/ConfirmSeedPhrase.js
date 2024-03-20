@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
 import ConfirmSeedPhrase_Component from './ConfirmSeedPhrase_Component';
-import Toast from 'react-native-toast-message';
+import {Toast} from '../../components/Toast';
 let wordDir =
   'report ocean inject absurd spot cube ripple border asset glare legal like';
 
@@ -120,7 +120,7 @@ class ConfirmSeedPhrase extends Component {
       });
     } else {
       Toast.show({
-        type: 'error',
+        type: 'success',
         text1: 'Select valid phrase.',
       });
     }

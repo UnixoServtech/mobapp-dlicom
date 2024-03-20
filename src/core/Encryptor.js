@@ -1,6 +1,7 @@
 import Aes from 'react-native-aes-crypto';
 import {btoa} from 'react-native-quick-base64';
 import Crypto from 'react-native-quick-crypto';
+
 /**
  * Class that exposes two public methods: Encrypt and Decrypt
  * This is used by the KeyringController to encrypt / decrypt the state

@@ -11,6 +11,7 @@ import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
 import Device from '../../utils/device';
 import VerifyPassword_Component from './VerifyPassword_Component';
+import {Toast} from '../../components/Toast';
 
 const encryptor = new Encryptor();
 
@@ -91,6 +92,11 @@ class VerifyPassword extends Component {
         (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD_HASH))
       ) {
         this.navigateToBackupScreen();
+      } else {
+        Toast.show({
+          type: 'success',
+          text1: 'Enter valid Password.',
+        });
       }
     }
   };
@@ -128,7 +134,7 @@ class VerifyPassword extends Component {
           leftHeaderText="Back"
           onPressLeftContent={this.onPressLeftContent}
           tittleText="Verify Password"
-          tittleNote="This password will navigate you to Backup Screen"
+          tittleNote="This verification will navigate you to Backup Screen"
           placeHolder="Enter Password"
           onChangePassword={this.onChangPassword}
           valuePassword={this.state.password}

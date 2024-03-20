@@ -58,6 +58,7 @@ const VerifyPassword_Component = ({
             value={valuePassword}
             returnKeyType={'next'}
             autoCorrect={false}
+            secureTextEntry={true}
           />
           <Spacing size="xl" />
           <Button {...passwordButtonProps} />

@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		24E75A58C814888D711DF99E /* libPods-dlicom-dlicomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D658A8BFFADCB1062639F3 /* libPods-dlicom-dlicomTests.a */; };
+		19063D07F6B9BA1636267B27 /* libPods-dlicom-dlicomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C53E2B34B4B336E40A7584F /* libPods-dlicom-dlicomTests.a */; };
+		4438B790B87CE28AA1CF402B /* libPods-dlicom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB9431DAB1075A09C7DA6B /* libPods-dlicom.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9723EA62E7A33FF3541BCF31 /* libPods-dlicom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0AE56A252F1752F6537104 /* libPods-dlicom.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +30,20 @@
 		00E356EE1AD99517003FC87E /* dlicomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dlicomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* dlicomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dlicomTests.m; sourceTree = "<group>"; };
+		06713F80B84255FA1DCC2019 /* Pods-dlicom-dlicomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom-dlicomTests.release.xcconfig"; path = "Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* dlicom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dlicom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dlicom/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = dlicom/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dlicom/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = dlicom/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = dlicom/main.m; sourceTree = "<group>"; };
-		25D658A8BFFADCB1062639F3 /* libPods-dlicom-dlicomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dlicom-dlicomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3600E804A8F9AD77AE7FD2AC /* Pods-dlicom-dlicomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom-dlicomTests.debug.xcconfig"; path = "Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5A0124313295CB59D711BF35 /* Pods-dlicom-dlicomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom-dlicomTests.release.xcconfig"; path = "Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests.release.xcconfig"; sourceTree = "<group>"; };
-		6A46BD4AB575F4B86F94C11A /* Pods-dlicom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom.debug.xcconfig"; path = "Target Support Files/Pods-dlicom/Pods-dlicom.debug.xcconfig"; sourceTree = "<group>"; };
+		3CCB9431DAB1075A09C7DA6B /* libPods-dlicom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dlicom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C53E2B34B4B336E40A7584F /* libPods-dlicom-dlicomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dlicom-dlicomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = dlicom/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AB0AE56A252F1752F6537104 /* libPods-dlicom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dlicom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC9BA09FC41AB73A85F01B9 /* Pods-dlicom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom.debug.xcconfig"; path = "Target Support Files/Pods-dlicom/Pods-dlicom.debug.xcconfig"; sourceTree = "<group>"; };
+		E4EEF7FD0B41EBBA4A8263D6 /* Pods-dlicom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom.release.xcconfig"; path = "Target Support Files/Pods-dlicom/Pods-dlicom.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FD3A13E8A5668448E87F03AF /* Pods-dlicom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom.release.xcconfig"; path = "Target Support Files/Pods-dlicom/Pods-dlicom.release.xcconfig"; sourceTree = "<group>"; };
+		F391D47A0A8CA5AF8FBC6BF2 /* Pods-dlicom-dlicomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dlicom-dlicomTests.debug.xcconfig"; path = "Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E75A58C814888D711DF99E /* libPods-dlicom-dlicomTests.a in Frameworks */,
+				19063D07F6B9BA1636267B27 /* libPods-dlicom-dlicomTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9723EA62E7A33FF3541BCF31 /* libPods-dlicom.a in Frameworks */,
+				4438B790B87CE28AA1CF402B /* libPods-dlicom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				AB0AE56A252F1752F6537104 /* libPods-dlicom.a */,
-				25D658A8BFFADCB1062639F3 /* libPods-dlicom-dlicomTests.a */,
+				3CCB9431DAB1075A09C7DA6B /* libPods-dlicom.a */,
+				6C53E2B34B4B336E40A7584F /* libPods-dlicom-dlicomTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,10 +140,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A46BD4AB575F4B86F94C11A /* Pods-dlicom.debug.xcconfig */,
-				FD3A13E8A5668448E87F03AF /* Pods-dlicom.release.xcconfig */,
-				3600E804A8F9AD77AE7FD2AC /* Pods-dlicom-dlicomTests.debug.xcconfig */,
-				5A0124313295CB59D711BF35 /* Pods-dlicom-dlicomTests.release.xcconfig */,
+				8CC9BA09FC41AB73A85F01B9 /* Pods-dlicom.debug.xcconfig */,
+				E4EEF7FD0B41EBBA4A8263D6 /* Pods-dlicom.release.xcconfig */,
+				F391D47A0A8CA5AF8FBC6BF2 /* Pods-dlicom-dlicomTests.debug.xcconfig */,
+				06713F80B84255FA1DCC2019 /* Pods-dlicom-dlicomTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -155,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dlicomTests" */;
 			buildPhases = (
-				714F0098C5E0990E8FD578CD /* [CP] Check Pods Manifest.lock */,
+				387265F6FDFC4B6B76F9B45A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				AAF54FEE20C3CE5179288B98 /* [CP] Embed Pods Frameworks */,
-				1A62536CABF149EF2C255849 /* [CP] Copy Pods Resources */,
+				D0DB5605EBDBDA6672C817B8 /* [CP] Embed Pods Frameworks */,
+				C958915A361CDB4A12F3D298 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,13 +176,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dlicom" */;
 			buildPhases = (
-				6D2C8FD57D4AED669AA72FAC /* [CP] Check Pods Manifest.lock */,
+				DAA78FE41703C0A5BED3049F /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				B612B72D33D4C18C7A8D6A8C /* [CP] Embed Pods Frameworks */,
-				B5B21F95C77D44704619DFB3 /* [CP] Copy Pods Resources */,
+				A975FF85A753E5B12D83E7DC /* [CP] Embed Pods Frameworks */,
+				BF7856E28285739A38F7C77F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,46 +265,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1A62536CABF149EF2C255849 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D2C8FD57D4AED669AA72FAC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dlicom-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		714F0098C5E0990E8FD578CD /* [CP] Check Pods Manifest.lock */ = {
+		387265F6FDFC4B6B76F9B45A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -326,24 +287,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AAF54FEE20C3CE5179288B98 /* [CP] Embed Pods Frameworks */ = {
+		A975FF85A753E5B12D83E7DC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5B21F95C77D44704619DFB3 /* [CP] Copy Pods Resources */ = {
+		BF7856E28285739A38F7C77F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,21 +321,60 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B612B72D33D4C18C7A8D6A8C /* [CP] Embed Pods Frameworks */ = {
+		C958915A361CDB4A12F3D298 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom/Pods-dlicom-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0DB5605EBDBDA6672C817B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dlicom-dlicomTests/Pods-dlicom-dlicomTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAA78FE41703C0A5BED3049F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dlicom-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -410,7 +410,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3600E804A8F9AD77AE7FD2AC /* Pods-dlicom-dlicomTests.debug.xcconfig */;
+			baseConfigurationReference = F391D47A0A8CA5AF8FBC6BF2 /* Pods-dlicom-dlicomTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -437,7 +437,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A0124313295CB59D711BF35 /* Pods-dlicom-dlicomTests.release.xcconfig */;
+			baseConfigurationReference = 06713F80B84255FA1DCC2019 /* Pods-dlicom-dlicomTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -461,7 +461,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A46BD4AB575F4B86F94C11A /* Pods-dlicom.debug.xcconfig */;
+			baseConfigurationReference = 8CC9BA09FC41AB73A85F01B9 /* Pods-dlicom.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -489,7 +489,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD3A13E8A5668448E87F03AF /* Pods-dlicom.release.xcconfig */;
+			baseConfigurationReference = E4EEF7FD0B41EBBA4A8263D6 /* Pods-dlicom.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

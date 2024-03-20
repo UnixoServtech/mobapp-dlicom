@@ -15,7 +15,6 @@ export default createStyles = colors =>
       borderRadius: theme.normalize(8),
       borderWidth: 1,
       color: colors.grayLight,
-      lineHeight: theme.typography.lineHeights.xl2,
       fontSize: theme.typography.fontSizes.smm,
       maxHeight: theme.normalize(48),
       minHeight: theme.normalize(48),
