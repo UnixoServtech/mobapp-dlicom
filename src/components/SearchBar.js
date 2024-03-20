@@ -16,6 +16,7 @@ const SearchBar = ({
   showRightContent,
   placeHolderText,
   style,
+  onSearchClick,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -39,6 +40,8 @@ const SearchBar = ({
           value={value}
           onChangeText={onChangeText}
           multiline={false}
+          // returnKeyType={'search'}
+          // onSubmitEditing={onSearchClick}
           {...restInputProp}
         />
         {showRightContent ? (

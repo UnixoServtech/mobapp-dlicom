@@ -48,7 +48,9 @@ class Wallet extends Component {
     });
   };
 
-  onPressRightContent = () => {};
+  onPressRightContent = () => {
+    navigate(Routes.MANAGE_TOKEN_VIEW);
+  };
 
   render() {
     const {selectedTab} = this.state;

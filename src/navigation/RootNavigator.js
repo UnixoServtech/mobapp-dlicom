@@ -39,6 +39,7 @@ import {
   PrivacyView,
   NotificationPreferenceView,
   NotificationView,
+  ManageTokenScreen,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -79,6 +80,11 @@ let commonScreens = {
   NotificationView: {
     name: Routes.SETTINGS.NOTIFICATIONS,
     screen: NotificationView,
+    navigationOptions: {headerBackTitle: null},
+  },
+  ManageTokenScreen: {
+    name: Routes.MANAGE_TOKEN_VIEW,
+    screen: ManageTokenScreen,
     navigationOptions: {headerBackTitle: null},
   },
 };

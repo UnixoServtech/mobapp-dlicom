@@ -14,7 +14,7 @@ const createStyles = colors =>
       paddingHorizontal: theme.sizes.spacing.ph,
     },
   });
-const BottomSheetHeader = ({onClose, label}) => {
+const BottomSheetHeader = ({onClose, label, iconName = 'Close'}) => {
   const {colors} = useTheme();
   const styles = createStyles(colors);
   return (
@@ -22,7 +22,7 @@ const BottomSheetHeader = ({onClose, label}) => {
       <View style={styles.wrapper}>
         <Pressable onPress={onClose}>
           <CustomIcon
-            name={'Close'}
+            name={iconName}
             color={colors?.text}
             size={theme.sizes.icons.xl2}
           />

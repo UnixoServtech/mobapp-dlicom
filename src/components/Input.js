@@ -102,6 +102,8 @@ const Input = ({
   errorTextColor,
   rightIcnDisable,
   ref,
+  onSubmitEditing,
+  returnKeyType,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -201,6 +203,9 @@ const Input = ({
             onBlur={e => {
               handleFocus(false, onBlur ? () => onBlur(e) : () => {});
             }}
+            onSubmitEditing={onSubmitEditing}
+            focusable={true}
+            returnKeyType={returnKeyType}
             {...restProps}
           />
         )}
@@ -211,13 +216,15 @@ const Input = ({
             size={theme.sizes.icons.xl2}
           />
         )}
-        {isRightIconVisible && (
+        {(isRightIconVisible || isAsDropdown) && (
           <RightIcon
             onRightIconPress={onRightIconPress}
             rightIcon={rightIcon}
             isDisabled={rightIcnDisable}
             rightIconStyle={rightIconStyle}
-            rightIconName={rightIconName}
+            rightIconName={
+              isAsDropdown ? rightIconName ?? 'dropdown' : rightIconName
+            }
             rightIconColor={rightIconColor ?? colors?.textInput?.iconColor}
           />
         )}

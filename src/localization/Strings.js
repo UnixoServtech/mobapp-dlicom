@@ -58,4 +58,10 @@ export default {
   scan: 'Scan',
   tokens: 'Tokens',
   swap: 'Swap',
+  wallet_address: 'Wallet Address',
+  name: 'Name',
+  symbol: 'Symbol',
+  decimals: 'Decimal',
+  save: 'Save',
+  custom_network: 'Custom Network',
 };
