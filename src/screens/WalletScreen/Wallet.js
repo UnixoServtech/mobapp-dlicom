@@ -6,6 +6,7 @@ import Routes from '../../navigation/Routes';
 import Strings from '../../localization/Strings';
 import {AppConstant} from '../../constants/constants';
 import {selectNewWallet} from '../../redux/actions/userWallets';
+
 class Wallet extends Component {
   constructor(props) {
     super(props);

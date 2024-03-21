@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {LOCAL_STORAGE} from '../../constants/storage';
 import {navigateAndSimpleReset} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
-import {setDarkMode} from '../../redux/actions/global';
 import Splash_Component from './Splash_Component';
+import {setDarkMode} from '../../redux/actions/global';
 
 class Splash extends Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class Splash extends Component {
 
   async componentDidMount() {
     let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
-    this.props.setDarkMode(JSON.parse(true));
+    this.props.setDarkMode(
+      isDarkTheme == null ? true : JSON.parse(isDarkTheme),
+    );
     setTimeout(async () => {
       // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
       if (
