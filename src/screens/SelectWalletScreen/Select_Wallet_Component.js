@@ -26,6 +26,7 @@ const Select_Wallet_Component = ({
   btnAddNewWalletLabel,
   btnPressAddNewWallet,
   btnAddNewWalletRightIcon,
+  btnAddNewWalletIsDisabled = false,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -83,6 +84,7 @@ const Select_Wallet_Component = ({
           onPress={btnPressAddNewWallet}
           showIconRight={true}
           rightIconName="Plus"
+          isDisabled={btnAddNewWalletIsDisabled}
         />
         <Spacing size="xl" />
         <Button label={btnLabel} onPress={btnPress} showIconRight={true} />

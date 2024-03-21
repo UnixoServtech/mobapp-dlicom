@@ -121,7 +121,7 @@ class ConfirmSeedPhrase extends Component {
     } else {
       Toast.show({
         type: 'success',
-        text1: 'Select valid phrase.',
+        text1: 'Select valid phrases.',
       });
     }
   };

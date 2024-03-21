@@ -19,7 +19,7 @@ class Splash extends Component {
       isDarkTheme == null ? true : JSON.parse(isDarkTheme),
     );
     setTimeout(async () => {
-      // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
+      // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored and wallet is created.
       if (
         ((await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
           (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))) &&

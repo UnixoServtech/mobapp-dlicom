@@ -27,45 +27,44 @@ const VerifyPassword_Component = ({
         leftText={leftHeaderText}
         onPressLeftContent={onPressLeftContent}
       />
-      <KeyboardAwareScrollView
-        style={{flex: 1}}
-        contentContainerStyle={styles.wrapper}
-        enableOnAndroid={true}
-        resetScrollToCoords={{x: 0, y: 0}}>
-        <View>
-          <Text
-            type={'large-header'}
-            interBold={true}
-            lineHeight={theme.typography.lineHeights.xl5}>
-            {tittleText}
-          </Text>
-          <Spacing size={'xs'} />
-          <Text
-            color={colors.caption}
-            lineHeight={theme.typography.lineHeights.xl}>
-            {tittleNote}
-          </Text>
-          <Spacing size={'xl'} />
-          <TextInput
-            autoCapitalize={'none'}
-            placeholder={placeHolder}
-            multiline={false}
-            textAlignVertical={'top'}
-            numberOfLines={1}
-            style={styles.textInput}
-            placeholderTextColor={colors.gray1}
-            onChangeText={onChangePassword}
-            value={valuePassword}
-            returnKeyType={'next'}
-            autoCorrect={false}
-            secureTextEntry={true}
-          />
-          <Spacing size="xl" />
-          <Button {...passwordButtonProps} />
-          <Spacing />
-          <Spacing />
-        </View>
-      </KeyboardAwareScrollView>
+      <View style={styles.wrapper}>
+        <KeyboardAwareScrollView
+          style={{flex: 1}}
+          enableOnAndroid={true}
+          resetScrollToCoords={{x: 0, y: 0}}>
+          <View>
+            <Text
+              type={'large-header'}
+              interBold={true}
+              lineHeight={theme.typography.lineHeights.xl5}>
+              {tittleText}
+            </Text>
+            <Spacing size={'xs'} />
+            <Text
+              color={colors.caption}
+              lineHeight={theme.typography.lineHeights.xl}>
+              {tittleNote}
+            </Text>
+            <Spacing size={'xl'} />
+            <TextInput
+              autoCapitalize={'none'}
+              placeholder={placeHolder}
+              multiline={false}
+              textAlignVertical={'top'}
+              numberOfLines={1}
+              style={styles.textInput}
+              placeholderTextColor={colors.gray1}
+              onChangeText={onChangePassword}
+              value={valuePassword}
+              returnKeyType={'next'}
+              autoCorrect={false}
+              secureTextEntry={true}
+            />
+            <Spacing size="xl" />
+          </View>
+        </KeyboardAwareScrollView>
+        <Button {...passwordButtonProps} />
+      </View>
     </View>
   );
 };

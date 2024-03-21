@@ -1,12 +1,11 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Dimensions, Image, View} from 'react-native';
-import images from '../../assets/images';
 import {Button, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
-import theme from '../../theme';
 import AppIntroSlider from '../../components/AppIntroSlider';
 import {OnBoardItems} from '../../constants/constants';
+import Strings from '../../localization/Strings';
+import theme from '../../theme';
 const {width, height} = Dimensions.get('window');
 
 const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
@@ -82,33 +81,6 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
         <Text type={'helper-text'} color={colors.caption}>
           {Strings.welcomeNote}
         </Text>
-        <Spacing size={theme.normalize(90)} />
-        <Image
-          source={images.ic_wallet_image}
-          resizeMode="contain"
-          style={{
-            width: theme.normalize(280),
-            height: theme.normalize(280),
-            top: 15,
-          }}
-        />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button
-          label={Strings.createNewWallet}
-          onPress={buttonCreateNewWallet}
-        />
-        <Spacing />
-        <Button
-          label={Strings.importWallet}
-          variant="ghost"
-          onPress={buttonImportWallet}
-          themedColor={colors.primaryMainColor}
-        />
       </View>
       <AppIntroSlider
         renderItem={({item}) => <Slide item={item} />}

@@ -27,46 +27,46 @@ const ImportWallet_Component = ({
         leftText={leftHeaderText}
         onPressLeftContent={onPressLeftContent}
       />
-      <KeyboardAwareScrollView
-        style={{flex: 1}}
-        contentContainerStyle={styles.wrapper}
-        enableOnAndroid={true}
-        resetScrollToCoords={{x: 0, y: 0}}>
-        <View>
-          <Text
-            type={'large-header'}
-            interBold={true}
-            lineHeight={theme.typography.lineHeights.xl5}>
-            {tittleText}
-          </Text>
-          <Spacing size={'xs'} />
-          <Text
-            color={colors.caption}
-            lineHeight={theme.typography.lineHeights.xl}>
-            {tittleNote}
-          </Text>
-          <Spacing size={'xl'} />
-          <TextInput
-            autoFocus
-            autoCapitalize={'none'}
-            placeholder={placeHolder}
-            multiline={true}
-            textAlignVertical={'top'}
-            numberOfLines={4}
-            style={styles.textInput}
-            placeholderTextColor={colors.gray1}
-            onChangeText={onChangeText}
-            value={value}
-            returnKeyType={'next'}
-            autoCorrect={false}
-          />
-          <Spacing size="xl" />
-          <Button {...primaryButtonProps} />
-          <Spacing />
-          <Button {...secondaryButtonProps} />
-          <Spacing />
-        </View>
-      </KeyboardAwareScrollView>
+      <View style={styles.wrapper}>
+        <KeyboardAwareScrollView
+          style={{flex: 1}}
+          enableOnAndroid={true}
+          resetScrollToCoords={{x: 0, y: 0}}>
+          <View>
+            <Text
+              type={'large-header'}
+              interBold={true}
+              lineHeight={theme.typography.lineHeights.xl5}>
+              {tittleText}
+            </Text>
+            <Spacing size={'xs'} />
+            <Text
+              color={colors.caption}
+              lineHeight={theme.typography.lineHeights.xl}>
+              {tittleNote}
+            </Text>
+            <Spacing size={'xl'} />
+            <TextInput
+              autoFocus
+              autoCapitalize={'none'}
+              placeholder={placeHolder}
+              multiline={true}
+              textAlignVertical={'top'}
+              numberOfLines={4}
+              style={styles.textInput}
+              placeholderTextColor={colors.gray1}
+              onChangeText={onChangeText}
+              value={value}
+              returnKeyType={'next'}
+              autoCorrect={false}
+            />
+          </View>
+        </KeyboardAwareScrollView>
+        <Spacing size="xl" />
+        <Button showIconRight={true} {...primaryButtonProps} />
+        {/* <Spacing />
+        <Button {...secondaryButtonProps} /> */}
+      </View>
     </View>
   );
 };

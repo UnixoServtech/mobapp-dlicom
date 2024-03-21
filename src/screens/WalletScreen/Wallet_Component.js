@@ -20,13 +20,6 @@ import theme from '../../theme';
 import SwapView from '../SwapScreen/SwapView';
 import Tokens from '../TokensScreen/Tokens';
 import createStyles from './Wallet.style';
-import images from '../../assets/images';
-import CustomIcon from '../../components/CustomIcon';
-import Strings from '../../localization/Strings';
-import TabBar from '../../components/TabBar';
-import Tokens from '../TokensScreen/Tokens';
-import SwapView from '../SwapScreen/SwapView';
-import {AppConstant} from '../../constants/constants';
 
 const Wallet_Component = ({
   onPressRightContent,

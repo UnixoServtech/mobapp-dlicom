@@ -9,6 +9,7 @@ export default createStyles = colors =>
       backgroundColor: colors.primaryBg,
     },
     wrapper: {
+      flex: 1,
       padding: theme.sizes.spacing.ph,
     },
     textInput: {

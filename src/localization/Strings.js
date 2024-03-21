@@ -4,7 +4,7 @@ const appName = 'Dlicom';
 export default {
   welcome: 'Welcome To Dlicom',
   welcomeNote: 'Create your own wallet ',
-  createNewWallet: 'Create New Wallet',
+  createNewWallet: 'Create Wallet',
   importWallet: 'Import Wallet',
   securityScreen: 'Security screen',
   forgotPwd: 'Forgot password?',

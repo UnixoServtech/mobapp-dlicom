@@ -74,6 +74,10 @@ class Wallet extends Component {
   };
 
   onPressAddNewWallet = async () => {
+    if (this.state.index > 4) {
+      return;
+    }
+
     // To create new Wallet from mnemonic.
     const newWallet = await addNewEthAccount(
       this.state.walletList[0]?.wallet.mnemonic?.phrase,
@@ -113,6 +117,7 @@ class Wallet extends Component {
           btnAddNewWalletLabel={Strings.addNewWallet}
           btnPressAddNewWallet={this.onPressAddNewWallet}
           btnAddNewWalletRightIcon={images.ic_plus}
+          btnAddNewWalletIsDisabled={this.state.index > 4}
         />
       </>
     );
