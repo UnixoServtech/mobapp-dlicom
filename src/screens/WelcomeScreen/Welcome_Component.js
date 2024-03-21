@@ -17,7 +17,7 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
       <View>
         <Button
           label={Strings.createNewWallet}
-          onPress={button1Press}
+          onPress={buttonCreateNewWallet}
           showIconRight={true}
         />
       </View>
@@ -30,7 +30,7 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
         <Button
           label={Strings.importWallet}
           variant="ghost"
-          onPress={button2Press}
+          onPress={buttonImportWallet}
           themedColor={colors.primaryMainColor}
         />
       </>

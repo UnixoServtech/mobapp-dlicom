@@ -68,7 +68,7 @@ const Chat_Component = ({
         </View>
         <Spacing size="md" />
       </View>
-      {selectedTab === AppConstant.chatType ? <ChatTab /> : <StatusTab />}
+      {/* {selectedTab === AppConstant.chatType ? <ChatTab /> : <StatusTab />} */}
     </View>
   );
 };
