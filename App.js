@@ -7,15 +7,20 @@ import {Toast, toastConfig} from './src/components/Toast';
 import RootNavigator from './src/navigation/RootNavigator';
 import API, {DevelopmentMode} from './src/networking';
 import {configureStore} from './src/redux/';
+import {PersistGate} from 'redux-persist/integration/react';
+
 API.getInstance().build(DevelopmentMode.PRODUCTION, apiConfig);
-const store = configureStore();
+const store = configureStore().store;
+const persistor = configureStore().persistor;
 LogBox.ignoreAllLogs(true);
 
 export default function App() {
   return (
     <NativeBaseProvider>
       <Provider store={store}>
-        <RootNavigator />
+        <PersistGate loading={null} persistor={persistor}>
+          <RootNavigator />
+        </PersistGate>
       </Provider>
       <Toast config={toastConfig} position="bottom" />
     </NativeBaseProvider>

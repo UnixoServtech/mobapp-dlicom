@@ -5,59 +5,39 @@ import * as Keychain from 'react-native-keychain';
 import {connect} from 'react-redux';
 import {LOCAL_STORAGE} from '../../constants/storage';
 import Encryptor from '../../core/Encryptor';
+import {createNewEthWallet} from '../../core/eth';
 import Strings from '../../localization/Strings';
-import {navigateAndSimpleReset} from '../../navigation/NavigationUtils';
+import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
-import {configureStore} from '../../redux/';
 import Device from '../../utils/device';
-import Security_Component from './Security_Component';
+import VerifyPassword_Component from './VerifyPassword_Component';
 import {Toast} from '../../components/Toast';
-import EncryptedStorage from 'react-native-encrypted-storage';
-
-const persistor = configureStore().persistor; // TODO: Remove once the flow is updated.
 
 const encryptor = new Encryptor();
 
-class Security extends Component {
+class VerifyPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
       password: '',
+      isGenericPasswordSet: false,
+      biometryType: undefined,
+      randomWallet: {},
     };
-    this.resetGenericPassword = this.resetGenericPassword.bind(this);
-    this.getCredentialsWithBiometry =
-      this.getCredentialsWithBiometry.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.buttonPressUnlockPassword = this.buttonPressUnlockPassword.bind(this);
+    this.onPressLeftContent = this.onPressLeftContent.bind(this);
+    this.onChangPassword = this.onChangPassword.bind(this);
+    this.buttonPressVerifyPassword = this.buttonPressVerifyPassword.bind(this);
+    this.createWallet = this.createWallet.bind(this);
+    this.navigateToBackupScreen = this.navigateToBackupScreen.bind(this);
   }
 
   async componentDidMount() {
+    await this.createWallet();
+
     if (await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) {
       await this.getCredentialsWithBiometry();
     }
   }
-
-  // TODO: Remove once the flow is updated.
-  resetGenericPassword = async () => {
-    // To remove existing Generic Password.
-    const isReset = await Keychain.resetGenericPassword({
-      service: Device.isAndroid() ? SERVICE_ANDROID : SERVICE_IOS,
-      accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
-      accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
-      authenticationPrompt: {
-        title: Strings.authenticationPromptTitle,
-      },
-      authenticateType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
-    });
-    if (isReset) {
-      EncryptedStorage.removeItem('persist:root');
-      // To Clear Redux Persist Data
-      // persistor.purge();
-      AsyncStorage.removeItem(LOCAL_STORAGE.BIOMETRY);
-      AsyncStorage.removeItem(LOCAL_STORAGE.PASSWORD);
-      navigateAndSimpleReset(Routes.ONBOARDING.ONBOARDING);
-    }
-  };
 
   // To retrieve credentials with biometric authentication
   getCredentialsWithBiometry = async () => {
@@ -76,7 +56,7 @@ class Security extends Component {
         );
         console.log(decryptedPasswordObj); // TODO: Remove in prod. build
         if (decryptedPasswordObj?.password) {
-          navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
+          this.navigateToBackupScreen();
         }
       }
     } catch (error) {
@@ -90,14 +70,17 @@ class Security extends Component {
     }
   };
 
-  onChangePassword = text => {
+  onPressLeftContent = () => {
+    goBack();
+  };
+
+  onChangPassword = text => {
     this.setState({
       password: text,
     });
   };
 
-  buttonPressUnlockPassword = async () => {
-    console.log(this.state.password);
+  buttonPressVerifyPassword = async () => {
     if (this.state.password) {
       const passwordHash = await encryptor.getPasswordHash(
         CODE,
@@ -108,7 +91,7 @@ class Security extends Component {
         passwordHash ===
         (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD_HASH))
       ) {
-        navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
+        this.navigateToBackupScreen();
       } else {
         Toast.show({
           type: 'success',
@@ -118,21 +101,48 @@ class Security extends Component {
     }
   };
 
+  navigateToBackupScreen = async () => {
+    if (
+      this.state.randomWallet &&
+      Object.keys(this.state.randomWallet).length > 0
+    ) {
+      navigate(Routes.MANUAL_BACKUP_STEP, {
+        wallet: JSON.stringify(this.state.randomWallet),
+      });
+    } else {
+      navigate(Routes.MANUAL_BACKUP_STEP, {
+        wallet: JSON.stringify(await this.createWallet()),
+      });
+    }
+  };
+
+  createWallet = async () => {
+    if (Object.keys(this.state.randomWallet).length === 0) {
+      const randomWallet = await createNewEthWallet();
+      if (randomWallet) {
+        this.setState(prev => ({...prev, randomWallet: randomWallet}));
+      }
+
+      return randomWallet;
+    }
+  };
+
   render() {
     return (
       <>
-        <Security_Component
-          btnRestePasswordPress={this.resetGenericPassword} // Todo: Remove once the flow is updated.
+        <VerifyPassword_Component
+          leftHeaderText="Back"
+          onPressLeftContent={this.onPressLeftContent}
+          tittleText="Verify Password"
+          tittleNote="This verification will navigate you to Backup Screen"
           placeHolder="Enter Password"
-          onChangePassword={this.onChangePassword}
+          onChangePassword={this.onChangPassword}
           valuePassword={this.state.password}
-          unlockButtonProps={{
-            label: Strings.unlockWallet,
+          passwordButtonProps={{
+            label: Strings.verifyPassword,
             isDisabled: this.state.password?.trim()?.length === 0,
-            onPress: this.buttonPressUnlockPassword,
+            onPress: this.buttonPressVerifyPassword,
           }}
-          tittleText={'Unlock your wallet'}
-          tittleNote={'Enter Password to Unlock your wallet.'}
         />
       </>
     );
@@ -144,7 +154,6 @@ const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
-    wallets: state.userWallets.wallets,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(Security);
+export default connect(mapStateToProps, mapActionCreators)(VerifyPassword);

@@ -1,40 +1,68 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import images from '../../assets/images';
+import {toDataUrl} from '../../core/Blockies';
+import {addNewEthAccount} from '../../core/eth';
 import Strings from '../../localization/Strings';
-import {goBack, navigate} from '../../navigation/NavigationUtils';
-import Select_Wallet_Component from './Select_Wallet_Component';
+import {goBack, navigateAndSimpleReset} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
-const tempArray = Array(5)
-  .fill(0)
-  .map((_, i) => {
-    return {
-      name: `Davis ${i}`,
-      avatar: 'https://picsum.photos/300/300',
-      id: `0xc0ffee254729296a..${i}`,
-    };
-  });
+import {
+  addWallets,
+  defaultWallet,
+  selectNewWallet,
+} from '../../redux/actions/userWallets';
+import Select_Wallet_Component from './Select_Wallet_Component';
+import AsyncStorage from '@react-native-community/async-storage';
+import {LOCAL_STORAGE} from '../../constants/storage';
 
 class Wallet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      walletList: tempArray,
-      selectedWallet: null,
+      walletList: [],
+      selectedWallet: 0,
+      index: 1,
     };
     this.onPressLeftContent = this.onPressLeftContent.bind(this);
     this.nextPress = this.nextPress.bind(this);
     this.onChangeRadio = this.onChangeRadio.bind(this);
+    this.onPressAddNewWallet = this.onPressAddNewWallet.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const wallet = JSON.parse(this.props?.route?.params?.wallet);
+    console.log('wallet', wallet);
+    if (wallet) {
+      const initWallet = {
+        name: `Davis ${0}`,
+        avatar: toDataUrl(wallet.address),
+        id: wallet.address,
+        wallet: wallet,
+        selected: true,
+      };
+      this.setState(prev => ({
+        ...prev,
+        walletList: [...prev.walletList, initWallet],
+        selectedWallet: 0,
+      }));
+    }
+  }
 
   onPressLeftContent = () => {
     goBack();
   };
 
-  nextPress = () => {
-    // alert(JSON.stringify(this.state.selectedWallet));
-    navigate(Routes.MANUAL_BACKUP_STEP);
+  nextPress = async () => {
+    this.props.addWallets(this.state.walletList);
+    this.props.defaultWallet(this.state.walletList[0]);
+    this.props.selectNewWallet(
+      this.state.walletList[this.state.selectedWallet],
+    );
+
+    await AsyncStorage.setItem(LOCAL_STORAGE.WALLET_CREATED, 'true');
+
+    // Navigate user to HomeView
+    navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
   };
 
   onChangeRadio = (item, index) => {
@@ -42,7 +70,31 @@ class Wallet extends Component {
     walletList.forEach(element => {
       element.selected = element === item;
     });
-    this.setState({walletList, selectedWallet: item});
+    this.setState({walletList, selectedWallet: index});
+  };
+
+  onPressAddNewWallet = async () => {
+    // To create new Wallet from mnemonic.
+    const newWallet = await addNewEthAccount(
+      this.state.walletList[0]?.wallet.mnemonic?.phrase,
+      this.state.index,
+    );
+    console.log(newWallet);
+    if (newWallet) {
+      const derivedWallet = {
+        name: `Davis ${this.state.index}`,
+        avatar: toDataUrl(newWallet.address),
+        id: newWallet.address,
+        wallet: newWallet,
+        selected: false,
+      };
+      // Add new wallet to existing walletList.
+      this.setState(prev => ({
+        ...prev,
+        walletList: [...prev.walletList, derivedWallet],
+        index: prev.index + 1,
+      }));
+    }
   };
 
   render() {
@@ -58,13 +110,20 @@ class Wallet extends Component {
           btnLabel={Strings.next}
           btnPress={this.nextPress}
           onChangeRadio={this.onChangeRadio}
+          btnAddNewWalletLabel={Strings.addNewWallet}
+          btnPressAddNewWallet={this.onPressAddNewWallet}
+          btnAddNewWalletRightIcon={images.ic_plus}
         />
       </>
     );
   }
 }
 
-const mapActionCreators = {};
+const mapActionCreators = {
+  addWallets,
+  defaultWallet,
+  selectNewWallet,
+};
 const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,

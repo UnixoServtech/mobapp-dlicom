@@ -1,10 +1,10 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {navigate} from '../../navigation/NavigationUtils';
-import Splash_Component from './Splash_Component';
-import Routes from '../../navigation/Routes';
-import AsyncStorage from '@react-native-community/async-storage';
 import {LOCAL_STORAGE} from '../../constants/storage';
+import {navigateAndSimpleReset} from '../../navigation/NavigationUtils';
+import Routes from '../../navigation/Routes';
+import Splash_Component from './Splash_Component';
 import {setDarkMode} from '../../redux/actions/global';
 
 class Splash extends Component {
@@ -18,9 +18,17 @@ class Splash extends Component {
     this.props.setDarkMode(
       isDarkTheme == null ? true : JSON.parse(isDarkTheme),
     );
-    setTimeout(() => {
-      navigate(Routes.ONBOARDING.ONBOARDING);
-      // navigate(Routes.HOME_NAV.ROOT_NAV);
+    setTimeout(async () => {
+      // Navigate User to Security Screen if BIOMETRY or PASSWORD is stored.
+      if (
+        ((await AsyncStorage.getItem(LOCAL_STORAGE.BIOMETRY)) ||
+          (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD))) &&
+        (await AsyncStorage.getItem(LOCAL_STORAGE.WALLET_CREATED))
+      ) {
+        navigateAndSimpleReset(Routes.ONBOARDING.SECURITY);
+      } else {
+        navigateAndSimpleReset(Routes.ONBOARDING.ONBOARDING);
+      }
     }, 1500);
   }
 

@@ -19,3 +19,5 @@ export {default as PrivacySecurity} from './Settings/PrivacySecurityView/Privacy
 export {default as PrivacyView} from './Settings/PrivacyView/PrivacyView';
 export {default as NotificationPreferenceView} from './Settings/NotificationPreferenceView/NotificationPreferenceView';
 export {default as NotificationView} from './Settings/NotificationView/NotificationView';
+export {default as CreatePassword} from './CreatePasswordScreen/CreatePassword';
+export {default as VerifyPassword} from './VerifyPasswordScreen/VerifyPassword';

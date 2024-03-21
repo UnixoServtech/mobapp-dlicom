@@ -9,7 +9,7 @@ import AppIntroSlider from '../../components/AppIntroSlider';
 import {OnBoardItems} from '../../constants/constants';
 const {width, height} = Dimensions.get('window');
 
-const Welcome_Component = ({button1Press, button2Press}) => {
+const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
   const {colors} = useTheme();
 
   const _renderNextButton = () => {
@@ -82,6 +82,33 @@ const Welcome_Component = ({button1Press, button2Press}) => {
         <Text type={'helper-text'} color={colors.caption}>
           {Strings.welcomeNote}
         </Text>
+        <Spacing size={theme.normalize(90)} />
+        <Image
+          source={images.ic_wallet_image}
+          resizeMode="contain"
+          style={{
+            width: theme.normalize(280),
+            height: theme.normalize(280),
+            top: 15,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+        }}>
+        <Button
+          label={Strings.createNewWallet}
+          onPress={buttonCreateNewWallet}
+        />
+        <Spacing />
+        <Button
+          label={Strings.importWallet}
+          variant="ghost"
+          onPress={buttonImportWallet}
+          themedColor={colors.primaryMainColor}
+        />
       </View>
       <AppIntroSlider
         renderItem={({item}) => <Slide item={item} />}

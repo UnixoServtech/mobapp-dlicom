@@ -90,6 +90,7 @@ const Text = ({
   netflixSansRegular,
   interSemiBold,
   interMedium,
+  ellipsizeMode,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -129,6 +130,7 @@ const Text = ({
         <IText
           {...rest}
           numberOfLines={numberOfLines}
+          ellipsizeMode={ellipsizeMode}
           style={[
             defaultTextStyle,
             computedStyles,

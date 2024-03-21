@@ -7,11 +7,6 @@ export default createStyles = colors =>
       flex: 1,
       backgroundColor: colors.primaryBg,
     },
-    headerStyle: {
-      height: theme.normalize(64),
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
     wrapper: {
       padding: theme.sizes.spacing.ph,
     },

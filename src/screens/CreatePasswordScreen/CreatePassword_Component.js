@@ -2,30 +2,36 @@ import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {TextInput, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Button, Spacing, Text} from '../../components';
+import {Button, Header, Spacing, Text} from '../../components';
 import theme from '../../theme';
-import createStyles from './Security.style';
+import createStyles from './CreatePassword.style';
 
-const Security_Component = ({
-  btnRestePasswordPress,
-  placeHolder,
-  onChangePassword,
-  valuePassword,
-  unlockButtonProps,
-  tittleNote,
+const CreatePassword_Component = ({
+  leftHeaderText,
+  onPressLeftContent,
   tittleText,
+  tittleNote,
+  placeHolder,
+  onChangeText,
+  valueNewPassword,
+  onChangeNewPassword,
+  newPasswordButtonProps,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
   return (
     <View style={styles.mainContainer}>
-      <View style={{flex: 1}}>
-        <KeyboardAwareScrollView
-          style={{flex: 1}}
-          contentContainerStyle={styles.wrapper}
-          enableOnAndroid={true}
-          resetScrollToCoords={{x: 0, y: 0}}>
+      <Header
+        leftText={leftHeaderText}
+        onPressLeftContent={onPressLeftContent}
+      />
+      <KeyboardAwareScrollView
+        style={{flex: 1}}
+        contentContainerStyle={styles.wrapper}
+        enableOnAndroid={true}
+        resetScrollToCoords={{x: 0, y: 0}}>
+        <View>
           <Text
             type={'large-header'}
             interBold={true}
@@ -47,27 +53,20 @@ const Security_Component = ({
             numberOfLines={1}
             style={styles.textInput}
             placeholderTextColor={colors.gray1}
-            onChangeText={onChangePassword}
-            value={valuePassword}
+            onChangeText={onChangeNewPassword}
+            value={valueNewPassword}
             returnKeyType={'next'}
             autoCorrect={false}
             secureTextEntry={true}
           />
           <Spacing size="xl" />
-          <Button {...unlockButtonProps} />
-        </KeyboardAwareScrollView>
-      </View>
-      <View style={{padding: theme.sizes.spacing.pv}}>
-        {/* <Button
-          label={'Reset Password'}
-          variant="ghost"
-          themedColor={colors.text}
-          isCompact={true}
-          onPress={btnRestePasswordPress}
-        /> */}
-      </View>
+          <Button {...newPasswordButtonProps} />
+          <Spacing />
+          <Spacing />
+        </View>
+      </KeyboardAwareScrollView>
     </View>
   );
 };
 
-export default Security_Component;
+export default CreatePassword_Component;

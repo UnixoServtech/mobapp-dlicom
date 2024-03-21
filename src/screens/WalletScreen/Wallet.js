@@ -5,21 +5,38 @@ import Wallet_Component from './Wallet_Component';
 import Routes from '../../navigation/Routes';
 import Strings from '../../localization/Strings';
 import {AppConstant} from '../../constants/constants';
+import {selectNewWallet} from '../../redux/actions/userWallets';
 
 class Wallet extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: AppConstant.tokenType,
+      wallet: {},
+      wallets: [],
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
     this.onSendClick = this.onSendClick.bind(this);
     this.onReceiveClick = this.onReceiveClick.bind(this);
     this.onScanClick = this.onScanClick.bind(this);
+    this.hideActionModal = this.hideActionModal.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState(prev => ({
+      wallet: this.props.selectedWallet,
+      wallets: this.props.wallets,
+    }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedWallet !== this.props.selectedWallet) {
+      this.setState({
+        wallet: this.props.selectedWallet,
+      });
+    }
+  }
 
   handleCreateNewWallet = () => {};
 
@@ -46,13 +63,17 @@ class Wallet extends Component {
     });
   };
 
+  hideActionModal = () => {
+    this.setState({showActionSheet: false});
+  };
+
   render() {
-    const {selectedTab} = this.state;
+    const {selectedTab, searchWord, showActionSheet} = this.state;
     return (
       <>
         <Wallet_Component
-          selectedAccountName={'randomuser.io'}
-          avatarLink={'https://picsum.photos/300/300'}
+          selectedAccountName={this.state.wallet?.name}
+          avatarLink={this.state.wallet?.avatar}
           amount={'$ 5,323.00'}
           onSendClick={this.onSendClick}
           onReceiveClick={this.onReceiveClick}
@@ -74,17 +95,39 @@ class Wallet extends Component {
           selectedTab={selectedTab}
           onPress={() => navigate(Routes.GROUP_VIEW)}
           onPress1={() => navigate(Routes.SELECT_COIN)}
+          actionSheetProp={{
+            showActionSheet: showActionSheet,
+            onRequestClose: this.hideActionModal,
+            cancelBtnProp: {
+              label: Strings.cancel,
+              onPress: this.hideActionModal,
+              variant: 'link',
+            },
+            wallets: this.state.wallets,
+          }}
+          onItemPress={(item, index) => {
+            this.props.selectNewWallet(item);
+            this.hideActionModal();
+          }}
+          onPressAccount={() =>
+            this.setState({
+              showActionSheet: true,
+            })
+          }
         />
       </>
     );
   }
 }
 
-const mapActionCreators = {};
+const mapActionCreators = {selectNewWallet};
 const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
+    selectedWallet: state.userWallets.selectedWallet,
+    userWallets: state.userWallets,
+    wallets: state.userWallets.wallets,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Wallet);

@@ -1,9 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {Image, ScrollView, View} from 'react-native';
-import {Header, Pressable, Spacing, Text} from '../../components';
+import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
+import images from '../../assets/images';
+import BottomModal from '../../components/BottomModal';
+import CustomIcon from '../../components/CustomIcon';
+import TabBar from '../../components/TabBar';
+import {AppConstant} from '../../constants/constants';
+import Strings from '../../localization/Strings';
+import {Header, Pressable, Spacing, Text,Button, ListItem} from '../../components';
 import theme from '../../theme';
+import SwapView from '../SwapScreen/SwapView';
+import Tokens from '../TokensScreen/Tokens';
 import createStyles from './Wallet.style';
 import images from '../../assets/images';
 import CustomIcon from '../../components/CustomIcon';
@@ -25,13 +33,16 @@ const Wallet_Component = ({
   selectedTab,
   onPress,
   onPress1,
+  actionSheetProp,
+  onPressAccount,
+  onItemPress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
   const renderUserInfoView = () => {
     return (
-      <Pressable style={styles.accountWrapper}>
+      <Pressable style={styles.accountWrapper} onPress={onPressAccount}>
         <Image
           source={{uri: avatarLink}}
           defaultSource={images.ic_place_holder}
@@ -87,6 +98,32 @@ const Wallet_Component = ({
           textAlign={'center'}>
           {labelName}
         </Text>
+      </Pressable>
+    );
+  };
+
+  const _renderItem = ({item, index}) => {
+    return (
+      <Pressable
+        onPress={() => {
+          onItemPress(item, index);
+        }}>
+        <ListItem.Content>
+          <ListItem.Icon>
+            <Image
+              source={{uri: item?.avatar}}
+              style={{
+                height: theme.sizes.image.xl4,
+                width: theme.sizes.image.xl4,
+                borderRadius: theme.sizes.xl4 / 2,
+              }}
+            />
+          </ListItem.Icon>
+          <ListItem.Body>
+            <ListItem.Title>{item?.name}</ListItem.Title>
+            <ListItem.Address>{item?.wallet?.address}</ListItem.Address>
+          </ListItem.Body>
+        </ListItem.Content>
       </Pressable>
     );
   };
@@ -183,6 +220,42 @@ const Wallet_Component = ({
           </Text>
         </Pressable>
       </View> */}
+      <BottomModal
+        modalVisible={actionSheetProp?.showActionSheet}
+        onRequestClose={actionSheetProp?.onRequestClose}
+        noPadding={true}
+        swipeDirection={'down'}
+        displayConfirmButton={false}>
+        <View>
+          <View
+            style={{
+              paddingHorizontal: theme.sizes.spacing.xs10,
+              paddingBottom: 0,
+            }}>
+            <Spacing size={theme.normalize(8)} />
+            {actionSheetProp?.wallets?.map(({item, index}) => {
+              return <></>;
+            })}
+            <FlatList
+              data={actionSheetProp?.wallets}
+              keyExtractor={(item, index) => index}
+              renderItem={(item, index) => _renderItem(item, index)}
+              ItemSeparatorComponent={<Spacing size={theme.sizes.spacing.sm} />}
+            />
+          </View>
+          <View
+            style={{
+              borderTopWidth: 1,
+              borderTopColor: colors?.actionSheet?.borderColor,
+              marginVertical: theme.normalize(12),
+            }}>
+            <Button
+              themedColor={colors?.actionSheet?.buttonColor}
+              {...actionSheetProp?.cancelBtnProp}
+            />
+          </View>
+        </View>
+      </BottomModal>
     </View>
   );
 };
