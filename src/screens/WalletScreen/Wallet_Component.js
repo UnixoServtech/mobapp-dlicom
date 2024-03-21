@@ -8,7 +8,14 @@ import CustomIcon from '../../components/CustomIcon';
 import TabBar from '../../components/TabBar';
 import {AppConstant} from '../../constants/constants';
 import Strings from '../../localization/Strings';
-import {Header, Pressable, Spacing, Text,Button, ListItem} from '../../components';
+import {
+  Header,
+  Pressable,
+  Spacing,
+  Text,
+  Button,
+  ListItem,
+} from '../../components';
 import theme from '../../theme';
 import SwapView from '../SwapScreen/SwapView';
 import Tokens from '../TokensScreen/Tokens';
@@ -197,7 +204,7 @@ const Wallet_Component = ({
         </View>
         <Spacing size="md" />
       </View>
-      {selectedTab === AppConstant.tokenType ? (
+      {/* {selectedTab === AppConstant.tokenType ? (
         <Tokens />
       ) : (
         <ScrollView
@@ -206,20 +213,8 @@ const Wallet_Component = ({
           }}>
           <SwapView />
         </ScrollView>
-      )}
-      {/* <View style={{margin: 50}}>
-        <Pressable onPress={onPress}>
-          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-            Wallet Test Button
-          </Text>
-        </Pressable>
-        <Spacing />
-        <Pressable onPress={onPress1}>
-          <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-            Chose Coin
-          </Text>
-        </Pressable>
-      </View> */}
+      )} */}
+
       <BottomModal
         modalVisible={actionSheetProp?.showActionSheet}
         onRequestClose={actionSheetProp?.onRequestClose}

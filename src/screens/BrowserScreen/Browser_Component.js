@@ -1,7 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
-import {Text} from '../../components';
+import {Header, Text} from '../../components';
 import theme from '../../theme';
 import createStyles from './Browser.style';
 
@@ -11,9 +11,7 @@ const Browser_Component = ({button1Press, button2Press}) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Text poppinsSemiBold={true} size={theme.typography.fontSizes.xl}>
-        Dummy_Component
-      </Text>
+      <Header centerElement={'Browser'} isLeftIconHidden />
     </View>
   );
 };

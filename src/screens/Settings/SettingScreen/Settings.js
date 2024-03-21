@@ -42,19 +42,19 @@ class Settings extends Component {
   onProfileClick = () => {};
 
   onPrivacySecurityClick = () => {
-    navigate(Routes.SETTINGS.PRIVACY_SECURITY);
+    // navigate(Routes.SETTINGS.PRIVACY_SECURITY);
   };
 
   onPrivacyClick = () => {
-    navigate(Routes.SETTINGS.PRIVACY);
+    // navigate(Routes.SETTINGS.PRIVACY);
   };
 
   onNotificationClick = () => {
-    navigate(Routes.SETTINGS.NOTIFICATIONS);
+    // navigate(Routes.SETTINGS.NOTIFICATIONS);
   };
 
   onNotificationPreferencesClick = () => {
-    navigate(Routes.SETTINGS.NOTIFICATION_PREFERENCES);
+    // navigate(Routes.SETTINGS.NOTIFICATION_PREFERENCES);
   };
 
   render() {
