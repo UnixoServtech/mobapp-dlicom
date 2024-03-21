@@ -17,7 +17,7 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
       <View>
         <Button
           label={Strings.createNewWallet}
-          onPress={button1Press}
+          onPress={buttonCreateNewWallet}
           showIconRight={true}
         />
       </View>
@@ -30,7 +30,7 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
         <Button
           label={Strings.importWallet}
           variant="ghost"
-          onPress={button2Press}
+          onPress={buttonImportWallet}
           themedColor={colors.primaryMainColor}
         />
       </>
@@ -82,33 +82,6 @@ const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
         <Text type={'helper-text'} color={colors.caption}>
           {Strings.welcomeNote}
         </Text>
-        <Spacing size={theme.normalize(90)} />
-        <Image
-          source={images.ic_wallet_image}
-          resizeMode="contain"
-          style={{
-            width: theme.normalize(280),
-            height: theme.normalize(280),
-            top: 15,
-          }}
-        />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button
-          label={Strings.createNewWallet}
-          onPress={buttonCreateNewWallet}
-        />
-        <Spacing />
-        <Button
-          label={Strings.importWallet}
-          variant="ghost"
-          onPress={buttonImportWallet}
-          themedColor={colors.primaryMainColor}
-        />
       </View>
       <AppIntroSlider
         renderItem={({item}) => <Slide item={item} />}
