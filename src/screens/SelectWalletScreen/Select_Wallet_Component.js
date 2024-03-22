@@ -86,8 +86,13 @@ const Select_Wallet_Component = ({
           rightIconName="Plus"
           isDisabled={btnAddNewWalletIsDisabled}
         />
-        <Spacing size="xl" />
-        <Button label={btnLabel} onPress={btnPress} showIconRight={true} />
+        <Spacing />
+        <Button
+          label={btnLabel}
+          onPress={btnPress}
+          variant="ghost"
+          themedColor={colors.primaryMainColor}
+        />
       </View>
     </View>
   );

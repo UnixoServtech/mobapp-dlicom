@@ -96,6 +96,7 @@ const ManualBackupStep_Component = ({
               amikoRegular: true,
               size: theme.typography.fontSizes.smm,
             }}
+            style={{alignSelf: 'flex-start'}}
             onPress={copyPress}
           />
         </View>

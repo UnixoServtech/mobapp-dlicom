@@ -6,6 +6,10 @@ import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import ManualBackupStep_Component from './ManualBackupStep_Component';
 import Routes from '../../navigation/Routes';
+import Share from 'react-native-share';
+import {PermissionsAndroid, Platform} from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import moment from 'moment';
 
 class ManualBackupStep extends Component {
   constructor(props) {
@@ -56,7 +60,54 @@ class ManualBackupStep extends Component {
     goBack();
   };
 
-  primaryButtonPress = () => {};
+  primaryButtonPress = async () => {
+    const {config, fs} = ReactNativeBlobUtil;
+    let directory =
+      fs?.dirs?.[Platform.OS === 'ios' ? 'DownloadDir' : 'LegacyDownloadDir'];
+    const newDoc = `mnemonic_${moment().format('YYYYMMDD_HHmmss')}.txt`;
+    const filePath = `${directory}/${newDoc}`;
+    if (Platform.OS === 'ios') {
+      await ReactNativeBlobUtil.fs
+        .writeFile(filePath, this.state.seedPhrase, 'utf8')
+        .then(success => {
+          Share.open({
+            url: `file://${filePath}`,
+          }).catch(err => console.log(err));
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    } else {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission Required',
+            message: 'Allow Dlicom to access storage for mnemonic backups.',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          await ReactNativeBlobUtil.fs
+            .writeFile(filePath, this.state.seedPhrase)
+            .then(success => {
+              console.log('FILE WRITTEN!', success);
+              Share.open({
+                url: `file://${filePath}`,
+              }).catch(err => console.log(err));
+            })
+            .catch(err => {
+              console.log(err.message);
+            });
+        } else {
+          // If permission denied then show alert
+          Toast({type: 'success', text1: 'Storage Permission Not Granted'});
+        }
+      } catch (err) {
+        // To handle permission related exception
+        console.log(err);
+      }
+    }
+  };
 
   secondaryButtonPress = () => {
     navigate(Routes.SEED_PHRASE, {
