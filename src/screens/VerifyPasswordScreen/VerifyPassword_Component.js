@@ -63,7 +63,7 @@ const VerifyPassword_Component = ({
             <Spacing size="xl" />
           </View>
         </KeyboardAwareScrollView>
-        <Button {...passwordButtonProps} />
+        <Button showIconRight={true} {...passwordButtonProps} />
       </View>
     </View>
   );

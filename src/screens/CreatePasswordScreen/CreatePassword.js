@@ -10,6 +10,7 @@ import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
 import Device from '../../utils/device';
 import CreatePassword_Component from './CreatePassword_Component';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const encryptor = new Encryptor();
 
@@ -28,8 +29,10 @@ class CreatePassword extends Component {
     this.buttonPressCreatePassword = this.buttonPressCreatePassword.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setBiometrySupported();
+    await EncryptedStorage.clear();
+    await AsyncStorage.clear();
   }
 
   componentDidUpdate(prevProps, prevState) {}

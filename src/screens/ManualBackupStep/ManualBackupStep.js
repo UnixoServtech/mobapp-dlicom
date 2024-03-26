@@ -10,6 +10,7 @@ import Share from 'react-native-share';
 import {PermissionsAndroid, Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import moment from 'moment';
+import DeviceInfo from 'react-native-device-info';
 
 class ManualBackupStep extends Component {
   constructor(props) {
@@ -77,10 +78,13 @@ class ManualBackupStep extends Component {
         .catch(err => {
           console.log(err.message);
         });
-    } else {
+    } else if (
+      Platform.OS === 'android' &&
+      DeviceInfo.getSystemVersion() < 13
+    ) {
       try {
         const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
           {
             title: 'Storage Permission Required',
             message: 'Allow Dlicom to access storage for mnemonic backups.',
@@ -106,10 +110,22 @@ class ManualBackupStep extends Component {
         // To handle permission related exception
         console.log(err);
       }
+    } else {
+      await ReactNativeBlobUtil.fs
+        .writeFile(filePath, this.state.seedPhrase)
+        .then(success => {
+          console.log('FILE WRITTEN!', success);
+          Share.open({
+            url: `file://${filePath}`,
+          }).catch(err => console.log(err));
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
     }
   };
 
-  secondaryButtonPress = () => {
+  secondaryButtonPress = async () => {
     navigate(Routes.SEED_PHRASE, {
       wallet: JSON.stringify(this.state.wallet),
     });

@@ -12,6 +12,8 @@ import Routes from '../../navigation/Routes';
 import Device from '../../utils/device';
 import VerifyPassword_Component from './VerifyPassword_Component';
 import {Toast} from '../../components/Toast';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import {MNEMONIC_SALT} from '@env';
 
 const encryptor = new Encryptor();
 
@@ -106,12 +108,21 @@ class VerifyPassword extends Component {
       this.state.randomWallet &&
       Object.keys(this.state.randomWallet).length > 0
     ) {
+      this.storeMnemonic(
+        this.state.password,
+        this.state.randomWallet?.mnemonic?.phrase,
+      );
       navigate(Routes.MANUAL_BACKUP_STEP, {
         wallet: JSON.stringify(this.state.randomWallet),
       });
     } else {
+      const wallet = await this.createWallet();
+      this.storeMnemonic(
+        this.state.password,
+        this.state.randomWallet?.mnemonic?.phrase,
+      );
       navigate(Routes.MANUAL_BACKUP_STEP, {
-        wallet: JSON.stringify(await this.createWallet()),
+        wallet: JSON.stringify(wallet),
       });
     }
   };
@@ -125,6 +136,20 @@ class VerifyPassword extends Component {
 
       return randomWallet;
     }
+  };
+
+  storeMnemonic = async (password, seedPhrase) => {
+    // Encrypted seed phrases
+    const encryptedMnemonic = await encryptor.encrypt(
+      password,
+      {password: seedPhrase},
+      MNEMONIC_SALT,
+    );
+
+    EncryptedStorage.setItem(
+      LOCAL_STORAGE.ENCRYPTED_MNEMONIC,
+      encryptedMnemonic,
+    );
   };
 
   render() {

@@ -15,6 +15,7 @@ import {
   Text,
   Button,
   ListItem,
+  QRCodeModal,
 } from '../../components';
 import theme from '../../theme';
 import SwapView from '../SwapScreen/SwapView';
@@ -36,6 +37,12 @@ const Wallet_Component = ({
   actionSheetProp,
   onPressAccount,
   onItemPress,
+  showQrCodeModal = false,
+  hideQrCodeModal,
+  contentPress,
+  walletAddress,
+  headerText,
+  btnShareAddress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -197,7 +204,7 @@ const Wallet_Component = ({
         </View>
         <Spacing size="md" />
       </View>
-      {/* {selectedTab === AppConstant.tokenType ? (
+      {selectedTab === AppConstant.tokenType ? (
         <Tokens />
       ) : (
         <ScrollView
@@ -206,7 +213,7 @@ const Wallet_Component = ({
           }}>
           <SwapView />
         </ScrollView>
-      )} */}
+      )}
 
       <BottomModal
         modalVisible={actionSheetProp?.showActionSheet}
@@ -244,6 +251,17 @@ const Wallet_Component = ({
           </View>
         </View>
       </BottomModal>
+      <QRCodeModal
+        isVisible={showQrCodeModal}
+        headerText={headerText}
+        qrValue={walletAddress}
+        contentValue={walletAddress}
+        btnLabel={'Share address'}
+        onBackdropPress={hideQrCodeModal}
+        onModalHide={hideQrCodeModal}
+        contentPress={contentPress}
+        btnPress={btnShareAddress}
+      />
     </View>
   );
 };

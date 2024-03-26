@@ -6,6 +6,9 @@ import Routes from '../../navigation/Routes';
 import Strings from '../../localization/Strings';
 import {AppConstant} from '../../constants/constants';
 import {selectNewWallet} from '../../redux/actions/userWallets';
+import Clipboard from '@react-native-clipboard/clipboard';
+import {Toast} from '../../components/Toast';
+import Share from 'react-native-share';
 
 class Wallet extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class Wallet extends Component {
       selectedTab: AppConstant.tokenType,
       wallet: {},
       wallets: [],
+      showQrModal: false,
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
@@ -21,6 +25,8 @@ class Wallet extends Component {
     this.onReceiveClick = this.onReceiveClick.bind(this);
     this.onScanClick = this.onScanClick.bind(this);
     this.hideActionModal = this.hideActionModal.bind(this);
+    this.onModalHide = this.onModalHide.bind(this);
+    this.btnShareAddress = this.btnShareAddress.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +53,9 @@ class Wallet extends Component {
   };
 
   onReceiveClick = () => {
-    console.log('onReceiveClick');
+    this.setState({
+      showQrModal: true,
+    });
   };
 
   onScanClick = () => {
@@ -67,8 +75,28 @@ class Wallet extends Component {
     this.setState({showActionSheet: false});
   };
 
+  onModalHide = () => {
+    this.setState({
+      showQrModal: false,
+    });
+  };
+
+  btnShareAddress = () => {
+    Share.open({
+      message: this.state.wallet?.wallet?.address,
+    }).catch(err => console.log(err));
+  };
+
+  contentPress = async () => {
+    await Clipboard.setString(this.state.wallet?.wallet?.address);
+    Toast.show({
+      type: 'success',
+      text1: 'Wallet address copied!',
+    });
+  };
+
   render() {
-    const {selectedTab, searchWord, showActionSheet} = this.state;
+    const {selectedTab, searchWord, showActionSheet, showQrModal} = this.state;
     return (
       <>
         <Wallet_Component
@@ -114,6 +142,12 @@ class Wallet extends Component {
               showActionSheet: true,
             })
           }
+          headerText={this.state.wallet?.name}
+          showQrCodeModal={showQrModal}
+          hideQrCodeModal={this.onModalHide}
+          contentPress={this.contentPress}
+          walletAddress={this.state.wallet?.wallet?.address}
+          btnShareAddress={this.btnShareAddress}
         />
       </>
     );

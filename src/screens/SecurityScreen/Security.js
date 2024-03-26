@@ -1,4 +1,4 @@
-import {CODE, SALT, SERVICE_ANDROID, SERVICE_IOS} from '@env';
+import {CODE, SALT, MNEMONIC_SALT, SERVICE_ANDROID, SERVICE_IOS} from '@env';
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {Component} from 'react';
 import * as Keychain from 'react-native-keychain';
@@ -13,6 +13,7 @@ import Device from '../../utils/device';
 import Security_Component from './Security_Component';
 import {Toast} from '../../components/Toast';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import * as Helper from '../../utils/helper';
 
 const persistor = configureStore().persistor; // TODO: Remove once the flow is updated.
 
@@ -29,6 +30,7 @@ class Security extends Component {
       this.getCredentialsWithBiometry.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.buttonPressUnlockPassword = this.buttonPressUnlockPassword.bind(this);
+    this.setMnemonic = this.setMnemonic.bind(this);
   }
 
   async componentDidMount() {
@@ -74,8 +76,8 @@ class Security extends Component {
           credentials?.password,
           SALT,
         );
-        console.log(decryptedPasswordObj); // TODO: Remove in prod. build
         if (decryptedPasswordObj?.password) {
+          this.setMnemonic(decryptedPasswordObj?.password);
           navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
         }
       }
@@ -97,7 +99,6 @@ class Security extends Component {
   };
 
   buttonPressUnlockPassword = async () => {
-    console.log(this.state.password);
     if (this.state.password) {
       const passwordHash = await encryptor.getPasswordHash(
         CODE,
@@ -108,6 +109,7 @@ class Security extends Component {
         passwordHash ===
         (await AsyncStorage.getItem(LOCAL_STORAGE.PASSWORD_HASH))
       ) {
+        this.setMnemonic(this.state.password);
         navigateAndSimpleReset(Routes.HOME_NAV.ROOT_NAV);
       } else {
         Toast.show({
@@ -116,6 +118,21 @@ class Security extends Component {
         });
       }
     }
+  };
+
+  setMnemonic = async password => {
+    encryptor
+      .decrypt(
+        password,
+        await EncryptedStorage.getItem(LOCAL_STORAGE.ENCRYPTED_MNEMONIC),
+        MNEMONIC_SALT,
+      )
+      .then(data => {
+        Helper.mnemonic = data?.password;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {

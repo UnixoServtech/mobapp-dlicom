@@ -22,6 +22,7 @@ class Wallet extends Component {
       walletList: [],
       selectedWallet: 0,
       index: 1,
+      defaultWallet: {},
     };
     this.onPressLeftContent = this.onPressLeftContent.bind(this);
     this.nextPress = this.nextPress.bind(this);
@@ -31,19 +32,25 @@ class Wallet extends Component {
 
   componentDidMount() {
     const wallet = JSON.parse(this.props?.route?.params?.wallet);
-    console.log('wallet', wallet);
     if (wallet) {
       const initWallet = {
         name: `Davis ${0}`,
         avatar: toDataUrl(wallet.address),
         id: wallet.address,
-        wallet: wallet,
+        wallet: {address: wallet?.address},
         selected: true,
       };
       this.setState(prev => ({
         ...prev,
         walletList: [...prev.walletList, initWallet],
         selectedWallet: 0,
+        defaultWallet: {
+          name: `Davis ${0}`,
+          avatar: toDataUrl(wallet.address),
+          id: wallet.address,
+          wallet: wallet,
+          selected: true,
+        },
       }));
     }
   }
@@ -80,10 +87,9 @@ class Wallet extends Component {
 
     // To create new Wallet from mnemonic.
     const newWallet = await addNewEthAccount(
-      this.state.walletList[0]?.wallet.mnemonic?.phrase,
+      this.state.defaultWallet?.wallet.mnemonic?.phrase,
       this.state.index,
     );
-    console.log(newWallet);
     if (newWallet) {
       const derivedWallet = {
         name: `Davis ${this.state.index}`,

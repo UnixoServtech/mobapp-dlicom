@@ -43,10 +43,9 @@ class ImportWallet extends Component {
     ) {
       try {
         const wallet = await importNewEthWallet(this.state.seedPhrase.trim());
-        console.log(wallet);
 
-        // Encrypted mnemonic phrases
-        const encryptorMnemonic = await encryptor.encrypt(
+        // Encrypted seed phrases
+        const encryptedMnemonic = await encryptor.encrypt(
           this.props?.route?.params?.password,
           {password: this.state.seedPhrase},
           MNEMONIC_SALT,
@@ -54,7 +53,7 @@ class ImportWallet extends Component {
 
         EncryptedStorage.setItem(
           LOCAL_STORAGE.ENCRYPTED_MNEMONIC,
-          encryptorMnemonic,
+          encryptedMnemonic,
         );
 
         if (wallet) {

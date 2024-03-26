@@ -4,10 +4,14 @@ import Settings_Component from './Settings_Component';
 import Strings from '../../../localization/Strings';
 import {SwitchToggle} from '../../../components';
 import {setDarkMode} from '../../../redux/actions/global';
-import {navigate} from '../../../navigation/NavigationUtils';
+import {
+  navigate,
+  navigateAndSimpleReset,
+} from '../../../navigation/NavigationUtils';
 import Routes from '../../../navigation/Routes';
 import AsyncStorage from '@react-native-community/async-storage';
 import {LOCAL_STORAGE} from '../../../constants/storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 class Settings extends Component {
   constructor(props) {
@@ -22,6 +26,7 @@ class Settings extends Component {
     this.onNotificationClick = this.onNotificationClick.bind(this);
     this.onNotificationPreferencesClick =
       this.onNotificationPreferencesClick.bind(this);
+    this.onLogout = this.onLogout.bind(this);
   }
 
   componentDidMount() {}
@@ -55,6 +60,17 @@ class Settings extends Component {
 
   onNotificationPreferencesClick = () => {
     // navigate(Routes.SETTINGS.NOTIFICATION_PREFERENCES);
+    this.onLogout();
+  };
+
+  onLogout = async () => {
+    EncryptedStorage.removeItem('persist:root');
+    AsyncStorage.removeItem(LOCAL_STORAGE.BIOMETRY);
+    AsyncStorage.removeItem(LOCAL_STORAGE.PASSWORD);
+    AsyncStorage.removeItem(LOCAL_STORAGE.ENCRYPTED_MNEMONIC);
+    await EncryptedStorage.clear();
+    await AsyncStorage.clear();
+    mnemonic = '';
   };
 
   render() {
