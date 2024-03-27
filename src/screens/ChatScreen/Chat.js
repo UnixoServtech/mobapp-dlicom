@@ -11,13 +11,27 @@ class Chat extends Component {
     super(props);
     this.state = {
       selectedTab: AppConstant.chatType,
+      wallet: {},
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
     this.notificationClick = this.notificationClick.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState(prev => ({
+      wallet: this.props.selectedWallet,
+      wallets: this.props.wallets,
+    }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedWallet !== this.props.selectedWallet) {
+      this.setState({
+        wallet: this.props.selectedWallet,
+      });
+    }
+  }
 
   handleCreateNewWallet = () => {
     navigate(Routes.ACTIVE_CHAT_VIEW);
@@ -61,6 +75,8 @@ class Chat extends Component {
             },
           ]}
           selectedTab={selectedTab}
+          avatar={this.state.wallet?.avatar}
+          name={this.state.wallet?.name}
         />
       </>
     );
@@ -72,6 +88,7 @@ const mapStateToProps = state => {
   return {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
+    selectedWallet: state.userWallets.selectedWallet,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Chat);

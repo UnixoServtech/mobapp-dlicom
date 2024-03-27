@@ -91,6 +91,7 @@ const Text = ({
   interSemiBold,
   interMedium,
   ellipsizeMode,
+  adjustsFontSizeToFit,
   ...rest
 }) => {
   const {colors} = useTheme();
@@ -131,6 +132,7 @@ const Text = ({
           {...rest}
           numberOfLines={numberOfLines}
           ellipsizeMode={ellipsizeMode}
+          adjustsFontSizeToFit={adjustsFontSizeToFit}
           style={[
             defaultTextStyle,
             computedStyles,

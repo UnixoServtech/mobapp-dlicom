@@ -11,6 +11,7 @@ import Routes from '../../navigation/Routes';
 import Device from '../../utils/device';
 import CreatePassword_Component from './CreatePassword_Component';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import {Platform} from 'react-native';
 
 const encryptor = new Encryptor();
 
@@ -101,12 +102,13 @@ class CreatePassword extends Component {
           {
             accessControl:
               Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
-            accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
+            accessible: Keychain.ACCESSIBLE.WHEN_PASSCODE_SET_THIS_DEVICE_ONLY,
             authenticationPrompt: {
               title: Strings.authenticationPromptTitle,
             },
             service: Device.isAndroid() ? SERVICE_ANDROID : SERVICE_IOS,
-            authenticateType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
+            authenticateType:
+              Keychain.AUTHENTICATION_TYPE.DEVICE_PASSCODE_OR_BIOMETRICS,
           },
         );
         console.log(

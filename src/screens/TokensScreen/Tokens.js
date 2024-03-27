@@ -6,12 +6,18 @@ class Tokens extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tokenList: Array(9)
-        .fill(0)
-        .map((_, i) => i),
+      tokenList: this.props.tokenList,
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.tokenList !== this.props.tokenList) {
+      this.setState({
+        tokenList: this.props.tokenList,
+      });
+    }
   }
 
   componentDidMount() {}

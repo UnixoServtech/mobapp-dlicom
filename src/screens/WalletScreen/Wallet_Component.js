@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, Image, ScrollView, View} from 'react-native';
 import images from '../../assets/images';
 import BottomModal from '../../components/BottomModal';
 import CustomIcon from '../../components/CustomIcon';
@@ -43,6 +43,7 @@ const Wallet_Component = ({
   walletAddress,
   headerText,
   btnShareAddress,
+  tokenList,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -168,8 +169,10 @@ const Wallet_Component = ({
             urbanistSemiBold={true}
             size={theme.typography.fontSizes.xl6}
             style={{maxWidth: '80%'}}
-            textAlign={'center'}>
-            {amount}
+            textAlign={'center'}
+            numberOfLines={1}
+            adjustsFontSizeToFit={true}>
+            ${amount}
           </Text>
           <Spacing size="xl" />
           <View
@@ -205,7 +208,7 @@ const Wallet_Component = ({
         <Spacing size="md" />
       </View>
       {selectedTab === AppConstant.tokenType ? (
-        <Tokens />
+        <Tokens tokenList={tokenList} />
       ) : (
         <ScrollView
           contentContainerStyle={{

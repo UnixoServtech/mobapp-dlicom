@@ -8,11 +8,18 @@ import RootNavigator from './src/navigation/RootNavigator';
 import API, {DevelopmentMode} from './src/networking';
 import {configureStore} from './src/redux/';
 import {PersistGate} from 'redux-persist/integration/react';
+import RNScreenshotPrevent from 'react-native-screenshot-prevent';
 
 API.getInstance().build(DevelopmentMode.PRODUCTION, apiConfig);
 const store = configureStore().store;
 const persistor = configureStore().persistor;
 LogBox.ignoreAllLogs(true);
+
+RNScreenshotPrevent.enabled(true);
+
+if (!__DEV__) {
+  RNScreenshotPrevent.enableSecureView();
+}
 
 export default function App() {
   return (
