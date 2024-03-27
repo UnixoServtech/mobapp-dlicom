@@ -4,11 +4,12 @@ import {navigate} from '../../navigation/NavigationUtils';
 import Wallet_Component from './Wallet_Component';
 import Routes from '../../navigation/Routes';
 import Strings from '../../localization/Strings';
-import {AppConstant} from '../../constants/constants';
+import {AppConstant, TOKENS} from '../../constants/constants';
 import {selectNewWallet} from '../../redux/actions/userWallets';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {Toast} from '../../components/Toast';
 import Share from 'react-native-share';
+import {getAccountBalance, getTokenListByAccount} from '../../core/eth';
 
 class Wallet extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class Wallet extends Component {
       wallet: {},
       wallets: [],
       showQrModal: false,
+      walletBalance: 0,
+      tokenList: [],
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.handleImportWallet = this.handleImportWallet.bind(this);
@@ -27,21 +30,42 @@ class Wallet extends Component {
     this.hideActionModal = this.hideActionModal.bind(this);
     this.onModalHide = this.onModalHide.bind(this);
     this.btnShareAddress = this.btnShareAddress.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState(prev => ({
       wallet: this.props.selectedWallet,
       wallets: this.props.wallets,
     }));
+    this.focusListener = this.props.navigation.addListener(
+      'focus',
+      async () => {
+        this.getProfile();
+      },
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.selectedWallet !== this.props.selectedWallet) {
+      this.setState(
+        {
+          wallet: this.props.selectedWallet,
+        },
+        () => {
+          this.getProfile();
+        },
+      );
+    }
+    if (prevState.tokenList !== this.state.tokenList) {
       this.setState({
-        wallet: this.props.selectedWallet,
+        tokenList: this.state.tokenList,
       });
     }
+  }
+
+  componentWillUnmount() {
+    this.focusListener();
   }
 
   handleCreateNewWallet = () => {};
@@ -95,6 +119,77 @@ class Wallet extends Component {
     });
   };
 
+  getProfile = async () => {
+    try {
+      // Get wallet balance
+      const walletAddress = this.props.selectedWallet?.wallet?.address;
+      const walletBalance = await getAccountBalance(
+        walletAddress,
+        'https://polygon-mumbai-bor-rpc.publicnode.com/',
+      );
+
+      // Get token parameters
+      const tokenAddresses = Object.values(TOKENS)
+        .map(item => item?.tokenAddress)
+        .join(',');
+
+      // Fetch current token prices
+      const pricesResponse = await fetch(
+        `https://coins.llama.fi/prices/current/${tokenAddresses}?searchWidth=4h`,
+      );
+      if (!pricesResponse.ok) {
+        throw new Error('Failed to fetch token prices');
+      }
+
+      const pricesData = await pricesResponse.json();
+
+      // Set balance in USDC
+      this.setState({
+        walletBalance:
+          walletBalance *
+          pricesData?.coins[
+            'ethereum:0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+          ]?.price,
+      });
+
+      // Fetch token percentages
+      const percentagesResponse = await fetch(
+        `https://coins.llama.fi/percentage/${tokenAddresses}`,
+      );
+      if (!percentagesResponse.ok) {
+        throw new Error('Failed to fetch token percentages');
+      }
+      const percentagesData = await percentagesResponse.json();
+
+      // Get token balances
+      const tokenBalance = await getTokenListByAccount(
+        walletAddress,
+        Object.values(TOKENS),
+        'https://eth.llamarpc.com/',
+      );
+
+      // Combine data
+      const combinedList = {};
+      for (const key in pricesData.coins) {
+        if (
+          percentagesData.coins.hasOwnProperty(key) &&
+          tokenBalance.hasOwnProperty(key)
+        ) {
+          combinedList[key] = {
+            ...pricesData.coins[key],
+            percentage: percentagesData.coins[key],
+            ...tokenBalance[key],
+          };
+        }
+      }
+
+      // Set state
+      this.setState({tokenList: Object.values(combinedList)});
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
   render() {
     const {selectedTab, searchWord, showActionSheet, showQrModal} = this.state;
     return (
@@ -102,7 +197,9 @@ class Wallet extends Component {
         <Wallet_Component
           selectedAccountName={this.state.wallet?.name}
           avatarLink={this.state.wallet?.avatar}
-          amount={'$ 5,323.00'}
+          amount={
+            this.state.walletBalance ? this.state.walletBalance?.toFixed(6) : 0
+          }
           onSendClick={this.onSendClick}
           onReceiveClick={this.onReceiveClick}
           onScanClick={this.onScanClick}
@@ -148,6 +245,7 @@ class Wallet extends Component {
           contentPress={this.contentPress}
           walletAddress={this.state.wallet?.wallet?.address}
           btnShareAddress={this.btnShareAddress}
+          tokenList={this.state.tokenList}
         />
       </>
     );

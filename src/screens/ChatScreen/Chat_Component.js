@@ -16,6 +16,8 @@ const Chat_Component = ({
   routeMap,
   selectedTab,
   notificationClick,
+  avatar,
+  name,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -26,7 +28,7 @@ const Chat_Component = ({
         <View style={styles.avatarWrapper}>
           <Image
             source={{
-              uri: 'https://s3-alpha-sig.figma.com/img/56e9/dca9/865a9ee40e0fa951d89b499668c178cc?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lSyuHldwYs3x5emUPwwso9HyPLoGscmO8A74SLdGU-89RjmhYkWUYhXzUvBDN9U3-bXdWxdCMMAPrE9vpPSiIcasHLRqnY886IrGnEhsVZky1zlKNucOHHjBaAhzTNR0NcEDyu~6FTjUb3PMQsmOULl23IJ-xhVoPpPNc641CZrpeiWpVA~N51HXiNOaxBcOwoKPSzwfjlh618By05NZZQLpW6ZFixTA1PIU7xQZ1cM1IufSAK57O0JQ2Z4IssVuh-dbCuEC6jTADkhwaDP1RQYFxADuwmCAs9~j06w7op47fmFetUG7uYwUWHJeAF~UTZobIETG15hwKzVlJvVmQg__',
+              uri: avatar,
             }}
             style={styles.avatar}
             defaultSource={images.ic_place_holder}
@@ -37,7 +39,7 @@ const Chat_Component = ({
             type={'helper-text'}
             netflixSansBold={true}
             color={colors?.grayLight}>
-            hero.dlicom.io
+            {name}
           </Text>
         </View>
         <Pressable onPress={notificationClick}>

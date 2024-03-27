@@ -14,6 +14,21 @@ class Splash extends Component {
   }
 
   async componentDidMount() {
+    // check(PERMISSIONS.IOS.FACE_ID)
+    //   .then(res => {
+    //     console.log(res);
+    //     request(PERMISSIONS.IOS.FACE_ID)
+    //       .then(res => {
+    //         console.log(res);
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       });
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
     let isDarkTheme = await AsyncStorage.getItem(LOCAL_STORAGE.DARK_THEME);
     this.props.setDarkMode(
       isDarkTheme == null ? true : JSON.parse(isDarkTheme),

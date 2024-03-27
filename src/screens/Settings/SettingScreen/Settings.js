@@ -12,6 +12,7 @@ import Routes from '../../../navigation/Routes';
 import AsyncStorage from '@react-native-community/async-storage';
 import {LOCAL_STORAGE} from '../../../constants/storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import * as constants from '../../../constants/constants';
 
 class Settings extends Component {
   constructor(props) {
@@ -29,7 +30,20 @@ class Settings extends Component {
     this.onLogout = this.onLogout.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState(prev => ({
+      wallet: this.props.selectedWallet,
+      wallets: this.props.wallets,
+    }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedWallet !== this.props.selectedWallet) {
+      this.setState({
+        wallet: this.props.selectedWallet,
+      });
+    }
+  }
 
   handleCreateNewWallet = () => {};
 
@@ -64,13 +78,13 @@ class Settings extends Component {
   };
 
   onLogout = async () => {
-    EncryptedStorage.removeItem('persist:root');
-    AsyncStorage.removeItem(LOCAL_STORAGE.BIOMETRY);
-    AsyncStorage.removeItem(LOCAL_STORAGE.PASSWORD);
-    AsyncStorage.removeItem(LOCAL_STORAGE.ENCRYPTED_MNEMONIC);
+    await EncryptedStorage.removeItem('persist:root');
+    await AsyncStorage.removeItem(LOCAL_STORAGE.BIOMETRY);
+    await AsyncStorage.removeItem(LOCAL_STORAGE.PASSWORD);
+    await AsyncStorage.removeItem(LOCAL_STORAGE.ENCRYPTED_MNEMONIC);
     await EncryptedStorage.clear();
     await AsyncStorage.clear();
-    mnemonic = '';
+    constants.mnemonic = '';
   };
 
   render() {
@@ -78,11 +92,9 @@ class Settings extends Component {
     return (
       <>
         <Settings_Component
-          source={
-            'https://s3-alpha-sig.figma.com/img/cb87/e6f1/7f1b4f2493f74ca4945652e8ad78daac?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=eCCkSBpqZYedRfyYNClw2EFV~X6FJZat5gkFsMu3wYqN6AaB0QLchOIoYVbf2aVtVSl7YObLpfsEdcHk0gACdSsPpyOn1f8rPkfYLsbLBlbeMuTX46mDkJfZtb-Kf8f6WWI-v6lzHX5TAWlzDDQqx3yDBciqLuF~3AGQKUrwWY5~HBbDr4tHqh7Or1NcLu3oBH1iN7zDH13ZpYtuDLG6pX-hL1cEQVBtjdhtLGmH-KDammO8ic7Hwk6-cihDMBdS9lvqco0D6XRBWVNg6IQIPWelRyBdJLLX-E6sOBL2kmdf1T7NmqMHgCKS~Ar~Su126cZTemBsA3bI0vdNqZxsEQ__'
-          }
-          username={'Austin-NFT'}
-          status={'Trust your feelings , be a good human beings'}
+          source={this.state.wallet?.avatar}
+          username={this.state.wallet?.name}
+          status={this.state.wallet?.wallet?.address}
           button1Press={this.handleCreateNewWallet}
           button2Press={this.handleImportWallet}
           row1Prop={{
@@ -133,6 +145,7 @@ const mapStateToProps = state => {
     isInternetConnected: state.global.isInternetConnected,
     isLoading: state.global.loading,
     isDarkTheme: state.global.isDarkTheme,
+    selectedWallet: state.userWallets.selectedWallet,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Settings);

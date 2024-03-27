@@ -13,7 +13,7 @@ import Device from '../../utils/device';
 import Security_Component from './Security_Component';
 import {Toast} from '../../components/Toast';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import * as Helper from '../../utils/helper';
+import * as constants from '../../constants/constants';
 
 const persistor = configureStore().persistor; // TODO: Remove once the flow is updated.
 
@@ -128,7 +128,7 @@ class Security extends Component {
         MNEMONIC_SALT,
       )
       .then(data => {
-        Helper.mnemonic = data?.password;
+        constants.mnemonic = data?.password;
       })
       .catch(error => {
         console.log(error);
