@@ -72,6 +72,12 @@ export default createStyles = colors =>
       fontWeight: theme.typography.fontWeights.medium,
       color: colors.white,
     },
+    label: {
+      fontFamily: theme.typography.fonts.amikoRegular,
+      fontSize: theme.typography.fontSizes['xs'],
+      fontWeight: theme.typography.fontWeights.normal,
+      color: colors.grayLight,
+    },
   });
 
 //largeHeader:24

@@ -63,4 +63,10 @@ export default {
   addNewWallet: 'Add New Wallet',
   unlockWallet: 'Unlock Wallet',
   verifyPassword: 'Verify Password',
+  wallet_address: 'Wallet Address',
+  name: 'Name',
+  symbol: 'Symbol',
+  decimals: 'Decimal',
+  save: 'Save',
+  custom_network: 'Custom Network',
 };

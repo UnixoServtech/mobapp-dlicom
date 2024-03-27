@@ -37,6 +37,7 @@ const Routes = {
     NOTIFICATIONS: 'NotificationsView',
     NOTIFICATION_PREFERENCES: 'NotificationPreferences',
   },
+  MANAGE_TOKEN_VIEW: 'ManageToken',
 };
 
 export default Routes;

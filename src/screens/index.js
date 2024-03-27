@@ -21,3 +21,4 @@ export {default as NotificationPreferenceView} from './Settings/NotificationPref
 export {default as NotificationView} from './Settings/NotificationView/NotificationView';
 export {default as CreatePassword} from './CreatePasswordScreen/CreatePassword';
 export {default as VerifyPassword} from './VerifyPasswordScreen/VerifyPassword';
+export {default as ManageTokenScreen} from './ManageTokenScreen/ManageToken';

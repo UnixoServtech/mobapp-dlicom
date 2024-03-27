@@ -34,6 +34,8 @@ const getTextComputedStyles = (type, colors) => {
     return styles.interMedium;
   } else if (type === 'button') {
     return styles.button;
+  } else if (type === 'label') {
+    return styles.label;
   } else {
     return styles.bodyText;
   }

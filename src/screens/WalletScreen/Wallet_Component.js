@@ -16,11 +16,17 @@ import {
   Button,
   ListItem,
   QRCodeModal,
+  Input,
+  BottomSheetHeader,
 } from '../../components';
 import theme from '../../theme';
 import SwapView from '../SwapScreen/SwapView';
 import Tokens from '../TokensScreen/Tokens';
 import createStyles from './Wallet.style';
+import BottomModal from '../../components/BottomModal';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import BottomSheet from '../../components/BottomSheet';
+import SendTokenModal from '../../components/SendTokenModal';
 
 const Wallet_Component = ({
   onPressRightContent,
@@ -44,6 +50,10 @@ const Wallet_Component = ({
   headerText,
   btnShareAddress,
   tokenList,
+  sendTokenModalRef,
+  onAmountChange,
+  onScanIconClick,
+  onContinuePress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -217,7 +227,6 @@ const Wallet_Component = ({
           <SwapView />
         </ScrollView>
       )}
-
       <BottomModal
         modalVisible={actionSheetProp?.showActionSheet}
         onRequestClose={actionSheetProp?.onRequestClose}
@@ -265,8 +274,48 @@ const Wallet_Component = ({
         contentPress={contentPress}
         btnPress={btnShareAddress}
       />
+      <SendTokenModal
+        modalRef={sendTokenModalRef}
+        modalHeader={'Send TOKEN'}
+        walletAddressPlaceHolder={'Wallet Address'}
+        amountPlaceHolder={'0.0'}
+        amountLabel={'Amount'}
+        onAmountChange={onAmountChange}
+        onScanClick={onScanIconClick}
+        onContinuePress={onContinuePress}
+        continueBtnDisable={true}
+      />
     </View>
   );
 };
 
 export default Wallet_Component;
+{
+  /* <Input
+label="label"
+optionalLabel="optionalLabel"
+value="Ethereum"
+isRightIconVisible
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+isRightIconVisible
+isLeftIconVisible
+rightIconName={'Scan'}
+leftIconName={'Scan'}
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+// isAsDropdown={true}
+/>
+<Input
+label="label"
+placeholder={'Name'}
+disableFocusHandling={true}
+// isAsDropdown={true}
+/> */
+}

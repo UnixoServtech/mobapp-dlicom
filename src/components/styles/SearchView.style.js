@@ -10,7 +10,7 @@ export default createStyles = colors =>
       fontSize: 14,
     },
     wrapper: {
-      height: theme.normalize(35),
+      height: theme.sizes.spacing.xl11,
       backgroundColor: colors?.searchView?.backgroundColor,
       borderRadius: theme.normalize(8),
       paddingHorizontal: theme.normalize(8),

@@ -1,11 +1,13 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Dimensions, Image, View} from 'react-native';
-import {Button, Spacing, Text} from '../../components';
+import {Button, Input, Spacing, Text} from '../../components';
 import AppIntroSlider from '../../components/AppIntroSlider';
 import {OnBoardItems} from '../../constants/constants';
 import Strings from '../../localization/Strings';
 import theme from '../../theme';
+import BottomModal from '../../components/BottomModal';
+
 const {width, height} = Dimensions.get('window');
 
 const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {

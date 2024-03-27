@@ -134,6 +134,7 @@ const Header = ({
     return (
       <Pressable
         onPress={() => onPressRightContent && onPressRightContent(icon ?? text)}
+        hitSlop={{left: 50, right: 50, top: 50, bottom: 50}}
         style={[
           styles.rightElementStyle,
           {paddingLeft: rightContent?.length > 0 ? 10 : 2},
@@ -192,8 +193,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rightContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    // flexDirection: 'row',
+    // justifyContent: 'flex-end',
   },
   rightElementStyle: {
     flexDirection: 'row',

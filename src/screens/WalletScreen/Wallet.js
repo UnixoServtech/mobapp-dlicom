@@ -31,6 +31,8 @@ class Wallet extends Component {
     this.onModalHide = this.onModalHide.bind(this);
     this.btnShareAddress = this.btnShareAddress.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.onPressRightContent = this.onPressRightContent.bind(this);
+    this.sendTokenModalRef = React.createRef();
   }
 
   async componentDidMount() {
@@ -73,7 +75,7 @@ class Wallet extends Component {
   handleImportWallet = () => {};
 
   onSendClick = () => {
-    console.log('onSendClick');
+    this.sendTokenModalRef?.current?.open();
   };
 
   onReceiveClick = () => {
@@ -190,6 +192,10 @@ class Wallet extends Component {
     }
   };
 
+  onPressRightContent = () => {
+    navigate(Routes.MANAGE_TOKEN_VIEW);
+  };
+
   render() {
     const {selectedTab, searchWord, showActionSheet, showQrModal} = this.state;
     return (
@@ -246,6 +252,8 @@ class Wallet extends Component {
           walletAddress={this.state.wallet?.wallet?.address}
           btnShareAddress={this.btnShareAddress}
           tokenList={this.state.tokenList}
+          sendTokenModalRef={this.sendTokenModalRef}
+          onPressRightContent={this.onPressRightContent}
         />
       </>
     );
