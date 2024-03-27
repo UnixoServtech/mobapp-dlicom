@@ -7,6 +7,8 @@ const Routes = {
     SECURITY: 'SecurityCheck',
   },
   WALLET_VIEW: 'WalletView',
+  CREATE_PASSWORD: 'CreatePassword',
+  VERIFY_PASSWORD: 'VerifyPassword',
   MANUAL_BACKUP_STEP: 'ManualBackupStep',
   SEED_PHRASE: 'ConfirmSeedPhrase',
   HOME_NAV: {

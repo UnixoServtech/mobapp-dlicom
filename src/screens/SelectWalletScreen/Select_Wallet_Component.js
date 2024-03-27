@@ -23,6 +23,10 @@ const Select_Wallet_Component = ({
   btnLabel,
   btnPress,
   onChangeRadio,
+  btnAddNewWalletLabel,
+  btnPressAddNewWallet,
+  btnAddNewWalletRightIcon,
+  btnAddNewWalletIsDisabled = false,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -75,7 +79,20 @@ const Select_Wallet_Component = ({
         )}
       />
       <View style={{margin: theme.sizes.spacing.ph}}>
-        <Button label={btnLabel} onPress={btnPress} showIconRight={true} />
+        <Button
+          label={btnAddNewWalletLabel}
+          onPress={btnPressAddNewWallet}
+          showIconRight={true}
+          rightIconName="Plus"
+          isDisabled={btnAddNewWalletIsDisabled}
+        />
+        <Spacing />
+        <Button
+          label={btnLabel}
+          onPress={btnPress}
+          variant="ghost"
+          themedColor={colors.primaryMainColor}
+        />
       </View>
     </View>
   );

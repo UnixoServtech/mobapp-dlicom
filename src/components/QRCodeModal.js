@@ -49,7 +49,11 @@ const QRModal = ({
                 size={theme.sizes.icons.xl2}
               />
               <Spacing direction={5} />
-              <Text type={'helper-text'} amikoRegular={true}>
+              <Text
+                type={'helper-text'}
+                amikoRegular={true}
+                numberOfLines={1}
+                ellipsizeMode={'middle'}>
                 {contentValue}
               </Text>
             </Pressable>

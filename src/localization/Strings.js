@@ -3,8 +3,8 @@ const appName = 'Dlicom';
 
 export default {
   welcome: 'Welcome To Dlicom',
-  welcomeNote: 'Create your won wallet ',
-  createNewWallet: 'Create New Wallet',
+  welcomeNote: 'Create your own wallet ',
+  createNewWallet: 'Create Wallet',
   importWallet: 'Import Wallet',
   securityScreen: 'Security screen',
   forgotPwd: 'Forgot password?',
@@ -58,4 +58,9 @@ export default {
   scan: 'Scan',
   tokens: 'Tokens',
   swap: 'Swap',
+  authenticationPromptTitle: 'Please authenticate in order to use Dlicom',
+  createPassword: 'Create Password',
+  addNewWallet: 'Add New Wallet',
+  unlockWallet: 'Unlock Wallet',
+  verifyPassword: 'Verify Password',
 };

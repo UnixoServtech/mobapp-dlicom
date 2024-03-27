@@ -17,6 +17,11 @@ export const LOCAL_STORAGE = {
   LANGUAGE: `${prefix}LANGUAGE`,
   CONVERSATION_USERS: `${prefix}conversationUsers`,
   DARK_THEME: `${prefix}darkTheme`,
+  BIOMETRY: `${prefix}biometry`,
+  PASSWORD: `${prefix}password`,
+  PASSWORD_HASH: `${prefix}passwordHash`,
+  WALLET_CREATED: `${prefix}walletCreated`,
+  ENCRYPTED_MNEMONIC: `${prefix}encryptedMnemonic`,
 };
 
 // export const STATIC_USER_ID = '47734';

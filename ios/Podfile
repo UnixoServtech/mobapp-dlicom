@@ -38,6 +38,8 @@ target 'dlicom' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'react-native-blob-util',
+    :path => '../node_modules/react-native-blob-util'
 
   target 'dlicomTests' do
     inherit! :complete

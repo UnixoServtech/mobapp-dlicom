@@ -1,22 +1,21 @@
-/* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {TextInput, View} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, Header, Spacing, Text} from '../../components';
 import theme from '../../theme';
-import createStyles from './ImportWallet.style';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import createStyles from './CreatePassword.style';
 
-const ImportWallet_Component = ({
+const CreatePassword_Component = ({
   leftHeaderText,
   onPressLeftContent,
   tittleText,
   tittleNote,
   placeHolder,
   onChangeText,
-  value,
-  primaryButtonProps,
-  secondaryButtonProps,
+  valueNewPassword,
+  onChangeNewPassword,
+  newPasswordButtonProps,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -47,28 +46,26 @@ const ImportWallet_Component = ({
             </Text>
             <Spacing size={'xl'} />
             <TextInput
-              autoFocus
               autoCapitalize={'none'}
               placeholder={placeHolder}
-              multiline={true}
+              multiline={false}
               textAlignVertical={'top'}
-              numberOfLines={4}
+              numberOfLines={1}
               style={styles.textInput}
               placeholderTextColor={colors.gray1}
-              onChangeText={onChangeText}
-              value={value}
+              onChangeText={onChangeNewPassword}
+              value={valueNewPassword}
               returnKeyType={'next'}
               autoCorrect={false}
+              secureTextEntry={true}
             />
+            <Spacing size="xl" />
           </View>
         </KeyboardAwareScrollView>
-        <Spacing size="xl" />
-        <Button showIconRight={true} {...primaryButtonProps} />
-        {/* <Spacing />
-        <Button {...secondaryButtonProps} /> */}
+        <Button showIconRight={true} {...newPasswordButtonProps} />
       </View>
     </View>
   );
 };
 
-export default ImportWallet_Component;
+export default CreatePassword_Component;

@@ -82,6 +82,10 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    packagingOptions {
+        // Should prevent clashes with other libraries that use OpenSSL
+        pickFirst '**/libcrypto.so'
+    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')

@@ -1,15 +1,14 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Dimensions, Image, View} from 'react-native';
-import images from '../../assets/images';
 import {Button, Spacing, Text} from '../../components';
-import Strings from '../../localization/Strings';
-import theme from '../../theme';
 import AppIntroSlider from '../../components/AppIntroSlider';
 import {OnBoardItems} from '../../constants/constants';
+import Strings from '../../localization/Strings';
+import theme from '../../theme';
 const {width, height} = Dimensions.get('window');
 
-const Welcome_Component = ({button1Press, button2Press}) => {
+const Welcome_Component = ({buttonCreateNewWallet, buttonImportWallet}) => {
   const {colors} = useTheme();
 
   const _renderNextButton = () => {
@@ -17,7 +16,7 @@ const Welcome_Component = ({button1Press, button2Press}) => {
       <View>
         <Button
           label={Strings.createNewWallet}
-          onPress={button1Press}
+          onPress={buttonCreateNewWallet}
           showIconRight={true}
         />
       </View>
@@ -30,7 +29,7 @@ const Welcome_Component = ({button1Press, button2Press}) => {
         <Button
           label={Strings.importWallet}
           variant="ghost"
-          onPress={button2Press}
+          onPress={buttonImportWallet}
           themedColor={colors.primaryMainColor}
         />
       </>

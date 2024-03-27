@@ -24,7 +24,7 @@ export const OnBoardItems = [
   },
   {
     id: '2',
-    title: 'Chat & Status',
+    title: 'Communities',
     subtitle:
       'Securely manage your digital assets send, and receive cryptocurrencies',
     image: images.onboarding_3,
