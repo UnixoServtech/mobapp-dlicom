@@ -36,6 +36,8 @@ const Routes = {
     NOTIFICATION_PREFERENCES: 'NotificationPreferences',
   },
   MANAGE_TOKEN_VIEW: 'ManageToken',
+  WALLET_HISTORY: 'WalletHistory',
+  WALLET_HISTORY_DETAIL: 'WalletHistoryDetail',
 };
 
 export default Routes;

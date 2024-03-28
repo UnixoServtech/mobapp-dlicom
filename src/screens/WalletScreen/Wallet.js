@@ -19,6 +19,7 @@ class Wallet extends Component {
     this.onScanClick = this.onScanClick.bind(this);
     this.onPressRightContent = this.onPressRightContent.bind(this);
     this.sendTokenModalRef = React.createRef();
+    this.onHistoryClick = this.onHistoryClick.bind(this);
   }
 
   componentDidMount() {}
@@ -52,6 +53,10 @@ class Wallet extends Component {
     navigate(Routes.MANAGE_TOKEN_VIEW);
   };
 
+  onHistoryClick = () => {
+    navigate(Routes.WALLET_HISTORY);
+  };
+
   render() {
     const {selectedTab} = this.state;
     return (
@@ -82,6 +87,7 @@ class Wallet extends Component {
           onPress1={() => navigate(Routes.SELECT_COIN)}
           sendTokenModalRef={this.sendTokenModalRef}
           onPressRightContent={this.onPressRightContent}
+          onHistoryClick={this.onHistoryClick}
         />
       </>
     );

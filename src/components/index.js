@@ -12,3 +12,4 @@ export {default as TableRow} from './TableRow';
 export {default as SwapItemLayout} from './SwapItemLayout';
 export {default as Input} from './Input';
 export {default as BottomSheetHeader} from './BottomModal/BottomSheetHeader';
+export {default as TokenHistoryDetail} from './TokenHistoryDetail';

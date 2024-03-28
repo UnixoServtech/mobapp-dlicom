@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ManageToken_Component from './ManageToken_Component';
+import {goBack} from '../../navigation/NavigationUtils';
 
 class ManageToken extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class ManageToken extends Component {
     this.tokenSelectDeselect = this.tokenSelectDeselect.bind(this);
     this.onRequestNetworkModalClose =
       this.onRequestNetworkModalClose.bind(this);
-    this.nameRef = null;
+    this.onPressLeftContent = this.onPressLeftContent.bind(this);
   }
 
   componentDidMount() {}
@@ -42,11 +43,11 @@ class ManageToken extends Component {
     });
   };
 
-  addNetworkClick = () => {};
-
-  onTokenClick = (item, index) => {
+  addNetworkClick = () => {
     this.setState({showNetworkModal: true});
   };
+
+  onTokenClick = (item, index) => {};
 
   tokenSelectDeselect = (item, index) => {};
 
@@ -56,8 +57,8 @@ class ManageToken extends Component {
     });
   };
 
-  onSubmitEditingWallet = () => {
-    this.nameRef?.current?.focus();
+  onPressLeftContent = () => {
+    goBack();
   };
 
   render() {
@@ -80,8 +81,7 @@ class ManageToken extends Component {
           tokenSelectDeselect={this.tokenSelectDeselect}
           showNetworkModal={showNetworkModal}
           onRequestNetworkModalClose={this.onRequestNetworkModalClose}
-          onSubmitEditingWallet={this.onSubmitEditingWallet}
-          nameRef={this.nameRef}
+          onPressLeftContent={this.onPressLeftContent}
         />
       </>
     );

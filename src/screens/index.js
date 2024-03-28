@@ -20,3 +20,5 @@ export {default as PrivacyView} from './Settings/PrivacyView/PrivacyView';
 export {default as NotificationPreferenceView} from './Settings/NotificationPreferenceView/NotificationPreferenceView';
 export {default as NotificationView} from './Settings/NotificationView/NotificationView';
 export {default as ManageTokenScreen} from './ManageTokenScreen/ManageToken';
+export {default as WalletHistory} from './History/Wallet/WalletHistory';
+export {default as WalletHistoryDetail} from './History/HistoryDetail/WalletHistoryDetail';
