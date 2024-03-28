@@ -21,7 +21,6 @@ class Chat extends Component {
   componentDidMount() {
     this.setState(prev => ({
       wallet: this.props.selectedWallet,
-      wallets: this.props.wallets,
     }));
   }
 

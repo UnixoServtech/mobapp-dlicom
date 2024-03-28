@@ -1,25 +1,24 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Toast} from '../../components/Toast';
-import Strings from '../../localization/Strings';
-import {goBack, navigate} from '../../navigation/NavigationUtils';
-import ManualBackupStep_Component from './ManualBackupStep_Component';
-import Routes from '../../navigation/Routes';
+import {Toast} from '../../../../components/Toast';
+import Strings from '../../../../localization/Strings';
+import {goBack, navigate} from '../../../../navigation/NavigationUtils';
+import BackupSeedPhrase_Component from './BackupSeedPhrase_Component';
+import Routes from '../../../../navigation/Routes';
 import Share from 'react-native-share';
 import {PermissionsAndroid, Platform} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import moment from 'moment';
 import DeviceInfo from 'react-native-device-info';
+import * as constants from '../../../../constants/constants';
 
-class ManualBackupStep extends Component {
+class BackupSeedPhrase extends Component {
   constructor(props) {
     super(props);
     this.state = {
       seedPhraseHidden: true,
-      seedPhrase: '',
-      setWordsDict: '',
-      wallet: {},
+      seedPhrase: constants.mnemonic,
     };
     this.handleCreateNewWallet = this.handleCreateNewWallet.bind(this);
     this.revealSeedPhrase = this.revealSeedPhrase.bind(this);
@@ -29,17 +28,7 @@ class ManualBackupStep extends Component {
     this.primaryButtonPress = this.primaryButtonPress.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props?.route?.params?.wallet) {
-      const wallet = JSON.parse(this.props?.route?.params?.wallet);
-      console.log(wallet); // TODO: Remove in prod. build
-      this.setState(prev => ({
-        ...prev,
-        seedPhrase: wallet?.mnemonic?.phrase,
-        wallet: wallet,
-      }));
-    }
-  }
+  componentDidMount() {}
 
   handleCreateNewWallet = () => {};
 
@@ -73,6 +62,7 @@ class ManualBackupStep extends Component {
       Platform.OS === 'android' &&
       DeviceInfo.getSystemVersion() < 13
     ) {
+      console.log(DeviceInfo.getSystemVersion());
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
@@ -81,6 +71,7 @@ class ManualBackupStep extends Component {
             message: 'Allow Dlicom to access storage for mnemonic backups.',
           },
         );
+        console.log(granted);
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           this.writeFileOnDirectory(filePath);
         } else {
@@ -113,21 +104,19 @@ class ManualBackupStep extends Component {
   };
 
   secondaryButtonPress = async () => {
-    navigate(Routes.SEED_PHRASE, {
-      wallet: JSON.stringify(this.state.wallet),
-    });
+    goBack();
   };
 
   render() {
     return (
       <>
-        <ManualBackupStep_Component
+        <BackupSeedPhrase_Component
           headerLeftText={Strings.back}
           headerText={Strings.back_up_your_sed_phrase}
           noteText={Strings.back_up_your_sed_phrase_note}
           copyButton={Strings.copy_seed_phrase}
           btn1Label={Strings.backup_on_cloud}
-          btn2Label={Strings.next}
+          btn2Label={Strings.backup_manually}
           seedPhraseHidden={this.state.seedPhraseHidden}
           revealSeedPhrase={this.revealSeedPhrase}
           copyPress={this.copySeedPhrase}
@@ -148,4 +137,4 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
   };
 };
-export default connect(mapStateToProps, mapActionCreators)(ManualBackupStep);
+export default connect(mapStateToProps, mapActionCreators)(BackupSeedPhrase);

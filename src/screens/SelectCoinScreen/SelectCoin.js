@@ -57,7 +57,7 @@ class SelectCoin extends Component {
     await Clipboard.setString('this.state.seedPhrase');
     Toast.show({
       type: 'success',
-      text1: 'Seed Phrase detail copied..',
+      text1: 'Seed Phrase detail copied.',
     });
   };
 

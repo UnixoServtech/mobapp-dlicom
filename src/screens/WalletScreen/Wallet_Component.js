@@ -16,16 +16,11 @@ import {
   Button,
   ListItem,
   QRCodeModal,
-  Input,
-  BottomSheetHeader,
 } from '../../components';
 import theme from '../../theme';
 import SwapView from '../SwapScreen/SwapView';
 import Tokens from '../TokensScreen/Tokens';
 import createStyles from './Wallet.style';
-import BottomModal from '../../components/BottomModal';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import BottomSheet from '../../components/BottomSheet';
 import SendTokenModal from '../../components/SendTokenModal';
 
 const Wallet_Component = ({

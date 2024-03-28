@@ -40,6 +40,7 @@ const Routes = {
   MANAGE_TOKEN_VIEW: 'ManageToken',
   WALLET_HISTORY: 'WalletHistory',
   WALLET_HISTORY_DETAIL: 'WalletHistoryDetail',
+  BACKUP_SEED_PHRASE: 'BackupSeedPhrase',
 };
 
 export default Routes;

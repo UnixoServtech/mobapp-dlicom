@@ -32,6 +32,7 @@ class CreatePassword extends Component {
 
   async componentDidMount() {
     this.setBiometrySupported();
+    await EncryptedStorage.removeItem('persist:root');
     await EncryptedStorage.clear();
     await AsyncStorage.clear();
   }

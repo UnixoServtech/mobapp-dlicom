@@ -2,6 +2,18 @@ import {Mnemonic, Wallet, ethers} from 'ethers';
 import Crypto from 'react-native-quick-crypto';
 import ERC20 from '../ABIs/ERC20.json';
 
+// Define the ERC-20 interface
+const ERC20_INTERFACE = new ethers.Interface([
+  'function totalSupply() external view returns (uint256)',
+  'function balanceOf(address account) external view returns (uint256)',
+  'function transfer(address recipient, uint256 amount) external returns (bool)',
+  'function allowance(address owner, address spender) external view returns (uint256)',
+  'function approve(address spender, uint256 amount) external returns (bool)',
+  'function transferFrom(address sender, address recipient, uint256 amount) external returns (bool)',
+  'event Transfer(address indexed from, address indexed to, uint256 value)',
+  'event Approval(address indexed owner, address indexed spender, uint256 value)',
+]);
+
 /**
  * To check mnemonic is valid or not.
  *
@@ -57,6 +69,7 @@ export const addNewEthAccount = async (mnemonic, index) => {
  * @returns
  */
 export const getActivityHistory = async address => {
+  console.log(address);
   const etherScan = new ethers.EtherscanProvider(80001);
   const history = await etherScan.fetch('account', {
     address: address,
@@ -108,4 +121,46 @@ export const getTokenListByAccount = async (address, tokenList, rpcURL) => {
     };
   }
   return tokenBalanceObject;
+};
+
+export const isERC20 = async (toAddress, rpcURL) => {
+  // Function to check if an address is an ERC-20 contract
+  async function isERC20(provider, address) {
+    const contract = new ethers.Contract(address, ERC20_INTERFACE, provider);
+
+    try {
+      // Check if the contract implements the totalSupply function
+      const totalSupply = await contract.totalSupply();
+      return true;
+    } catch (error) {
+      // If the contract doesn't implement the totalSupply function, it's not an ERC-20
+      return false;
+    }
+  }
+
+  // Usage example
+  const provider = new ethers.JsonRpcProvider(rpcURL);
+  const targetAddress = toAddress; // DAI token contract address
+
+  return isERC20(provider, targetAddress);
+};
+
+export const getERC20TokenDetails = input => {
+  const parsedData = ERC20_INTERFACE.parseTransaction({
+    data: input,
+  });
+  console.log(parsedData);
+
+  return {
+    to:
+      parsedData?.name === 'transfer'
+        ? parsedData?.args[0]
+        : parsedData?.args[1],
+    value:
+      parsedData?.name === 'transfer'
+        ? ethers.formatEther(parsedData?.args[1])
+        : parsedData?.args[2]
+        ? ethers.formatEther(parsedData?.args[2])
+        : 0,
+  };
 };

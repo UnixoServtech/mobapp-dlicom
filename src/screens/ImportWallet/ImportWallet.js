@@ -9,6 +9,7 @@ import Strings from '../../localization/Strings';
 import {goBack, navigate} from '../../navigation/NavigationUtils';
 import Routes from '../../navigation/Routes';
 import ImportWallet_Component from './ImportWallet_Component';
+import * as constants from '../../constants/constants';
 
 const encryptor = new Encryptor();
 
@@ -50,6 +51,8 @@ class ImportWallet extends Component {
           {password: this.state.seedPhrase},
           MNEMONIC_SALT,
         );
+
+        constants.mnemonic = this.state.seedPhrase.trim();
 
         EncryptedStorage.setItem(
           LOCAL_STORAGE.ENCRYPTED_MNEMONIC,

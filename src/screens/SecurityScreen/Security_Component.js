@@ -54,10 +54,10 @@ const Security_Component = ({
             secureTextEntry={true}
           />
           <Spacing size="xl" />
-          <Button {...unlockButtonProps} />
         </KeyboardAwareScrollView>
       </View>
       <View style={{padding: theme.sizes.spacing.pv}}>
+        <Button {...unlockButtonProps} />
         {/* <Button
           label={'Reset Password'}
           variant="ghost"

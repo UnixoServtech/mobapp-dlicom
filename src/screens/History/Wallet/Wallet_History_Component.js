@@ -8,11 +8,16 @@ import CustomIcon from '../../../components/CustomIcon';
 import Strings from '../../../localization/Strings';
 import theme from '../../../theme';
 import createStyles from './WalletHistory.style';
+import {toDataUrl} from '../../../core/Blockies';
+import moment from 'moment';
+import {getERC20TokenDetails, isERC20} from '../../../core/eth';
+import {ethers} from 'ethers';
 
 const Wallet_History_Component = ({
   onPressLeftContent,
   historyList,
   onHistoryItemPress,
+  ownAddress,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -27,42 +32,81 @@ const Wallet_History_Component = ({
         data={historyList}
         keyExtractor={(item, index) => index}
         contentContainerStyle={{paddingBottom: theme.sizes.spacing.ph}}
-        renderItem={({item, index}) => (
-          <Pressable
-            style={{marginTop: theme.normalize(5)}}
-            onPress={onHistoryItemPress}>
-            <ListItem>
-              <ListItem.Date>Sep 26, 2023</ListItem.Date>
-              <ListItem.Content>
-                <ListItem.Icon>
-                  <Image
-                    source={{
-                      uri: 'https://s3-alpha-sig.figma.com/img/1a91/7ed8/f3dfd5867d4a36e222f80ab5163e4abe?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X8nZHvvTppEjN4qw4bP2ZJC6dmMKBDY~dLbmd3sRUONQ9ipX6w-xFqUnrOzf69iFdUa9b434mPOAnVq-nNJSDGSNdlPkeEMpo5npn8bAqNW-BSWW7QkYJXuaQher7BiybqsTMc5KT9SW4tiSiGqw1UaUoibRAumhcWWuy1RFdzX56D2Z2-kLMdjH1Go578AMCyYpV52FIn-UjkcqBYCv5~2aPVkJ0JeZuUtaHtiZ-2~dwp~QsJMhMNDGWH0rcCNQp4HRYUx6~8gSn8UVQfZkxV7HINM4s0ihZVE9ISFajk8DPccaey-NAKJWySoQhfLQbrC3PDk1uTUMcLCRfP9Tmw__',
-                    }}
-                    style={styles.icon}
-                    defaultSource={images.ic_place_holder}
-                  />
-                </ListItem.Icon>
-                <ListItem.Body>
-                  <ListItem.Title interBold={true}>Transfer</ListItem.Title>
-                  <Spacing size={theme.normalize(3)} />
-                  <ListItem.Note>To:0x06012cf... 7a266d</ListItem.Note>
-                </ListItem.Body>
-                <ListItem.Right>
-                  <CustomIcon
-                    name={'Arrow_Down_circle'}
-                    color={'#4EFF8A'}
-                    size={theme.sizes.icons.xl3}
-                  />
-                  <Spacing size={theme.normalize(3)} />
-                  <ListItem.Amount>-200.00</ListItem.Amount>
-                </ListItem.Right>
-              </ListItem.Content>
-              <ListItem.Status color={'red'}>Failed</ListItem.Status>
-            </ListItem>
-            <View style={{height: 1, backgroundColor: colors?.borderColor}} />
-          </Pressable>
-        )}
+        renderItem={({item, index}) => {
+          const status = isERC20(
+            item?.to,
+            'https://polygon-mumbai-bor-rpc.publicnode.com/',
+          ).then(data => {
+            return data;
+          });
+
+          return (
+            <Pressable
+              key={`Item - ${index}`}
+              style={{marginTop: theme.normalize(5)}}
+              onPress={onHistoryItemPress}>
+              <ListItem>
+                <ListItem.Date>
+                  {moment.unix(item?.timeStamp).format('MMM DD, YYYY')}
+                </ListItem.Date>
+                <ListItem.Content>
+                  <ListItem.Icon>
+                    <Image
+                      source={{
+                        uri:
+                          item?.from?.toLowerCase() !== ownAddress.toLowerCase()
+                            ? toDataUrl(item?.from)
+                            : toDataUrl(item?.to),
+                      }}
+                      style={styles.icon}
+                      defaultSource={images.ic_place_holder}
+                    />
+                  </ListItem.Icon>
+                  <ListItem.Body>
+                    <ListItem.Title interBold={true}>
+                      {item?.from?.toLowerCase() === ownAddress.toLowerCase()
+                        ? 'Transfer'
+                        : 'Received'}
+                    </ListItem.Title>
+                    <Spacing size={theme.normalize(3)} />
+                    <ListItem.Note>
+                      {item?.from?.toLowerCase() !== ownAddress.toLowerCase()
+                        ? 'From:' + item?.from
+                        : 'To:' + item?.to}
+                    </ListItem.Note>
+                  </ListItem.Body>
+                  <ListItem.Right>
+                    <CustomIcon
+                      name={
+                        item?.from?.toLowerCase() === ownAddress.toLowerCase()
+                          ? 'Arrow_Up_circle'
+                          : 'Arrow_Down_circle'
+                      }
+                      color={'#4EFF8A'}
+                      size={theme.sizes.icons.xl3}
+                    />
+                    <Spacing size={theme.normalize(3)} />
+                    <ListItem.Amount>
+                      {item?.input === '0x'
+                        ? item?.from?.toLowerCase() === ownAddress.toLowerCase()
+                          ? '- ' + ethers.formatEther(item?.value)
+                          : '+ ' + ethers.formatEther(item?.value)
+                        : item?.input === '0x' &&
+                          isERC20(
+                            item?.to,
+                            'https://polygon-mumbai-bor-rpc.publicnode.com/',
+                          )
+                        ? getERC20TokenDetails(item?.input).value
+                        : getERC20TokenDetails(item?.input).value}
+                    </ListItem.Amount>
+                  </ListItem.Right>
+                </ListItem.Content>
+                {/* <ListItem.Status color={'red'}>Failed</ListItem.Status> */}
+              </ListItem>
+              <View style={{height: 1, backgroundColor: colors?.borderColor}} />
+            </Pressable>
+          );
+        }}
       />
     </View>
   );

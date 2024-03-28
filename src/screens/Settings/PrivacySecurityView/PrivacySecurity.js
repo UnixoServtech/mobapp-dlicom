@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Strings from '../../../localization/Strings';
-import {goBack} from '../../../navigation/NavigationUtils';
+import {goBack, navigate} from '../../../navigation/NavigationUtils';
 import SettingsTemplate_Component from '../SettingsTemplate/SettingsTemplate_Component';
+import Routes from '../../../navigation/Routes';
 
 class PrivacySecurity extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class PrivacySecurity extends Component {
   };
 
   backupSeedPhraseClick = () => {
-    console.log('backupSeedPhraseClick');
+    navigate(Routes.BACKUP_SEED_PHRASE);
   };
 
   resetFaceIdClick = () => {

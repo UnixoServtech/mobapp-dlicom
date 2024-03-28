@@ -14,6 +14,7 @@ import VerifyPassword_Component from './VerifyPassword_Component';
 import {Toast} from '../../components/Toast';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {MNEMONIC_SALT} from '@env';
+import * as constants from '../../constants/constants';
 
 const encryptor = new Encryptor();
 
@@ -145,6 +146,8 @@ class VerifyPassword extends Component {
       {password: seedPhrase},
       MNEMONIC_SALT,
     );
+
+    constants.mnemonic = seedPhrase;
 
     EncryptedStorage.setItem(
       LOCAL_STORAGE.ENCRYPTED_MNEMONIC,

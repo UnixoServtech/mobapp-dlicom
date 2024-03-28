@@ -146,6 +146,8 @@ const mapStateToProps = state => {
     isLoading: state.global.loading,
     isDarkTheme: state.global.isDarkTheme,
     selectedWallet: state.userWallets.selectedWallet,
+    userWallets: state.userWallets,
+    wallets: state.userWallets.wallets,
   };
 };
 export default connect(mapStateToProps, mapActionCreators)(Settings);

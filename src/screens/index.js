@@ -24,3 +24,4 @@ export {default as VerifyPassword} from './VerifyPasswordScreen/VerifyPassword';
 export {default as ManageTokenScreen} from './ManageTokenScreen/ManageToken';
 export {default as WalletHistory} from './History/Wallet/WalletHistory';
 export {default as WalletHistoryDetail} from './History/HistoryDetail/WalletHistoryDetail';
+export {default as BackupSeedPhrase} from './Settings/PrivacySecurityView/BackupSeedPhraseScreen/BackupSeedPhrase';
