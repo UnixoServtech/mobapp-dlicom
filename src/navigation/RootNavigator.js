@@ -42,6 +42,8 @@ import {
   CreatePassword,
   VerifyPassword,
   ManageTokenScreen,
+  WalletHistory,
+  WalletHistoryDetail,
 } from '../screens';
 import colors from '../theme/colors';
 import {navigationRef} from './NavigationUtils';
@@ -464,6 +466,16 @@ class RootNavigator extends Component {
               <Stack.Screen
                 name={Routes.VERIFY_PASSWORD}
                 component={VerifyPassword}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={Routes.WALLET_HISTORY}
+                component={WalletHistory}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name={Routes.WALLET_HISTORY_DETAIL}
+                component={WalletHistoryDetail}
                 options={{headerShown: false}}
               />
               {this.getStackFromJSON(commonScreens)}

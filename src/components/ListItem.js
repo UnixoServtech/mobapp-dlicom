@@ -11,8 +11,8 @@ const createStyles = colors =>
       paddingVertical: 10,
     },
     date: {
-      fontSize: 12,
-      marginBottom: 10,
+      fontSize: theme.typography.fontSizes.smm,
+      marginBottom: theme.normalize(15),
     },
     content: {
       flexDirection: 'row',
@@ -59,6 +59,11 @@ const createStyles = colors =>
       backgroundColor: colors?.primaryMainColor,
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    status: {
+      marginTop: theme.normalize(5),
+      textAlign: 'right',
+      fontSize: theme.normalize(10),
     },
   });
 
@@ -196,6 +201,12 @@ const ListItemAddress = ({style, ...props}) => {
   );
 };
 
+const ListItemStatus = ({style, ...props}) => {
+  const {colors} = useTheme();
+  const styles = createStyles(colors);
+  return <Text type={'tiny-label'} style={[styles.status, style]} {...props} />;
+};
+
 ListItem.Date = ListItemDate;
 ListItem.Content = ListItemContent;
 ListItem.Icon = ListItemIcon;
@@ -209,6 +220,7 @@ ListItem.FiatAmount = ListItemFiatAmount;
 ListItem.Border = ListItemBorder;
 ListItem.Badge = ListItemBadge;
 ListItem.Address = ListItemAddress;
+ListItem.Status = ListItemStatus;
 
 export default ListItem;
 

@@ -1,6 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import {useTheme} from '@react-navigation/native';
 import React, {useRef} from 'react';
-import {FlatList, Image, ScrollView, View} from 'react-native';
+import {FlatList, Image, View} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Modal from 'react-native-modal';
+import images from '../../assets/images';
 import {
   BottomSheetHeader,
   Button,
@@ -11,17 +15,12 @@ import {
   SearchBar,
   Spacing,
   SwitchToggle,
-  Text,
 } from '../../components';
-import theme from '../../theme';
-import createStyles from './ManageToken.style';
 import CustomIcon from '../../components/CustomIcon';
-import images from '../../assets/images';
-import ActionModal from '../../components/ActionModal';
-import Modal from 'react-native-modal';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Device from '../../utils/device';
 import Strings from '../../localization/Strings';
+import theme from '../../theme';
+import Device from '../../utils/device';
+import createStyles from './ManageToken.style';
 
 const ManageToken_Component = ({
   searchBarProp,
@@ -31,26 +30,18 @@ const ManageToken_Component = ({
   tokenSelectDeselect,
   onRequestNetworkModalClose,
   showNetworkModal,
-  onSubmitEditingWallet,
-  onSubmitEditingNext,
-  onSubmitEditingSymbol,
+  onPressLeftContent,
 }) => {
   const nameRef = useRef(null);
   const symbolRef = useRef();
   const decimalRef = useRef();
-
-  const jumpToName = () => {};
-
-  const jumpToSymbol = () => {};
-
-  const jumpToDecimal = () => {};
 
   const {colors} = useTheme();
   let styles = createStyles(colors);
 
   return (
     <View style={styles.mainContainer}>
-      <Header />
+      <Header onPressLeftContent={onPressLeftContent} />
       <Spacing />
       {/* Search View */}
       <View style={styles.searchWrapper}>
@@ -132,7 +123,7 @@ const ManageToken_Component = ({
                 placeholder={Strings.wallet_address}
                 returnKeyType={'next'}
                 onSubmitEditing={() => {
-                  nameRef.current?._root.focus();
+                  nameRef.current?.focus();
                 }}
                 restProps={{
                   blurOnSubmit: false,
@@ -144,7 +135,7 @@ const ManageToken_Component = ({
                 ref={nameRef}
                 returnKeyType={'next'}
                 onSubmitEditing={() => {
-                  symbolRef.current?._root.focus();
+                  symbolRef.current?.focus();
                 }}
               />
               <Spacing />
@@ -152,10 +143,16 @@ const ManageToken_Component = ({
                 placeholder={Strings.symbol}
                 ref={symbolRef}
                 returnKeyType={'next'}
-                onSubmitEditing={onSubmitEditingSymbol}
+                onSubmitEditing={() => {
+                  decimalRef.current?.focus();
+                }}
               />
               <Spacing />
-              <Input placeholder={Strings.decimals} ref={decimalRef} />
+              <Input
+                placeholder={Strings.decimals}
+                ref={decimalRef}
+                keyboardType={'decimal-pad'}
+              />
               <Spacing size="xl" />
               <Button label={Strings.save} />
               <Spacing size="xl" />

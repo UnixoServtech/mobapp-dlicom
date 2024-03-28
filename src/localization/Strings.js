@@ -69,4 +69,6 @@ export default {
   decimals: 'Decimal',
   save: 'Save',
   custom_network: 'Custom Network',
+  history: 'History',
+  wallet_history: 'Wallet History',
 };

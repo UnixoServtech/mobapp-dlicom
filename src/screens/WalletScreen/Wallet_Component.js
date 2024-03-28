@@ -54,6 +54,7 @@ const Wallet_Component = ({
   onAmountChange,
   onScanIconClick,
   onContinuePress,
+  onHistoryClick,
 }) => {
   const {colors} = useTheme();
   let styles = createStyles(colors);
@@ -210,6 +211,8 @@ const Wallet_Component = ({
             )}
             <Spacing direction="x" size="xl" />
             {renderIcon('Scan', Strings.scan, {}, onScanClick)}
+            <Spacing direction="x" size="xl" />
+            {renderIcon('Loader-2', Strings.history, {}, onHistoryClick)}
           </View>
         </View>
         <View style={styles.tabWrapper}>
